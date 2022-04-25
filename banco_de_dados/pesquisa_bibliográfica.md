@@ -10,3 +10,5 @@ https://www.colibriorquideas.com.br/pagina-Dicas_de_Cultivo
 https://www.cpt.com.br/artigos/orquideas-luminosidade#:~:text=Para%20a%20maioria%20das%20orquídeas,fotômetro%20de%20uma%20máquina%20fotográfica.
 
 http://www.paisagismobauru.com.br/curiosidades/curiosidades/
+
+http://paisagismobauru.com.br/data/documents/CatalogoPlantasOrnamentais.pdf
