@@ -13,4 +13,3 @@ http://www.paisagismobauru.com.br/curiosidades/curiosidades/
 
 http://paisagismobauru.com.br/data/documents/CatalogoPlantasOrnamentais.pdf
 
-http://paisagismobauru.com.br/data/documents/1001plantaseflores.pdf
