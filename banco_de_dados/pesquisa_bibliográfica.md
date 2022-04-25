@@ -12,3 +12,5 @@ https://www.cpt.com.br/artigos/orquideas-luminosidade#:~:text=Para%20a%20maioria
 http://www.paisagismobauru.com.br/curiosidades/curiosidades/
 
 http://paisagismobauru.com.br/data/documents/CatalogoPlantasOrnamentais.pdf
+
+http://paisagismobauru.com.br/data/documents/1001plantaseflores.pdf
