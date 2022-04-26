@@ -27,4 +27,12 @@ Serão monitorados os seguintes itens no vaso/planta:
 
 ## Luminosidade
 
-Conforme o site "Paisagismo Bauru" em sua postagem que pode ser verificada no link 4. 
+Conforme o site "Paisagismo Bauru" em sua postagem que pode ser verificada no link [4](http://www.paisagismobauru.com.br/curiosidades/curiosidades/), a medição de luminosidade será dividida em três faixas:
+* Sol:
+O dia inteiro com iluminação solar direta. Luminosidade acima de 20.000 lux.
+
+* Meia Sombra:
+Variando de iluminação de poucas horas na parte da manhã e mais algumas poucas horas de iluminação na parte da tarde. Luminosidade variando de 5.000 a 20.000 lux.
+
+* Sombra:
+Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
