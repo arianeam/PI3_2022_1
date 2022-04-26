@@ -27,4 +27,4 @@ Serão monitorados os seguintes itens no vaso/planta:
 
 ## Luminosidade
 
-Conforme o site "Paisagismo Bauru" em sua postagem 
+Conforme o site "Paisagismo Bauru" em sua postagem que pode ser verificada no link 4. 
