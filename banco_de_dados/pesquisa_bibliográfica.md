@@ -13,3 +13,5 @@ http://www.paisagismobauru.com.br/curiosidades/curiosidades/
 
 http://paisagismobauru.com.br/data/documents/CatalogoPlantasOrnamentais.pdf
 
+https://www.cultivando.com.br/sol-pleno-meia-sombra-sombra-entenda-a-diferenca-para-as-plantas/#:~:text=Em%20uma%20sala%20muito%20bem,100%20lux%2C%20ou%2050.000%20lux!
+
