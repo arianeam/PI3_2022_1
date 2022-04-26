@@ -17,3 +17,10 @@ https://www.cultivando.com.br/sol-pleno-meia-sombra-sombra-entenda-a-diferenca-p
 
 https://www.gabrielkehdi.com/single-post/plantas-para-sombra
 
+
+Serão monitorados os seguintes itens no vaso/planta:
+
+* Temperatura;
+* Umidade;
+* Umidade do solo (para indicar o momento de rega);
+* Luminosidade
