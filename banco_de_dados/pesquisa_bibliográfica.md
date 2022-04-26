@@ -27,7 +27,7 @@ Serão monitorados os seguintes itens no vaso/planta:
 
 ## Luminosidade
 
-Conforme o site "Paisagismo Bauru" em sua postagem [Dicas de luminosidade para seu jardim, link 4](http://www.paisagismobauru.com.br/curiosidades/curiosidades/), a medição de luminosidade será dividida em três faixas:
+Conforme o site "Paisagismo Bauru" em sua postagem ["Dicas de luminosidade para seu jardim", link 4](http://www.paisagismobauru.com.br/curiosidades/curiosidades/), a medição de luminosidade será dividida em três faixas:
 * Sol:
 O dia inteiro com iluminação solar direta. Luminosidade acima de 20.000 lux.
 
