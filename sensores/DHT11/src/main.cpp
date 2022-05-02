@@ -2,51 +2,54 @@
 #include <DHT.h>
 #include <Adafruit_Sensor.h>
 
-#define DHTPIN 27  //D27
-#define DHTTYPE DHT11
-#define LED_PIN 26
+#define DHT_PIN 15    // pino de dados do DHT11
+#define DHTTYPE DHT11 // selecionar tipo do DHT
+#define LED_PIN 13    // pino para led de teste
 
-DHT dht(DHTPIN, DHTTYPE);
+DHT dht(DHT_PIN, DHTTYPE);
 
-void setup() {
-  // put your setup code here, to run once:
+void setup()
+{
 
-  //teste led blink
+  // teste led blink
   pinMode(LED_PIN, OUTPUT);
 
   Serial.begin(9600);
-  Serial.println("DHTxx test!");
+  Serial.println("DHTxx teste!");
   dht.begin();
- 
+
+  delay(2000);
 }
 
-void loop() {
+void loop()
+{
 
-// teste led blink------------------------
-digitalWrite(LED_PIN, HIGH);
-delay(1000);
-digitalWrite(LED_PIN, LOW);
-delay(1000);
-//------------------------------------------
-  delay(2000);
-  // put your main code here, to run repeatedly:
+  // teste led blink------------------------
 
-  // A leitura da temperatura e umidade pode levar 250ms!
-  // O atraso do sensor pode chegar a 2 segundos.
+  digitalWrite(LED_PIN, HIGH);
+  delay(1000);
+  digitalWrite(LED_PIN, LOW);
+  delay(1000);
+
+  //------------------------------------------
+
   float umidade = dht.readHumidity();
   float temperatura = dht.readTemperature();
+
   // testa se retorno é valido, caso contrário algo está errado.
-  if (isnan(temperatura) || isnan(umidade)) 
+  if (isnan(temperatura) || isnan(umidade))
   {
-    Serial.println("Failed to read from DHT");
-  } 
+    Serial.println("Falha na leitura do DHTxx");
+  }
   else
   {
     Serial.print("Umidade: ");
     Serial.print(umidade);
-    Serial.print(" %t");
+    Serial.print(" %  ");
     Serial.print("Temperatura: ");
     Serial.print(temperatura);
     Serial.println(" *C");
   }
+
+  delay(2000);
 }
