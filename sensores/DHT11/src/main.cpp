@@ -2,9 +2,9 @@
 #include <DHT.h>
 #include <Adafruit_Sensor.h>
 
-#define DHT_PIN 15    // pino de dados do DHT11
+#define DHT_PIN 18    // pino de dados do DHT11
 #define DHTTYPE DHT11 // selecionar tipo do DHT
-#define LED_PIN 13    // pino para led de teste
+#define LED_PIN 2    // pino para led de teste
 
 DHT dht(DHT_PIN, DHTTYPE);
 
