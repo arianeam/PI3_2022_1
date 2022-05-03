@@ -65,6 +65,37 @@ Esses parâmetros foram utilizados para a criação do banco de dados das espéc
 
 27. https://www.tgservices.com.br/efeito-da-temperatura-sobre-as-plantas/
 
+28. https://100fronteiras.com/brasil/noticia/plantas-para-cultivar-ambientes-meia-sombra-sombra-total/
+
+29. https://www.planejpb.com.br/post/jardinagem
+
+30. https://www.casadevalentina.com.br/blog/papo-de-paisagista-plantas-para-sombra/
+
+31. https://www.metodopaisagismo.com.br/single-post/2017/01/03/sol-sombra-ou-meia-sombra
+
+32. https://portalvidalivre.com/articles/148
+
+33. https://minhasplantas.com.br/tv/dentro-de-casa/descubra-quanto-de-luz-sua-planta-precisa/
+
+34. https://www.jardinet.com.br/2019/04/sol-pleno-meia-sombra-luz-direta-ou.html
+
+35. https://www.scielo.br/j/aa/a/4qHVqmHknnPWmwHx3KmMkrB/?lang=pt
+
+36. https://www.atelierecul.com/single-post/2018/02/27/tipos-de-rega-e-luminosidade-em-plantas
+
+37. https://cactosesuculentas.com/suculentas/qual-a-melhor-iluminacao-para-as-suculentas/
+
+38. https://www.editorarealize.com.br/editora/anais/conimas-e-conidis/2019/TRABALHO_EV133_MD4_SA37_ID1471_01112019113159.pdf
+
+39. https://viverorquideaseideias.blogspot.com/2017/02/como-definir-rega-para-suas-plantas.html
+
+40. https://exame.com/casual/os-6-erros-mais-comuns-ao-cuidar-de-plantas-e-como-evita-los/
+
+41. https://eos.com/pt/blog/umidade-do-solo/
+
+42. https://www.vaisala.com/sites/default/files/documents/CEN-BAU-Greenhouse-Climate-Application-Note-B211142PT-A.pdf
+
+43. https://greenpower.net.br/blog/cultivo-indoor-controle-de-temperatura/
 
 
 
