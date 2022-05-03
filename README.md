@@ -118,3 +118,9 @@ Variando de iluminação de poucas horas na parte da manhã e mais algumas pouca
 * **Sombra**:
 Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 
+#Sensores
+
+##DHT11: sensor de temperatura e umidade
+
+<img src="imagens PI3/ESP32_dht11.png" style="width:800px;height:300px;">
+
