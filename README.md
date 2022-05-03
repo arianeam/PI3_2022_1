@@ -122,5 +122,5 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 
 ##DHT11: sensor de temperatura e umidade
 
-<img src="imagens PI3/ESP32_dht11.png" style="width:800px;height:300px;">
+<img src="imagens PI3/ESP32_dht11.png" style="width:480px;height:347px;">
 
