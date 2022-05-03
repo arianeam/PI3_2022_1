@@ -25,6 +25,48 @@ Esses parâmetros foram utilizados para a criação do banco de dados das espéc
 
 7. https://www.gabrielkehdi.com/single-post/plantas-para-sombra
 
+8. https://www.tecnologiaetreinamento.com.br/jardim/floricultura-jardim/cultivo-de-orquideas-substrato-clima-e-luminosidade
+
+9. https://www.floresefolhagens.com.br/plantas-por-categorias/
+
+10. https://www.cpt.com.br/artigos/orquideas-luminosidade#:~:text=Para%20a%20maioria%20das%20orquídeas,fotômetro%20de%20uma%20máquina%20fotográfica. 
+
+11. https://plantasemcasa.com.br/plantas-de-meia-sombra-para-vasos/
+
+12. https://casa.abril.com.br/jardins-e-hortas/tudo-que-voce-precisa-saber-sobre-iluminacao-plantas-internas/
+
+13. https://casa.abril.com.br/jardins-e-hortas/6-dicas-regar-plantas/
+
+14. https://comozed.com/quantos-lumens-são-necessários-para-cultivar-plantas
+
+15. https://www.youtube.com/watch?v=gclYWybQeI4
+
+16. https://www.emporioluz.com.br/blog/a-influencia-da-luz-nas-plantas/
+
+17. https://greenpower.net.br/blog/iluminacao-tamanho-do-grow/
+
+18. https://wchristianeletrotecnica.wordpress.com/2013/01/23/a-luz-e-as-plantas/
+
+19. https://www.gazetadopovo.com.br/haus/paisagismo-jardinagem/voce-sabe-como-regar-corretamente-suas-plantas/
+
+20. https://revistacasaejardim.globo.com/Casa-e-Jardim/Paisagismo/Plantas/noticia/2021/09/plantas-de-sol-11-especies-resistentes-e-que-demandam-luz-direta.html
+
+21. https://cantinhodovideo.com/10-tipos-de-plantas-para-plantar-em-sol-pleno/
+
+22. https://luxafrica.life/2021/02/5-tipos-de-plantas-para-ter-em-casa/
+
+23. https://www.youtube.com/watch?v=qcFD-a5sp2o
+
+24. https://www.youtube.com/watch?v=mpvMj9PM-7I
+
+25. https://www.temarquitetura.com.br/single-post/2015/01/30/Plantas-X-sol
+
+26. https://casa.umcomo.com.br/artigo/plantas-resistentes-ao-sol-e-ao-frio-29387.html
+
+27. https://www.tgservices.com.br/efeito-da-temperatura-sobre-as-plantas/
+
+
+
 
 Serão monitorados os seguintes itens no vaso/planta:
 
