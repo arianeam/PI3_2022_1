@@ -127,7 +127,7 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 
 Para programar o código utilizado no teste do DHT11, foi utilizado o editor de código-fonte Visual Studio Code, com a extensão da plataforma de desenvolvimento
 de software PlatformIO. Foi utilizada a placa de desenvolvimento ESP32 e o framework Arduino para programar. Na imagem abaixo observa-se as configurações 
-do projeto no arquivo platformio.ini, no qual defini-se a placa de desenvolvimento, o framework, portas de comunicação, bibliotecas, entre outras possíveis configurações.
+do projeto no arquivo platformio.ini, no qual define-se a placa de desenvolvimento, o framework, portas de comunicação, bibliotecas, entre outras possíveis configurações.
 
 <img src="imagens PI3/platformio_esp32_dht11_configs.PNG" style="width:409px;height:160px;">
 
