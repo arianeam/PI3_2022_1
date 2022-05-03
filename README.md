@@ -129,9 +129,9 @@ Para programar o código utilizado no teste do DHT11, foi utilizado o editor de 
 de software PlatformIO. Foi utilizada a placa de desenvolvimento ESP32 e o framework Arduino para programar. Na imagem abaixo observa-se as configurações 
 do projeto no arquivo platformio.ini, no qual defini-se a placa de desenvolvimento, o framework, portas de comunicação, bibliotecas, entre outras possíveis configurações.
 
-<img src="imagens PI3/platformio_esp32_dht11_configs.PNG" style="width:818px;height:320px;">
+<img src="imagens PI3/platformio_esp32_dht11_configs.PNG" style="width:409px;height:160px;">
 
-Na imagem abaixo observa-se o esquema de ligação entre a placa ESP32 e o sensor DHT11.
+Na imagem abaixo observa-se o esquema de ligação entre a placa ESP32 e o sensor DHT11. O pino de dados do DHT11 foi ligado ao pino D18 da ESP32.
 
-<img src="imagens PI3/ESP32_dht11.png" style="width:960px;height:694px;">
+<img src="imagens PI3/ESP32_dht11.png" style="width:480px;height:347px;">
 
