@@ -122,5 +122,10 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 
 ##DHT11: sensor de temperatura e umidade
 
+Para programar o código utilizado no teste do DHT11, foi utilizado o editor de código-fonte Visual Studio Code, com a extensão da plataforma de desenvolvimento
+de software PlatformIO. 
+
+
+
 <img src="imagens PI3/ESP32_dht11.png" style="width:480px;height:347px;">
 
