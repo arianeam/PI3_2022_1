@@ -131,7 +131,8 @@ do projeto no arquivo platformio.ini, no qual define-se a placa de desenvolvimen
 
 <img src="imagens PI3/platformio_esp32_dht11_configs.PNG" style="width:409px;height:160px;">
 
-Na imagem abaixo observa-se o esquema de ligação entre a placa ESP32 e o sensor DHT11. O pino de dados do DHT11 foi ligado ao pino D18 da ESP32.
+Na imagem abaixo observa-se o esquema de ligação entre a placa ESP32 e o sensor DHT11. O pino de dados do DHT11 foi ligado ao pino D18 da ESP32,
+o VCC no 3v3, e o GND de ambos foi interligado.
 
 <img src="imagens PI3/ESP32_dht11.png" style="width:480px;height:347px;">
 
