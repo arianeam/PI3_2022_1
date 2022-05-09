@@ -123,7 +123,7 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 
 # Sensores
 
-## DHT11: sensor de temperatura e umidade
+## DHT11: Teste do sensor de temperatura e umidade
 
 Para programar o código utilizado no teste do DHT11, foi utilizado o editor de código-fonte Visual Studio Code, com a extensão da plataforma de desenvolvimento
 de software PlatformIO. Foi utilizada a placa de desenvolvimento ESP32 e o framework Arduino para programar. Na imagem abaixo observa-se as configurações 
