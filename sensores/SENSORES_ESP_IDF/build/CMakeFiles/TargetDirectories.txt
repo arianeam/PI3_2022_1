@@ -676,3 +676,16 @@ C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf
 C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/main/CMakeFiles/rebuild_cache.dir
 C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/main/CMakeFiles/list_install_components.dir
 C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/main/CMakeFiles/install/strip.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/esp_idf_lib_helpers/CMakeFiles/install/local.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/esp_idf_lib_helpers/CMakeFiles/install.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/esp_idf_lib_helpers/CMakeFiles/edit_cache.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/esp_idf_lib_helpers/CMakeFiles/rebuild_cache.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/esp_idf_lib_helpers/CMakeFiles/list_install_components.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/esp_idf_lib_helpers/CMakeFiles/install/strip.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/dht/CMakeFiles/__idf_dht.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/dht/CMakeFiles/install/local.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/dht/CMakeFiles/install.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/dht/CMakeFiles/edit_cache.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/dht/CMakeFiles/rebuild_cache.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/dht/CMakeFiles/list_install_components.dir
+C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/dht/CMakeFiles/install/strip.dir

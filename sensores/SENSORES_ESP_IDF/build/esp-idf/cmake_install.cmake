@@ -122,6 +122,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/ulp/cmake_install.cmake")
   include("C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/wifi_provisioning/cmake_install.cmake")
   include("C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/main/cmake_install.cmake")
+  include("C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/esp_idf_lib_helpers/cmake_install.cmake")
+  include("C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/build/esp-idf/dht/cmake_install.cmake")
 
 endif()
 

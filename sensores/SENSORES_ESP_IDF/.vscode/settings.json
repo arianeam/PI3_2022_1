@@ -15,6 +15,11 @@
         "task.h": "c",
         "dht.h": "c",
         "esp_err.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "freertos.h": "c",
+        "esp_compiler.h": "c",
+        "assert.h": "c",
+        "gpio.h": "c",
+        "sdkconfig.h": "c"
     }
 }
