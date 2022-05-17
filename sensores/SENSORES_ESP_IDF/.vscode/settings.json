@@ -8,7 +8,7 @@
         "interface/ftdi/esp32_devkitj_v1.cfg",
         "target/esp32.cfg"
     ],
-    "idf.portWin": "COM1",
+    "idf.portWin": "COM3",
     "idf.pythonBinPathWin": "C:\\Users\\Ari\\.espressif\\python_env\\idf4.4_py3.8_env\\Scripts\\python.exe",
     "idf.toolsPathWin": "C:\\Users\\Ari\\.espressif",
     "files.associations": {
@@ -21,5 +21,7 @@
         "assert.h": "c",
         "gpio.h": "c",
         "sdkconfig.h": "c"
-    }
+    },
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "idf.flashType": "UART"
 }
