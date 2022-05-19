@@ -64,7 +64,6 @@ void task_dht(void *pvParameters)
 void task_teste_queue(void *pvParameters)
 {
     struct DHT11_param dht11_receber_parametros;
-    float temperatura, umidade;
 
     while (1)
     {
