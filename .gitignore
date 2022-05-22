@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Configurações
+sensores/SENSORES_ESP_IDF/.vscode
+sensores/SENSORES_ESP_IDF/build
+sensores/SENSORES_ESP_IDF/sdkconfig
+sensores/SENSORES_ESP_IDF/sdkconfig.old
