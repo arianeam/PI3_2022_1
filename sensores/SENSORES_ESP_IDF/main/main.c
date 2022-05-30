@@ -8,6 +8,10 @@
 #include "driver/adc.h"
 #include "esp_adc_cal.h"
 
+
+#include "display.h"
+
+
 #define DEFAULT_VREF 1100 // Use adc2_vref_to_gpio() to obtain a better estimate
 #define NO_OF_SAMPLES 64  // Multisampling
 static const adc_atten_t atten = ADC_ATTEN_DB_11;
@@ -70,6 +74,8 @@ void app_main(void)
     xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
     xTaskCreate(task_teste_queue, "task_teste_queue", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
     xTaskCreate(task_adc_hl_69, "task_adc_hl_69", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+
+    display_init();
 }
 //---------------------------------------------------------
 
