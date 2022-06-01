@@ -51,7 +51,6 @@ QueueHandle_t xQueue_dht11;
 //-----------Main------------------------------------------
 void app_main(void)
 {
-
     //----------------------------------------
     /*
     Trecho disponível no exemplo "adc1_example_main.c" do fabricante Espressif
@@ -116,6 +115,8 @@ void task_dht(void *pvParameters)
 void task_teste_queue(void *pvParameters)
 {
     struct DHT11_param dht11_receber_parametros;
+
+    //display_init();
 
     while (1)
     {

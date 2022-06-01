@@ -8,11 +8,12 @@
 #include "freertos/FreeRTOS.h"
 #include <freertos/task.h>
 #include <driver/gpio.h>
-#include <ssd1306/ssd1306.h>
+#include "ssd1306/ssd1306.h"
 #include <driver/i2c.h>
 #include <esp_err.h>
 #include "config.h"
-#include "fonts/fonts.h"
+// #include "fonts/fonts.h"
+#include "../components/ESP32-RTOS-FONTS/fonts/fonts.h"
 #include <stdlib.h>
 
 #include "image.xbm"    // Testes com bitmap
@@ -29,28 +30,47 @@ ssd1306_t display;
 const font_info_t *font = NULL;
 static uint8_t buffer[DISPLAY_WIDTH * DISPLAY_HEIGHT / 8];
 
+#define I2C_MASTER_SCL_IO           22      /*!< GPIO number used for I2C master clock */
+#define I2C_MASTER_SDA_IO           21      /*!< GPIO number used for I2C master data  */
+#define I2C_MASTER_NUM              0                          /*!< I2C master i2c port number, the number of i2c peripheral interfaces available will depend on the chip */
+#define I2C_MASTER_FREQ_HZ          400000                     /*!< I2C master clock frequency */
+#define I2C_MASTER_TX_BUF_DISABLE   0                          /*!< I2C master doesn't need buffer */
+#define I2C_MASTER_RX_BUF_DISABLE   0                          /*!< I2C master doesn't need buffer */
+#define I2C_MASTER_TIMEOUT_MS       1000
+
 /**
  * @brief Inicializa o display e configura o I2C
  */
 void display_init()
 {
+    int i2c_master_port = I2C_MASTER_NUM;
+
     display_status = NAO_INICIADO;
 
-    i2c_config_t i2c_config;
+    // i2c_config_t i2c_config;
 
-    i2c_config.mode = I2C_MODE_MASTER;
-    i2c_config.sda_io_num = I2C_SDA_PIN;
-    i2c_config.sda_pullup_en = 1;
-    i2c_config.scl_io_num = I2C_SCL_PIN;
-    i2c_config.scl_pullup_en = 1;
-    i2c_config.clk_stretch_tick = 300;
+    // i2c_config.mode = I2C_MODE_MASTER;
+    // i2c_config.sda_io_num = I2C_SDA_PIN;
+    // i2c_config.sda_pullup_en = 1;
+    // i2c_config.scl_io_num = I2C_SCL_PIN;
+    // i2c_config.scl_pullup_en = 1;
+    // i2c_config.clk_stretch_tick = 300;
+
+    i2c_config_t conf = {
+        .mode = I2C_MODE_MASTER,
+        .sda_io_num = I2C_MASTER_SDA_IO,
+        .scl_io_num = I2C_MASTER_SCL_IO,
+        .sda_pullup_en = GPIO_PULLUP_ENABLE,
+        .scl_pullup_en = GPIO_PULLUP_ENABLE,
+        .master.clk_speed = I2C_MASTER_FREQ_HZ,
+    };
 
     esp_err_t err;
-    err = i2c_driver_install(I2C_MASTER_PORT, i2c_config.mode);
+    err = i2c_param_config(I2C_MASTER_PORT, &conf);
     ESP_ERROR_CHECK(err);
-    err = i2c_param_config(I2C_MASTER_PORT, &i2c_config);
+    err = i2c_driver_install(i2c_master_port, conf.mode, I2C_MASTER_RX_BUF_DISABLE, I2C_MASTER_TX_BUF_DISABLE, 0);
     ESP_ERROR_CHECK(err);
-
+    
     if (err != ESP_OK)
         return;
 
@@ -148,7 +168,7 @@ void display_test(void)
  * 
  * @param bitmap 
  */
-void display_load_bitmap(uint8_t *bitmap)
+void display_load_bitmap(unsigned char *bitmap)
 {
     clear_buffer();
     if (ssd1306_load_xbm(&display, bitmap, buffer))
