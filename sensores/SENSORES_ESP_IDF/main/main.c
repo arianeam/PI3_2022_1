@@ -33,6 +33,7 @@ static void check_efuse(void);
 void task_dht(void *pvParameters);
 void task_teste_queue(void *pvParameters);
 void task_adc_hl_69(void *pvParameters);
+void task_display(void *pvParameters);
 //--------------------------------------------------------
 
 //------------struct e fila para passagem dos dados do DHT11 para o display-------------
@@ -75,6 +76,8 @@ void app_main(void)
     xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
     xTaskCreate(task_teste_queue, "task_teste_queue", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
     xTaskCreate(task_adc_hl_69, "task_adc_hl_69", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+    xTaskCreate(task_display, "task_display", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+
 
 }
 //---------------------------------------------------------
@@ -128,7 +131,7 @@ void task_teste_queue(void *pvParameters)
             if (xQueueReceive(xQueue_dht11, &(dht11_receber_parametros), (TickType_t)10))
             {
                 printf("Umidade recebida: %.1f%% Temp recebida: %.1fC\n", dht11_receber_parametros.umid, dht11_receber_parametros.temp);
-                display_write_float(dht11_receber_parametros.temp,64,28);
+                //display_write_float(dht11_receber_parametros.temp,64,28);
             }
             else
             {
@@ -167,6 +170,14 @@ void task_adc_hl_69(void *pvParameters)
     }
 }
 
+
+void task_display(void *pvParameters) 
+{
+    while (1) 
+    {
+         display_test();
+    }
+}
 //--------------------------------------------------------------------
 
 //------------Implementação das funções-------------------------------

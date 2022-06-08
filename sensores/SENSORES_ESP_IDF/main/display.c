@@ -97,7 +97,7 @@ void display_init()
 
     display_status = DISPLAY_OK;
 
-    //display_test();
+   
 }
 
 /**
@@ -143,7 +143,7 @@ void clear_buffer(void)
 /**
  * @brief Realiza um teste no display
  */
-/* void display_test(void)
+void display_test(void)
 {
     display_write_string("PI3_2022_1", 0, 8);
 
@@ -163,7 +163,7 @@ void clear_buffer(void)
 
     printf("OK\n");
 }
- */
+
 /**
  * @brief Exige um bitmap no display
  * 
