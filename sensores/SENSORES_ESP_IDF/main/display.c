@@ -8,12 +8,13 @@
 #include "freertos/FreeRTOS.h"
 #include <freertos/task.h>
 #include <driver/gpio.h>
-#include "ssd1306/ssd1306.h"
+//#include <ssd1306/ssd1306.h>
+#include <../components/ESP32-RTOS-SSD1306/ssd1306/ssd1306.h>
 #include <driver/i2c.h>
 #include <esp_err.h>
 #include "config.h"
-// #include "fonts/fonts.h"
-#include "../components/ESP32-RTOS-FONTS/fonts/fonts.h"
+//#include <fonts/fonts.h>
+#include <../components/ESP32-RTOS-FONTS/fonts/fonts.h>
 #include <stdlib.h>
 
 #include "image.xbm"    // Testes com bitmap
@@ -96,7 +97,7 @@ void display_init()
 
     display_status = DISPLAY_OK;
 
-    display_test();
+    //display_test();
 }
 
 /**
@@ -142,7 +143,7 @@ void clear_buffer(void)
 /**
  * @brief Realiza um teste no display
  */
-void display_test(void)
+/* void display_test(void)
 {
     display_write_string("PI3_2022_1", 0, 8);
 
@@ -162,7 +163,7 @@ void display_test(void)
 
     printf("OK\n");
 }
-
+ */
 /**
  * @brief Exige um bitmap no display
  * 

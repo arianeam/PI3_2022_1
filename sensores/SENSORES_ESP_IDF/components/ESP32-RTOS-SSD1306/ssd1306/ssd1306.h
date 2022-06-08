@@ -13,7 +13,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <errno.h>
-#include <fonts/fonts.h>
+//#include <fonts/fonts.h>
+#include "../../components/ESP32-RTOS-FONTS/fonts/fonts.h"
 
 #include <driver/i2c.h>
 

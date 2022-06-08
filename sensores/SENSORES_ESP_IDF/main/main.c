@@ -59,6 +59,8 @@ void app_main(void)
     */
     // Check if Two Point or Vref are burned into eFuse
     check_efuse();
+    
+    display_init();
 
     // Configure ADC
     adc1_config_width(width);
@@ -74,7 +76,6 @@ void app_main(void)
     xTaskCreate(task_teste_queue, "task_teste_queue", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
     xTaskCreate(task_adc_hl_69, "task_adc_hl_69", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 
-    display_init();
 }
 //---------------------------------------------------------
 
@@ -127,6 +128,7 @@ void task_teste_queue(void *pvParameters)
             if (xQueueReceive(xQueue_dht11, &(dht11_receber_parametros), (TickType_t)10))
             {
                 printf("Umidade recebida: %.1f%% Temp recebida: %.1fC\n", dht11_receber_parametros.umid, dht11_receber_parametros.temp);
+                display_write_float(dht11_receber_parametros.temp,64,28);
             }
             else
             {
