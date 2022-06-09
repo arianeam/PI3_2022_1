@@ -8,10 +8,8 @@
 #include "driver/adc.h"
 #include "esp_adc_cal.h"
 
-
 #include "display.h"
 #include "sorriso.h"
-
 
 #define DEFAULT_VREF 1100 // Use adc2_vref_to_gpio() to obtain a better estimate
 #define NO_OF_SAMPLES 64  // Multisampling
@@ -48,8 +46,6 @@ struct DHT11_param
 QueueHandle_t xQueue_dht11;
 //---------------------------------------------------------------------------------------
 
-
-
 //-----------Main------------------------------------------
 void app_main(void)
 {
@@ -61,7 +57,7 @@ void app_main(void)
     */
     // Check if Two Point or Vref are burned into eFuse
     check_efuse();
-    
+
     display_init();
 
     // Configure ADC
@@ -78,12 +74,8 @@ void app_main(void)
     xTaskCreate(task_teste_queue, "task_teste_queue", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
     xTaskCreate(task_adc_hl_69, "task_adc_hl_69", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
     xTaskCreate(task_display, "task_display", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
-
-
 }
 //---------------------------------------------------------
-
-
 
 //---------Implementação das tarefas (tasks)----------------
 void task_dht(void *pvParameters)
@@ -121,7 +113,7 @@ void task_teste_queue(void *pvParameters)
 {
     struct DHT11_param dht11_receber_parametros;
 
-    //display_init();
+    // display_init();
 
     while (1)
     {
@@ -132,7 +124,7 @@ void task_teste_queue(void *pvParameters)
             if (xQueueReceive(xQueue_dht11, &(dht11_receber_parametros), (TickType_t)10))
             {
                 printf("Umidade recebida: %.1f%% Temp recebida: %.1fC\n", dht11_receber_parametros.umid, dht11_receber_parametros.temp);
-                //display_write_float(dht11_receber_parametros.temp,64,28);
+                // display_write_float(dht11_receber_parametros.temp,64,28);
             }
             else
             {
@@ -171,13 +163,23 @@ void task_adc_hl_69(void *pvParameters)
     }
 }
 
-
-void task_display(void *pvParameters) 
+void task_display(void *pvParameters)
 {
-    while (1) 
+    while (1)
     {
-         //display_test();
-         display_load_bitmap(sorriso);
+
+        uint8_t i, j;
+
+        for (i = 0; i < 20; i++)
+        {
+            for (j = 3; j > 0; j--)
+            {
+                display_load_bitmap(sorriso[j]);
+                vTaskDelay(50 / portTICK_PERIOD_MS);
+            }
+        }
+
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 //--------------------------------------------------------------------

@@ -17,7 +17,7 @@
 #include <../components/ESP32-RTOS-FONTS/fonts/fonts.h>
 #include <stdlib.h>
 
-#include "image.xbm"    // Testes com bitmap
+#include "image.xbm" // Testes com bitmap
 
 typedef enum
 {
@@ -31,13 +31,13 @@ ssd1306_t display;
 const font_info_t *font = NULL;
 static uint8_t buffer[DISPLAY_WIDTH * DISPLAY_HEIGHT / 8];
 
-#define I2C_MASTER_SCL_IO           22      /*!< GPIO number used for I2C master clock */
-#define I2C_MASTER_SDA_IO           21      /*!< GPIO number used for I2C master data  */
-#define I2C_MASTER_NUM              0                          /*!< I2C master i2c port number, the number of i2c peripheral interfaces available will depend on the chip */
-#define I2C_MASTER_FREQ_HZ          400000                     /*!< I2C master clock frequency */
-#define I2C_MASTER_TX_BUF_DISABLE   0                          /*!< I2C master doesn't need buffer */
-#define I2C_MASTER_RX_BUF_DISABLE   0                          /*!< I2C master doesn't need buffer */
-#define I2C_MASTER_TIMEOUT_MS       1000
+#define I2C_MASTER_SCL_IO 22        /*!< GPIO number used for I2C master clock */
+#define I2C_MASTER_SDA_IO 21        /*!< GPIO number used for I2C master data  */
+#define I2C_MASTER_NUM 0            /*!< I2C master i2c port number, the number of i2c peripheral interfaces available will depend on the chip */
+#define I2C_MASTER_FREQ_HZ 400000   /*!< I2C master clock frequency */
+#define I2C_MASTER_TX_BUF_DISABLE 0 /*!< I2C master doesn't need buffer */
+#define I2C_MASTER_RX_BUF_DISABLE 0 /*!< I2C master doesn't need buffer */
+#define I2C_MASTER_TIMEOUT_MS 1000
 
 /**
  * @brief Inicializa o display e configura o I2C
@@ -71,7 +71,7 @@ void display_init()
     ESP_ERROR_CHECK(err);
     err = i2c_driver_install(i2c_master_port, conf.mode, I2C_MASTER_RX_BUF_DISABLE, I2C_MASTER_TX_BUF_DISABLE, 0);
     ESP_ERROR_CHECK(err);
-    
+
     if (err != ESP_OK)
         return;
 
@@ -97,9 +97,7 @@ void display_init()
 
     display_status = DISPLAY_OK;
 
-    //ssd1306_clear_screen(&display);
-
-   
+    // ssd1306_clear_screen(&display);
 }
 
 /**
@@ -168,8 +166,8 @@ void display_test(void)
 
 /**
  * @brief Exige um bitmap no display
- * 
- * @param bitmap 
+ *
+ * @param bitmap
  */
 void display_load_bitmap(unsigned char *bitmap)
 {
