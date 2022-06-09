@@ -97,6 +97,8 @@ void display_init()
 
     display_status = DISPLAY_OK;
 
+    //ssd1306_clear_screen(&display);
+
    
 }
 
@@ -172,8 +174,10 @@ void display_test(void)
 void display_load_bitmap(unsigned char *bitmap)
 {
     clear_buffer();
+
     if (ssd1306_load_xbm(&display, bitmap, buffer))
     {
         printf("Erro ao carregar o buffer\n");
     }
 }
+

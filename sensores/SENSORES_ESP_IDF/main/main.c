@@ -10,6 +10,7 @@
 
 
 #include "display.h"
+#include "sorriso.h"
 
 
 #define DEFAULT_VREF 1100 // Use adc2_vref_to_gpio() to obtain a better estimate
@@ -175,7 +176,8 @@ void task_display(void *pvParameters)
 {
     while (1) 
     {
-         display_test();
+         //display_test();
+         display_load_bitmap(sorriso);
     }
 }
 //--------------------------------------------------------------------
