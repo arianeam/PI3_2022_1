@@ -1,0 +1,14 @@
+menu "Configurações Específicas"
+    config WIFI_SSID
+        string "WiFi SSID"
+        default "ssid"
+        help
+            SSID da rede wifi que deseja conectar
+    
+    config WIFI_PASS
+        string "WiFi pass"
+        default "pass"
+        help
+            Senha da rede wifi
+
+endmenu

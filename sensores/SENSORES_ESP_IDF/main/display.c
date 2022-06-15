@@ -48,15 +48,6 @@ void display_init()
 
     display_status = NAO_INICIADO;
 
-    // i2c_config_t i2c_config;
-
-    // i2c_config.mode = I2C_MODE_MASTER;
-    // i2c_config.sda_io_num = I2C_SDA_PIN;
-    // i2c_config.sda_pullup_en = 1;
-    // i2c_config.scl_io_num = I2C_SCL_PIN;
-    // i2c_config.scl_pullup_en = 1;
-    // i2c_config.clk_stretch_tick = 300;
-
     i2c_config_t conf = {
         .mode = I2C_MODE_MASTER,
         .sda_io_num = I2C_MASTER_SDA_IO,
@@ -165,7 +156,7 @@ void display_test(void)
 }
 
 /**
- * @brief Exige um bitmap no display
+ * @brief Exibe um bitmap no display
  *
  * @param bitmap
  */
