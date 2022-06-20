@@ -18,10 +18,10 @@
 #include <../components/jsoncpp/value.h>
 #include <../components/jsoncpp/json.h>
 
-// #include "../components/esp_firebase/esp_firebase.h"
-// #include "wifi_utils.h"
+#include "../components/esp_firebase/esp_firebase.h"
+#include "wifi_utils.h"
 
-// #include "firebase_config.h"
+#include "firebase_config.h"
 
 //----------------------------------
 
