@@ -134,26 +134,26 @@ void clear_buffer(void)
 /**
  * @brief Realiza um teste no display
  */
-void display_test(void)
-{
-    display_write_string("PI3_2022_1", 0, 8);
+// void display_test(void)
+// {
+//     display_write_string("PI3_2022_1", 0, 8);
 
-    vTaskDelay(2000 / portTICK_PERIOD_MS);
+//     vTaskDelay(2000 / portTICK_PERIOD_MS);
 
-    printf("Iniciando animacao\n");
-    uint8_t i, j;
+//     printf("Iniciando animacao\n");
+//     uint8_t i, j;
 
-    for (i = 0; i < 50; i++)
-    {
-        for (j = 9; j > 0; j--)
-        {
-            display_load_bitmap(monkeyAnimation[j]);
-            vTaskDelay(50 / portTICK_PERIOD_MS);
-        }
-    }
+//     for (i = 0; i < 50; i++)
+//     {
+//         for (j = 9; j > 0; j--)
+//         {
+//             display_load_bitmap(monkeyAnimation[j]);
+//             vTaskDelay(50 / portTICK_PERIOD_MS);
+//         }
+//     }
 
-    printf("OK\n");
-}
+//     printf("OK\n");
+// }
 
 /**
  * @brief Exibe um bitmap no display

@@ -17,8 +17,8 @@
 #include "lwip/err.h"
 #include "lwip/sys.h"
 
-#define WIFI_SSID                       "rasp"
-#define WIFI_PASS                       "a18g22c02"
+#define WIFI_SSID                       "Andreia_NeoRede"
+#define WIFI_PASS                       "70960600"
 #define WIFI_MAXIMUM_RETRY              10
 #define WIFI_SCAN_AUTH_MODE_THRESHOLD   WIFI_AUTH_WPA_WPA2_PSK
 #define WIFI_CONNECTED_BIT              BIT0
@@ -75,7 +75,7 @@ void wifi_init(void)
 
     ESP_LOGI(TAG, "ESP_WIFI_MODE_STA");
 
-    wifi_event_group = xEventGroupCreate();
+    comm_event_group = xEventGroupCreate();
 
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
@@ -104,7 +104,7 @@ void wifi_init(void)
             /* Setting a password implies station will connect to all security modes including WEP/WPA.
              * However these modes are deprecated and not advisable to be used. Incase your Access point
              * doesn't support WPA2, these mode can be enabled by commenting below line */
-            .threshold.authmode = WIFI_SCAN_AUTH_MODE_THRESHOLD,
+            //s.threshold.authmode = WIFI_SCAN_AUTH_MODE_THRESHOLD,
         },
     };
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));

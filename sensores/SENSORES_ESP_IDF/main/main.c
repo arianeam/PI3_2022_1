@@ -10,6 +10,20 @@
 
 #include "display.h"
 #include "sorriso.h"
+#include "comunicacao.h"
+
+//----------------------------------
+/* Firebase */
+
+#include <../components/jsoncpp/value.h>
+#include <../components/jsoncpp/json.h>
+
+// #include "../components/esp_firebase/esp_firebase.h"
+// #include "wifi_utils.h"
+
+// #include "firebase_config.h"
+
+//----------------------------------
 
 #define DEFAULT_VREF 1100 // Use adc2_vref_to_gpio() to obtain a better estimate
 #define NO_OF_SAMPLES 64  // Multisampling
@@ -59,6 +73,8 @@ void app_main(void)
     check_efuse();
 
     display_init();
+
+    wifi_init();
 
     // Configure ADC
     adc1_config_width(width);
