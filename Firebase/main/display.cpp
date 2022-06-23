@@ -21,29 +21,20 @@
 
 //#include "image.xbm" // Testes com bitmap
 
-typedef enum
-{
-    NAO_INICIADO = -1,
-    DISPLAY_OK = 0,
-    ERRO,
-} display_status_t;
-
-display_status_t display_status;
-ssd1306_t Display;
-const font_info_t *font = NULL;
-static uint8_t buffer[DISPLAY_WIDTH * DISPLAY_HEIGHT / 8];
-
-using namespace display;
+//using namespace Display_oled;
 
 /**
  * @brief Inicializa o display e configura o I2C
  */
+
+
 void display::display_init()
 {
     int i2c_master_port = I2C_MASTER_NUM;
+    display_status_t display_status;
 
     display_status = NAO_INICIADO;
-    
+
      i2c_config_t conf = {
         .mode = I2C_MODE_MASTER,
         .sda_io_num = I2C_MASTER_SDA_IO,
@@ -52,8 +43,7 @@ void display::display_init()
         .scl_pullup_en = GPIO_PULLUP_ENABLE,
     };
 
-    
-    conf.master.clk_speed = I2C_MASTER_FREQ_HZ;
+     conf.master.clk_speed = I2C_MASTER_FREQ_HZ;
 
     esp_err_t err;
     err = i2c_param_config(I2C_MASTER_PORT, &conf);

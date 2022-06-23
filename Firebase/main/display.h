@@ -2,6 +2,18 @@
 #define DISPLAY_H
 
 #include <stdio.h>
+#include <iostream>
+#include <driver/gpio.h>
+#include <driver/i2c.h>
+#include <esp_err.h>
+#include <ssd1306/ssd1306.h>
+#include <fonts/fonts.h>
+#include <stdlib.h>
+#include <../components/ESP32-RTOS-SSD1306/ssd1306/ssd1306.h>
+
+#include "config.h"
+#include <../components/ESP32-RTOS-FONTS/fonts/fonts.h>
+#include "display.h"
 
 #define I2C_MASTER_SCL_IO 22        /*!< GPIO number used for I2C master clock */
 #define I2C_MASTER_SDA_IO 21        /*!< GPIO number used for I2C master data  */
@@ -13,15 +25,33 @@
 
 
 
-namespace display
-{
-    void display_init();
-    void display_test(void);
+    //namespace Display_oled
+    //{
 
-    void display_write_string(const char *str, uint8_t x, uint8_t y);
-    void display_write_float(float num, uint8_t x, uint8_t y);
-    void display_load_bitmap(unsigned char *bitmap);
-    void clear_buffer(void);
-}
+        class display
+        {
+        private:
+            typedef enum
+            {
+                NAO_INICIADO = -1,
+                DISPLAY_OK = 0,
+                ERRO,
+            } display_status_t;
+
+            ssd1306_t Display;
+
+            const font_info_t *font = NULL;
+            uint8_t buffer[DISPLAY_WIDTH * DISPLAY_HEIGHT / 8];
+
+        public:
+           
+            void display_init();
+            // void display_test(void);
+            void display_write_string(const char *str, uint8_t x, uint8_t y);
+            void display_write_float(float num, uint8_t x, uint8_t y);
+            void display_load_bitmap(unsigned char *bitmap);
+            void clear_buffer(void);
+        };
+   // }
 
 #endif

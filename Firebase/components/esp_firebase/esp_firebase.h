@@ -81,17 +81,4 @@ namespace ESPFirebase
     };
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 #endif
