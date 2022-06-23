@@ -4,15 +4,15 @@
  * @version 0.1
  * @date 2022-05-28
  */
-#include "freertos/FreeRTOS.h"
-#include <freertos/task.h>
+//#include "freertos/FreeRTOS.h"
+//#include <freertos/task.h>
 #include <driver/gpio.h>
-#include <../components/ESP32-RTOS-SSD1306/ssd1306/ssd1306.h>
 #include <driver/i2c.h>
 #include <esp_err.h>
-#include "config.h"
-#include <../components/ESP32-RTOS-FONTS/fonts/fonts.h>
 #include <stdlib.h>
+
+#include <../components/ESP32-RTOS-SSD1306/ssd1306/ssd1306.h>
+#include <../components/ESP32-RTOS-FONTS/fonts/fonts.h>
 
 #define DISPLAY_I2C_ADDRESS     0x3C
 #define DISPLAY_WIDTH           128
@@ -60,7 +60,7 @@ void display_init()
         .scl_pullup_en = GPIO_PULLUP_ENABLE,
     };
 
-    conf.master.clk_speed = 400000;
+    conf.master.clk_speed = I2C_MASTER_FREQ_HZ;
 
     esp_err_t err;
     err = i2c_param_config(I2C_MASTER_PORT, &conf);
