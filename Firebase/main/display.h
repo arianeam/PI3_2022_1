@@ -2,15 +2,6 @@
 #define DISPLAY_H
 
 #include <stdio.h>
-#include <driver/gpio.h>
-//#include <ssd1306/ssd1306.h>
-#include <../components/ESP32-RTOS-SSD1306/ssd1306/ssd1306.h>
-#include <driver/i2c.h>
-#include <esp_err.h>
-#include "config.h"
-//#include <fonts/fonts.h>
-#include <../components/ESP32-RTOS-FONTS/fonts/fonts.h>
-#include <stdlib.h>
 
 #define I2C_MASTER_SCL_IO 22        /*!< GPIO number used for I2C master clock */
 #define I2C_MASTER_SDA_IO 21        /*!< GPIO number used for I2C master data  */
