@@ -4,23 +4,22 @@
  * @version 0.1
  * @date 2022-05-28
  */
+
 //#include "freertos/FreeRTOS.h"
 //#include <freertos/task.h>
 #include <driver/gpio.h>
 #include <driver/i2c.h>
 #include <esp_err.h>
+#include <ssd1306/ssd1306.h>
 #include <stdlib.h>
-
 #include <../components/ESP32-RTOS-SSD1306/ssd1306/ssd1306.h>
+
+#include "config.h"
+//#include <fonts/fonts.h>
 #include <../components/ESP32-RTOS-FONTS/fonts/fonts.h>
+#include "display.h"
 
-#define DISPLAY_I2C_ADDRESS     0x3C
-#define DISPLAY_WIDTH           128
-#define DISPLAY_HEIGHT          64
-
-#define I2C_MASTER_PORT         I2C_NUM_0
-#define I2C_SDA_PIN             4
-#define I2C_SCL_PIN             5
+//#include "image.xbm" // Testes com bitmap
 
 typedef enum
 {
@@ -30,29 +29,22 @@ typedef enum
 } display_status_t;
 
 display_status_t display_status;
-ssd1306_t display;
+ssd1306_t Display;
 const font_info_t *font = NULL;
 static uint8_t buffer[DISPLAY_WIDTH * DISPLAY_HEIGHT / 8];
 
-#define I2C_MASTER_SCL_IO 22        /*!< GPIO number used for I2C master clock */
-#define I2C_MASTER_SDA_IO 21        /*!< GPIO number used for I2C master data  */
-#define I2C_MASTER_NUM 0            /*!< I2C master i2c port number, the number of i2c peripheral interfaces available will depend on the chip */
-#define I2C_MASTER_FREQ_HZ 400000   /*!< I2C master clock frequency */
-#define I2C_MASTER_TX_BUF_DISABLE 0 /*!< I2C master doesn't need buffer */
-#define I2C_MASTER_RX_BUF_DISABLE 0 /*!< I2C master doesn't need buffer */
-#define I2C_MASTER_TIMEOUT_MS 1000
+using namespace display;
 
-extern "C" {
 /**
  * @brief Inicializa o display e configura o I2C
  */
-void display_init()
+void display::display_init()
 {
     int i2c_master_port = I2C_MASTER_NUM;
 
     display_status = NAO_INICIADO;
-
-    i2c_config_t conf = {
+    
+     i2c_config_t conf = {
         .mode = I2C_MODE_MASTER,
         .sda_io_num = I2C_MASTER_SDA_IO,
         .scl_io_num = I2C_MASTER_SCL_IO,
@@ -60,6 +52,7 @@ void display_init()
         .scl_pullup_en = GPIO_PULLUP_ENABLE,
     };
 
+    
     conf.master.clk_speed = I2C_MASTER_FREQ_HZ;
 
     esp_err_t err;
@@ -70,28 +63,30 @@ void display_init()
 
     if (err != ESP_OK)
         return;
-    
-    ESP_LOGI("I2C", "Iniciado corretamente");
 
-    display.i2c_port = I2C_MASTER_PORT;
-    display.i2c_addr = DISPLAY_I2C_ADDRESS;
-    display.screen = SSD1306_SCREEN;
-    display.width = DISPLAY_WIDTH;
-    display.height = DISPLAY_HEIGHT;
+    printf("I2C OK!\n");
 
-    if (ssd1306_init(&display) != 0)
+    Display.i2c_port = I2C_MASTER_PORT;
+    Display.i2c_addr = DISPLAY_I2C_ADDRESS;
+    Display.screen = SSD1306_SCREEN;
+    Display.width = DISPLAY_WIDTH;
+    Display.height = DISPLAY_HEIGHT;
+
+    if (ssd1306_init(&Display) != 0)
     {
-        ESP_LOGE("Display", "Falha na inicializacao");
+        printf("Falha na inicialização do display\n");
         display_status = ERRO;
         return;
     }
 
-    ssd1306_set_whole_display_lighting(&display, false);
+    ssd1306_set_whole_display_lighting(&Display, false);
     printf("OLED OK!\nTamanho do buffer %d\n", sizeof(buffer));
 
     font = font_builtin_fonts[FONT_FACE_GLCD5x7];
 
     display_status = DISPLAY_OK;
+
+    // ssd1306_clear_screen(&display);
 }
 
 /**
@@ -101,10 +96,10 @@ void display_init()
  * @param x posição X
  * @param y posição Y
  */
-void display_write_string(const char *str, uint8_t x, uint8_t y)
+void display::display_write_string(const char *str, uint8_t x, uint8_t y)
 {
-    ssd1306_draw_string(&display, buffer, font, x, y, str, OLED_COLOR_WHITE, OLED_COLOR_BLACK);
-    ssd1306_load_frame_buffer(&display, buffer);
+    ssd1306_draw_string(&Display, buffer, font, x, y, str, OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+    ssd1306_load_frame_buffer(&Display, buffer);
 }
 
 /**
@@ -114,7 +109,7 @@ void display_write_string(const char *str, uint8_t x, uint8_t y)
  * @param x posição X
  * @param y posição Y
  */
-void display_write_float(float num, uint8_t x, uint8_t y)
+void display::display_write_float(float num, uint8_t x, uint8_t y)
 {
     // TODO:
     // TESTAR
@@ -124,7 +119,7 @@ void display_write_float(float num, uint8_t x, uint8_t y)
     display_write_string(str, x, y); // sends the string
 }
 
-void clear_buffer(void)
+void display::clear_buffer(void)
 {
     unsigned int i;
 
@@ -163,13 +158,12 @@ void clear_buffer(void)
  *
  * @param bitmap
  */
-void display_load_bitmap(unsigned char *bitmap)
+void display::display_load_bitmap(unsigned char *bitmap)
 {
     clear_buffer();
 
-    if (ssd1306_load_xbm(&display, bitmap, buffer))
-        ESP_LOGE("Display", "Erro ao carregar o bitmap");
+    if (ssd1306_load_xbm(&Display, bitmap, buffer))
+    {
+        printf("Erro ao carregar o buffer\n");
+    }
 }
-
-}
-

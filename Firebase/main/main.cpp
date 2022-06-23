@@ -9,7 +9,6 @@
 #include "esp_event.h"
 #include "esp_netif.h"
 
-
 #include "jsoncpp/value.h"
 #include "jsoncpp/json.h"
 
@@ -18,13 +17,16 @@
 
 #include "firebase_config.h"
 
-#include "display.hpp"
+//#include "display.hpp"
+#include  "display.h"
 #include "sorriso.h"
+
+//#include <dht.h>
 
 void task_display(void *pvParameters)
 {
     ESP_LOGI("Display", "Iniciando... ");
-    display_init();
+    display::display_init();
     ESP_LOGI("Display", "OK!");
 
     while (1)
@@ -35,7 +37,7 @@ void task_display(void *pvParameters)
         {
             for (j = 3; j > 0; j--)
             {
-                display_load_bitmap(sorriso[j]);
+                display::display_load_bitmap(sorriso[j]);
                 vTaskDelay(50 / portTICK_PERIOD_MS);
             }
         }
