@@ -17,11 +17,10 @@
 
 #include "firebase_config.h"
 
-//#include "display.hpp"
 #include  "display.h"
 #include "sorriso.h"
 
-//#include <dht.h>
+#include <../esp-idf-lib/components/dht/dht.h>
 
 void task_display(void *pvParameters)
 {
