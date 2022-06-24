@@ -18,17 +18,16 @@
 #include "display.h"
 #include "sorriso.h"
 
+//#include <../esp-idf-lib/components/dht/dht.h>
 #include "dht11.h"
 
-
-
-
 void task_display(void *pvParameters);
-
+void task_dht(void *pvParameters);
 
 extern "C" void app_main(void)
 {
     xTaskCreate(task_display, "task_display", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+    xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 
     wifiInit(SSID, PASSWORD); // blocking until it connects
 
@@ -100,7 +99,6 @@ extern "C" void app_main(void)
     std::cout << std::endl;
 }
 
-
 void task_display(void *pvParameters)
 {
     ESP_LOGI("Display", "Iniciando... ");
@@ -122,5 +120,21 @@ void task_display(void *pvParameters)
             }
         }
         // vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+}
+
+void task_dht(void *pvParameters)
+{
+    dht11 dht11_1;
+    dht11_1.dht11_init();
+    float temperatura = -100;
+    float umidade = -100;
+
+    while (1)
+    {
+        temperatura = dht11_1.get_temp();
+        umidade = dht11_1.get_umid();
+        printf("Umidade recebida: %.1f%% Temperatura recebida: %.1fC\n", umidade, temperatura);
+        vTaskDelay(pdMS_TO_TICKS(2000));
     }
 }
