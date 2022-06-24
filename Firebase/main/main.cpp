@@ -11,16 +11,16 @@
 
 #include "jsoncpp/value.h"
 #include "jsoncpp/json.h"
-
 #include "esp_firebase/esp_firebase.h"
 #include "wifi_utils.h"
-
 #include "firebase_config.h"
 
 #include "display.h"
 #include "sorriso.h"
 
-#include <../esp-idf-lib/components/dht/dht.h>
+#include "dht11.h"
+
+
 
 
 void task_display(void *pvParameters);

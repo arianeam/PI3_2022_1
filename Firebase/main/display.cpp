@@ -7,21 +7,20 @@
 
 //#include "freertos/FreeRTOS.h"
 //#include <freertos/task.h>
-#include <driver/gpio.h>
-#include <driver/i2c.h>
-#include <esp_err.h>
-#include <ssd1306/ssd1306.h>
-#include <fonts/fonts.h>
-#include <stdlib.h>
-#include <../components/ESP32-RTOS-SSD1306/ssd1306/ssd1306.h>
+// #include <driver/gpio.h>
+// #include <driver/i2c.h>
+// #include <esp_err.h>
+// #include <ssd1306/ssd1306.h>
+// #include <fonts/fonts.h>
+// #include <stdlib.h>
+// #include <../components/ESP32-RTOS-SSD1306/ssd1306/ssd1306.h>
 
-#include "config.h"
-#include <../components/ESP32-RTOS-FONTS/fonts/fonts.h>
+// #include "config.h"
+// #include <../components/ESP32-RTOS-FONTS/fonts/fonts.h>
 #include "display.h"
 
 //#include "image.xbm" // Testes com bitmap
 
-//using namespace Display_oled;
 
 /**
  * @brief Inicializa o display e configura o I2C

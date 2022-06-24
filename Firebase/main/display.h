@@ -1,6 +1,8 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
+#include "freertos/FreeRTOS.h"
+#include <freertos/task.h>
 #include <stdio.h>
 #include <iostream>
 #include <driver/gpio.h>
@@ -23,35 +25,28 @@
 #define I2C_MASTER_RX_BUF_DISABLE 0 /*!< I2C master doesn't need buffer */
 #define I2C_MASTER_TIMEOUT_MS 1000
 
+class display
+{
+private:
+    typedef enum
+    {
+        NAO_INICIADO = -1,
+        DISPLAY_OK = 0,
+        ERRO,
+    } display_status_t;
 
+    ssd1306_t Display;
 
-    //namespace Display_oled
-    //{
+    const font_info_t *font = NULL;
+    uint8_t buffer[DISPLAY_WIDTH * DISPLAY_HEIGHT / 8];
 
-        class display
-        {
-        private:
-            typedef enum
-            {
-                NAO_INICIADO = -1,
-                DISPLAY_OK = 0,
-                ERRO,
-            } display_status_t;
-
-            ssd1306_t Display;
-
-            const font_info_t *font = NULL;
-            uint8_t buffer[DISPLAY_WIDTH * DISPLAY_HEIGHT / 8];
-
-        public:
-           
-            void display_init();
-            // void display_test(void);
-            void display_write_string(const char *str, uint8_t x, uint8_t y);
-            void display_write_float(float num, uint8_t x, uint8_t y);
-            void display_load_bitmap(unsigned char *bitmap);
-            void clear_buffer(void);
-        };
-   // }
+public:
+    void display_init();
+    // void display_test(void);
+    void display_write_string(const char *str, uint8_t x, uint8_t y);
+    void display_write_float(float num, uint8_t x, uint8_t y);
+    void display_load_bitmap(unsigned char *bitmap);
+    void clear_buffer(void);
+};
 
 #endif
