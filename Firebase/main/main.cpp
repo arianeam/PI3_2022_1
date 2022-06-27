@@ -20,8 +20,10 @@
 #include "display.h"
 #include "sorriso.h"
 
+//-----tasks---------------------
 void task_display(void *pvParameters);
 void task_dht(void *pvParameters);
+//---------------------------
 
 extern "C" void app_main(void)
 {
