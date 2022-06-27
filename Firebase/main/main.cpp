@@ -3,26 +3,14 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-#include "esp_log.h"
-#include "esp_system.h"
-#include "nvs_flash.h"
-#include "esp_event.h"
-#include "esp_netif.h"
-
 #include "jsoncpp/value.h"
 #include "jsoncpp/json.h"
 #include "esp_firebase/esp_firebase.h"
 #include "wifi_utils.h"
 #include "firebase_config.h"
 
-#include "display.h"
-#include "sorriso.h"
+#include "tarefas.h"
 
-//#include "dht11.h"
-#include "../components/dht/dht.h"
-
-void task_display(void *pvParameters);
-void task_dht(void *pvParameters);
 
 extern "C" void app_main(void)
 {
@@ -55,12 +43,12 @@ extern "C" void app_main(void)
 
     ESP_LOGI("MAIN", "name: %s", madjid_name.c_str());
 
-    data["name"] = "Tikou";
+    data["name"] = "teste 123";
 
     ESP_LOGI("MAIN", "edited name from %s to: %s", madjid_name.c_str(), data["name"].asString().c_str());
 
-    data["age"] = 22;
-    data["random_float"] = 4.44;
+    data["age"] = 1234;
+    data["random_float"] = 3.14;
 
     // put json object directly
     fb_client.putData("/person2", data);
@@ -99,53 +87,3 @@ extern "C" void app_main(void)
     std::cout << std::endl;
 }
 
-void task_display(void *pvParameters)
-{
-    ESP_LOGI("Display", "Iniciando... ");
-
-    display display1;
-    display1.display_init();
-    ESP_LOGI("Display", "OK!");
-
-    while (1)
-    {
-        uint8_t i, j;
-
-        for (i = 0; i < 20; i++)
-        {
-            for (j = 3; j > 0; j--)
-            {
-                display1.display_load_bitmap(sorriso[j]);
-                vTaskDelay(50 / portTICK_PERIOD_MS);
-            }
-        }
-        // vTaskDelay(pdMS_TO_TICKS(1000));
-    }
-}
-
-void task_dht(void *pvParameters)
-{
-    // dht11 dht11_1;
-    // dht11_1.dht11_init();
-    float temperatura = -100;
-    float umidade = -100;
-    gpio_set_pull_mode(GPIO_NUM_18, GPIO_PULLUP_ONLY);
-
-    while (1)
-    {
-        // dht11_1.read_dht11();
-        // temperatura = dht11_1.get_temp();
-        // umidade = dht11_1.get_umid();
-        // printf("Umidade recebida: %.1f%% Temperatura recebida: %.1fC\n", umidade, temperatura);
-        // vTaskDelay(pdMS_TO_TICKS(2000));
-        if (dht_read_float_data(DHT_TYPE_DHT11, GPIO_NUM_18, &umidade, &temperatura) == ESP_OK)
-        {
-            printf("Umidade: %.1f%% Temp: %.1fC\n", umidade, temperatura);
-        }
-        else
-        {
-            printf("Erro ao ler dados do sensor dht11\n");
-        }
-        vTaskDelay(pdMS_TO_TICKS(2000));
-    }
-}
