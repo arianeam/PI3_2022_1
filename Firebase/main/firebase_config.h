@@ -1,6 +1,6 @@
 // Wifi Credentials
-#define SSID "Andreia_NeoRede"
-#define PASSWORD "70960600"
+#define SSID "rasp"
+#define PASSWORD "a18g22c02"
 
 // Read readme.md to properly configure api key and authentication
 
