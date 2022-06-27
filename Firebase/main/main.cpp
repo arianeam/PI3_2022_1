@@ -132,6 +132,7 @@ void task_dht(void *pvParameters)
 
     while (1)
     {
+        dht11_1.read_dht11();
         temperatura = dht11_1.get_temp();
         umidade = dht11_1.get_umid();
         printf("Umidade recebida: %.1f%% Temperatura recebida: %.1fC\n", umidade, temperatura);

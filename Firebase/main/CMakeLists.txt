@@ -1,4 +1,4 @@
-idf_component_register(SRCS "dht11.cpp" "display.cpp" "main.cpp"
-    INCLUDE_DIRS "." "../components"
+idf_component_register(SRCS "dht11.cpp" "display.cpp" "main.cpp"  
+    INCLUDE_DIRS "." "../components" 
 )
 set_property(TARGET ${COMPONENT_LIB} APPEND PROPERTY LINK_INTERFACE_MULTIPLICITY 5)

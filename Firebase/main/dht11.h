@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <iostream>
 #include <driver/gpio.h>
+#include "../components/dht/dht.h"
 
-#include <../esp-idf-lib/components/dht/dht.h>
 
 #define DHT_PIN GPIO_NUM_18
 
@@ -15,8 +15,8 @@ private:
     float temperatura, umidade;
 
 public:
-    void dht11_init(void);
-    void read_dht11(float temp);
+    void dht11_init();
+    void read_dht11();
     float get_temp();
     float get_umid();
 };

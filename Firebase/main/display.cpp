@@ -73,7 +73,7 @@ void display::display_init()
 
     font = font_builtin_fonts[FONT_FACE_GLCD5x7];
 
-    display_status = DISPLAY_OK;
+    //display_status = DISPLAY_OK;
 
     // ssd1306_clear_screen(&display);
 }
