@@ -31,6 +31,7 @@ extern "C" void app_main(void)
 {
     xTaskCreate(task_display, "task_display", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
     xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+    xTaskCreate(task_adc, "task_adc", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 
     wifiInit(SSID, PASSWORD); // blocking until it connects
 
