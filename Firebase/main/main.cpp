@@ -19,10 +19,12 @@
 #include "../components/dht/dht.h"
 #include "display.h"
 #include "sorriso.h"
+#include "adc_1.h"
 
 //-----tasks---------------------
 void task_display(void *pvParameters);
 void task_dht(void *pvParameters);
+void task_adc(void *pvParameters);
 //---------------------------
 
 extern "C" void app_main(void)
@@ -107,7 +109,7 @@ void task_display(void *pvParameters)
     display1.display_init();
     while (1)
     {
-         uint8_t i, j;
+        uint8_t i, j;
 
         for (i = 0; i < 20; i++)
         {
@@ -117,7 +119,6 @@ void task_display(void *pvParameters)
                 vTaskDelay(50 / portTICK_PERIOD_MS);
             }
         }
-
     }
 }
 
@@ -140,5 +141,17 @@ void task_dht(void *pvParameters)
             printf("Erro ao ler dados do sensor dht11\n");
         }
         vTaskDelay(pdMS_TO_TICKS(2000));
+    }
+}
+
+void task_adc(void *pvParameters)
+{
+
+    adc adc1_canal_6;
+    adc1_canal_6.adc_init(ADC1_CHANNEL_6);
+    while (1)
+    {
+        adc1_canal_6.read_adc();
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
