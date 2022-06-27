@@ -8,9 +8,20 @@
 #include "esp_firebase/esp_firebase.h"
 #include "wifi_utils.h"
 #include "firebase_config.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "esp_log.h"
+#include "esp_system.h"
+#include "nvs_flash.h"
+#include "esp_event.h"
+#include "esp_netif.h"
 
-#include "tarefas.h"
+#include "../components/dht/dht.h"
+#include "display.h"
+#include "sorriso.h"
 
+void task_display(void *pvParameters);
+void task_dht(void *pvParameters);
 
 extern "C" void app_main(void)
 {
@@ -87,3 +98,45 @@ extern "C" void app_main(void)
     std::cout << std::endl;
 }
 
+void task_display(void *pvParameters)
+{
+
+    display display1;
+    display1.display_init();
+    while (1)
+    {
+         uint8_t i, j;
+
+        for (i = 0; i < 20; i++)
+        {
+            for (j = 3; j > 0; j--)
+            {
+                display1.display_load_bitmap(sorriso[j]);
+                vTaskDelay(50 / portTICK_PERIOD_MS);
+            }
+        }
+
+    }
+}
+
+void task_dht(void *pvParameters)
+{
+
+    float temperatura = -100;
+    float umidade = -100;
+    gpio_set_pull_mode(GPIO_NUM_18, GPIO_PULLUP_ONLY);
+
+    while (1)
+    {
+
+        if (dht_read_float_data(DHT_TYPE_DHT11, GPIO_NUM_18, &umidade, &temperatura) == ESP_OK)
+        {
+            printf("Umidade: %.1f%% Temp: %.1fC\n", umidade, temperatura);
+        }
+        else
+        {
+            printf("Erro ao ler dados do sensor dht11\n");
+        }
+        vTaskDelay(pdMS_TO_TICKS(2000));
+    }
+}
