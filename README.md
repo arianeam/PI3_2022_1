@@ -97,6 +97,8 @@ Esses parâmetros foram utilizados para a criação do banco de dados das espéc
 
 43. https://greenpower.net.br/blog/cultivo-indoor-controle-de-temperatura/
 
+44.https://greenpower.net.br/blog/cultivo-indoor-controle-de-temperatura/
+
 
 
 Serão monitorados os seguintes itens no vaso/planta:
