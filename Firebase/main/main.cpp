@@ -1,4 +1,5 @@
 #include <iostream>
+#include <esp_err.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -20,6 +21,7 @@
 #include "display.h"
 #include "sorriso.h"
 #include "adc_1.h"
+#include "banco_de_dados.h"
 
 //-----tasks---------------------
 void task_display(void *pvParameters);
@@ -32,6 +34,10 @@ extern "C" void app_main(void)
     xTaskCreate(task_display, "task_display", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
     xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
     xTaskCreate(task_adc, "task_adc", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+
+    std::string mac_addr = " ";
+    BancoDeDados bd;
+    mac_addr = bd.get_mac_address();
 
     wifiInit(SSID, PASSWORD); // blocking until it connects
 
@@ -72,7 +78,7 @@ extern "C" void app_main(void)
     vTaskDelay(500 / portTICK_PERIOD_MS);
     // Construct a new json object manually
     Json::Value new_data;
-    new_data["name"] = "dsgisg";
+    new_data["name"] = mac_addr;
     new_data["age"] = 23;
     new_data["random_float"] = 5.95;
 
