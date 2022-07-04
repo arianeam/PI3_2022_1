@@ -33,13 +33,11 @@ extern "C" void app_main(void)
     xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
     xTaskCreate(task_adc, "task_adc", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 
-    // //-------teste função para ler endereço mac---
-    //     std::string mac_addr = " ";
-    //     BancoDeDados bd;
-    //     mac_addr = bd.get_mac_address();
-    // //---------------------------------------------
 
     wifiInit(SSID, PASSWORD); // blocking until it connects
+    
+    BancoDeDados bd;
+    bd.banco_de_dados_init();
 
     // // Config and Authentication
     // ESPFirebase::config_t config = {API_KEY, DATABASE_URL};
@@ -55,8 +53,6 @@ extern "C" void app_main(void)
     // std::string json_str = R"({"name": "Madjid", "age": 20, "random_float": 8.56})";
     // fb_client.putData("/person1", json_str.c_str());
 
-    BancoDeDados bd;
-    bd.banco_de_dados_init();
 
  
 

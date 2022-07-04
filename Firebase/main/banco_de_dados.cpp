@@ -54,17 +54,22 @@ void BancoDeDados::banco_de_dados_init(void)
     // R"()" allow us to write string as they are without escaping the characters with backslash
 
     // We can put a json str directly at /person1
-    std::string json_str = R"({"especie": "cacto", "nome_planta": "Zé", "umidade_ideal_solo": 50, "temperatura_ideal": 25, "luminosidade_ideal": 30000, "umidade_regar": 0, "umidade_solo_lida": 10, "temperatura_lida" : 26.5, "luminosidade_lida": 20000, "status": "com sede"})";
+    std::string json_str = R"({"dispositivo": "" ,"especie": "cacto", "nome_planta": "Zé", "umidade_ideal_solo": 50, "temperatura_ideal": 25, "luminosidade_ideal": 30000, "umidade_regar": 0, "umidade_solo_lida": 10, "temperatura_lida" : 26.5, "luminosidade_lida": 20000, "status": "com sede"})";
 
     std::string path = "/";
     path.append(mac_addr);
 
     fb_client.putData(path.c_str(), json_str.c_str());
 
-    // We can parse the json_str and access the members and edit them
+    //We can parse the json_str and access the members and edit them
     Json::Value data;
     Json::Reader reader;
     reader.parse(json_str, data);
 
-    //  std::string madjid_name = data["name"].asString(); // convert value to primitives (read jsoncpp docs for more of these)
+    std::string device = data["dispositivo"].asString(); // convert value to primitives (read jsoncpp docs for more of these
+
+    data["dispositivo"] = mac_addr.c_str();
+    fb_client.putData(path.c_str(), data);
+
+
 }
