@@ -59,8 +59,6 @@ void BancoDeDados::banco_de_dados_init(void)
     std::string path = "/";
     path.append(mac_addr);
 
-
-
     fb_client.putData(path.c_str(), json_str.c_str());
 
     // We can parse the json_str and access the members and edit them
