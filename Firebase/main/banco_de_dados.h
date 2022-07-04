@@ -12,17 +12,30 @@
 #include "esp_log.h"
 #include <string.h>
 
+#include "jsoncpp/value.h"
+#include "jsoncpp/json.h"
+#include "esp_firebase/esp_firebase.h"
+#include "firebase_config.h"
+#include "esp_log.h"
+#include "esp_system.h"
+#include "nvs_flash.h"
+#include "esp_event.h"
+#include "esp_netif.h"
+
+
 #define TAG "BASE_MAC"
 
 class BancoDeDados
 {
 private:
-    std::string mac = " ";
-
+    std::string mac = "";
     void read_mac_address(void);
+    //void json_str_bd(void);
 
 public:
     std::string get_mac_address(void);
+
+    void banco_de_dados_init(void);
 };
 
 #endif
