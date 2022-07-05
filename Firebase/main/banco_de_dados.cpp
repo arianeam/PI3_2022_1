@@ -54,14 +54,22 @@ void BancoDeDados::banco_de_dados_init(void)
     // R"()" allow us to write string as they are without escaping the characters with backslash
 
     // We can put a json str directly at /person1
-    std::string json_str = R"({"dispositivo": "" ,"especie": "cacto", "nome_planta": "Zé", "umidade_ideal_solo": 50, "temperatura_ideal": 25, "luminosidade_ideal": 30000, "umidade_regar": 0, "umidade_solo_lida": 10, "temperatura_lida" : 26.5, "luminosidade_lida": 20000, "status": "com sede"})";
+    std::string json_str = R"({"dispositivo":"","especie": "cacto", "nome_planta": "Zé", "umidade_ideal_solo": 50, "temperatura_ideal": 25, "luminosidade_ideal": 30000, "umidade_regar": 0, "umidade_solo_lida": 10, "temperatura_lida" : 26.5, "luminosidade_lida": 20000, "status": "com sede"})";
 
-    std::string path = "/";
+    std::string json_ids = mac_addr;
+
+    std::string path = "/dispositivos/ids/";
+    std::string path_vaso = "/dispositivos/vasos/";
+    path_vaso.append(mac_addr);
     path.append(mac_addr);
+    
+    std::string teste = "123456789";
 
-    fb_client.putData(path.c_str(), json_str.c_str());
+    fb_client.putData(path_vaso.c_str(), json_str.c_str());
+    fb_client.putData(path.c_str(), json_ids.c_str());
+    fb_client.putData("/dispositivos/ids/teste", teste.c_str());
 
-    //We can parse the json_str and access the members and edit them
+    // We can parse the json_str and access the members and edit them
     Json::Value data;
     Json::Reader reader;
     reader.parse(json_str, data);
@@ -69,7 +77,15 @@ void BancoDeDados::banco_de_dados_init(void)
     std::string device = data["dispositivo"].asString(); // convert value to primitives (read jsoncpp docs for more of these
 
     data["dispositivo"] = mac_addr.c_str();
-    fb_client.putData(path.c_str(), data);
+    fb_client.putData(path_vaso.c_str(), data);
 
+    // data["ids"] = device + "," + mac_addr.c_str();
+    // fb_client.putData(path.c_str(), data);
 
+    // //------------teste para simular dois dispositivos para o app------
+    // std::string json_test_str = R"({"dispositivo": "teste1234" ,"especie": "rosa", "nome_planta": "Zé", "umidade_ideal_solo": 50, "temperatura_ideal": 25, "luminosidade_ideal": 30000, "umidade_regar": 0, "umidade_solo_lida": 10, "temperatura_lida" : 26.5, "luminosidade_lida": 20000, "status": "com sede"})";
+
+    // fb_client.putData("/teste", json_test_str.c_str());
+
+    //-----------------------------------------------------------------
 }
