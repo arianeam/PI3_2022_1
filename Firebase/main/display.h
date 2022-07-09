@@ -41,11 +41,11 @@ private:
     uint8_t buffer[DISPLAY_WIDTH * DISPLAY_HEIGHT / 8];
 
 public:
-    void display_init();
-    // void display_test(void);
-    void display_write_string(const char *str, uint8_t x, uint8_t y);
-    void display_write_float(float num, uint8_t x, uint8_t y);
-    void display_load_bitmap(unsigned char *bitmap);
+    void init();
+    
+    void write(const char *str, uint8_t x, uint8_t y);
+    void write(float num, uint8_t x, uint8_t y);
+    void load_bitmap(unsigned char *bitmap);
     void clear_buffer(void);
 };
 

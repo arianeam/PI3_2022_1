@@ -1,6 +1,10 @@
+#ifndef FIREBASE_CONFIG_H
+#define FIREBASE_CONFIG_H
+
 // Wifi Credentials
-#define SSID "Andreia_NeoRede"
-#define PASSWORD "70960600"
+#define SSID "VIVO-10"
+#define PASSWORD "nina2017j09"
+
 
 // Read readme.md to properly configure api key and authentication
 
@@ -11,3 +15,5 @@
 
 #define USER_EMAIL "testemail@gmail.com"   // This gmail does not exist outside your database. it only exists in the firebase project as a user
 #define USER_PASSWORD "testpass"      // Dont add your gmail credentials. Setup users authentication in your Firebase project first
+
+#endif

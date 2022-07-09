@@ -115,7 +115,7 @@ void task_display(void *pvParameters)
 {
 
     display display1;
-    display1.display_init();
+    display1.init();
     while (1)
     {
         uint8_t i, j;
@@ -124,7 +124,7 @@ void task_display(void *pvParameters)
         {
             for (j = 3; j > 0; j--)
             {
-                display1.display_load_bitmap(sorriso[j]);
+                display1.load_bitmap(sorriso[j]);
                 vTaskDelay(50 / portTICK_PERIOD_MS);
             }
         }
@@ -153,9 +153,9 @@ void task_dht(void *pvParameters)
     }
 }
 
+
 void task_adc(void *pvParameters)
 {
-
     adc adc1_canal_6;
     adc1_canal_6.adc_init(ADC1_CHANNEL_6);
     while (1)

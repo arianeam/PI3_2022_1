@@ -4,19 +4,6 @@
  * @version 0.1
  * @date 2022-05-28
  */
-
-//#include "freertos/FreeRTOS.h"
-//#include <freertos/task.h>
-// #include <driver/gpio.h>
-// #include <driver/i2c.h>
-// #include <esp_err.h>
-// #include <ssd1306/ssd1306.h>
-// #include <fonts/fonts.h>
-// #include <stdlib.h>
-// #include <../components/ESP32-RTOS-SSD1306/ssd1306/ssd1306.h>
-
-// #include "config.h"
-// #include <../components/ESP32-RTOS-FONTS/fonts/fonts.h>
 #include "display.h"
 
 //#include "image.xbm" // Testes com bitmap
@@ -25,9 +12,7 @@
 /**
  * @brief Inicializa o display e configura o I2C
  */
-
-
-void display::display_init()
+void display::init()
 {
     int i2c_master_port = I2C_MASTER_NUM;
     display_status_t display_status;
@@ -85,7 +70,7 @@ void display::display_init()
  * @param x posição X
  * @param y posição Y
  */
-void display::display_write_string(const char *str, uint8_t x, uint8_t y)
+void display::write(const char *str, uint8_t x, uint8_t y)
 {
     ssd1306_draw_string(&Display, buffer, font, x, y, str, OLED_COLOR_WHITE, OLED_COLOR_BLACK);
     ssd1306_load_frame_buffer(&Display, buffer);
@@ -98,14 +83,16 @@ void display::display_write_string(const char *str, uint8_t x, uint8_t y)
  * @param x posição X
  * @param y posição Y
  */
-void display::display_write_float(float num, uint8_t x, uint8_t y)
+void display::write(float num, uint8_t x, uint8_t y)
 {
     // TODO:
     // TESTAR
 
     char str[13];
     sprintf(str, "%g", num);
-    display_write_string(str, x, y); // sends the string
+
+    ssd1306_draw_string(&Display, buffer, font, x, y, str, OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+    ssd1306_load_frame_buffer(&Display, buffer);
 }
 
 void display::clear_buffer(void)
@@ -147,7 +134,7 @@ void display::clear_buffer(void)
  *
  * @param bitmap
  */
-void display::display_load_bitmap(unsigned char *bitmap)
+void display::load_bitmap(unsigned char *bitmap)
 {
     clear_buffer();
 
