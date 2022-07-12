@@ -98,6 +98,44 @@ Esses parâmetros foram utilizados para a criação do banco de dados das espéc
 43. https://greenpower.net.br/blog/cultivo-indoor-controle-de-temperatura/
 
 
+lírio da paz
+
+https://guiadejardinagem.com.br/plantas-para-dentro-de-casa/#O_que_sao_Plantas_de_Interior
+
+https://portalvidalivre.com/articles/96
+
+https://casa.abril.com.br/jardins-e-hortas/como-cultivar-lirio-da-paz/
+
+https://blog.plantei.com.br/lirio-da-paz/
+
+https://vivercomplantas.wordpress.com/2018/01/30/lirio-da-paz-para-locais-sombreados-meia-sombra/
+
+---------
+
+https://www.orquideasnoape.com.br/2021/02/suculenta-echeveria-lilacina.html
+
+-----
+planta-jade
+
+https://www.jardineiro.net/plantas/planta-jade-crassula-ovata.html
+https://portalvidalivre.com/articles/44
+https://guiadassuculentas.com/suculenta-jade-saiba-tudo-sobre-essa-planta/
+https://www.picturethisai.com/pt/care/Crassula_ovata.html#:~:text=Forneça%20temperatura%20adequada%20(%2025%20℃,luz%20(luz%20difusa%20brilhante).
+https://www.noticiasdejardim.com/plantas-de-interior/crassula-ovata-arvore-de-jade-uma-especie-muito-facil-de-cultivar/
+
+-------------
+
+planta fantasma 
+
+https://www.floresefolhagens.com.br/planta-fantasma-graptopetalum/
+
+https://portalvidalivre.com/articles/143
+
+https://www.picturethisai.com/pt/care/Graptopetalum_paraguayense.html
+
+https://cibercactus.com/pt/graptopetalum-paraguayense/
+
+
 
 Serão monitorados os seguintes itens no vaso/planta:
 
