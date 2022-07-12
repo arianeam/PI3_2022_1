@@ -53,7 +53,7 @@ void BancoDeDados::banco_de_dados_init(void)
 
     // R"()" allow us to write string as they are without escaping the characters with backslash
 
-    std::string json_str = R"({"dispositivo":"","especie": "cacto", "nome_planta": "Zé", "umidade_ideal_solo": 50, "temperatura_ideal": 25, "luminosidade_ideal": 30000, "umidade_regar": 0, "status_umidade_solo_ideal": "úmido", "status_umidade_solo_regar": "seco", "status_luminosidade_ideal": "sol-pleno", "umidade_solo_lida": 10, "status_umidade_solo_lida": "seco", "temperatura_lida" : 26.5, "luminosidade_lida": 20000, "status_luminosidade_lida": "meia-sombra", "status": "feliz", "status_bateria": 50})";
+    std::string json_str = R"({"dispositivo":"","especie": "", "nome_vaso": "", "nome_cientifico": "", "luminosidade_ideal": "", "luminosidade_lida": "", "umidade_ideal_solo": "", "umidadde_lida_solo": "", "umidade_ideal_ar": "", "umidade_lida_ar": "", "umidade_regar": "", "temperatura_ideal_min": "", "temperatura_ideal_max": "", "temperatura_lida": "", "status_planta": "", "status_bateria": ""})";
 
     std::string json_ids = mac_addr;
 
