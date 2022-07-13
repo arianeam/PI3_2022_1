@@ -39,15 +39,21 @@ std::string BancoDeDados::get_mac_address(void)
     return mac;
 }
 
+ESPFirebase::config_t config = {API_KEY, DATABASE_URL};
+ESPFirebase::user_account_t account = {USER_EMAIL, USER_PASSWORD};
+
+ESPFirebase::Firebase fb_client(config);
+Json::Value data;
+
 void BancoDeDados::banco_de_dados_init(void)
 {
     std::string mac_addr = get_mac_address();
 
     // Config and Authentication
-    ESPFirebase::config_t config = {API_KEY, DATABASE_URL};
-    ESPFirebase::user_account_t account = {USER_EMAIL, USER_PASSWORD};
+    // ESPFirebase::config_t config = {API_KEY, DATABASE_URL};
+    // ESPFirebase::user_account_t account = {USER_EMAIL, USER_PASSWORD};
 
-    ESPFirebase::Firebase fb_client(config);
+    // ESPFirebase::Firebase fb_client(config);
 
     fb_client.loginUserAccount(account);
 
@@ -70,7 +76,7 @@ void BancoDeDados::banco_de_dados_init(void)
     fb_client.putData("/dispositivos/ids/teste", teste.c_str());
 
     // We can parse the json_str and access the members and edit them
-    Json::Value data;
+    // Json::Value data;
     Json::Reader reader;
     reader.parse(json_str, data);
 
@@ -88,4 +94,42 @@ void BancoDeDados::banco_de_dados_init(void)
     // fb_client.putData("/teste", json_test_str.c_str());
 
     //-----------------------------------------------------------------
+}
+
+int BancoDeDados::publish_temperature_info(float temp, float humi)
+{
+    return 0;
+}
+
+int BancoDeDados::publish_battery_info(uint16_t mV, uint8_t percentage)
+{
+    std::string path_vaso = "/dispositivos/vasos/";
+    static uint8_t old_percentage = 0;
+
+
+    if (old_percentage != percentage)
+    {
+#define LEN 4    // length of the string w/ null terminator
+#define BASE 10  // string as a decimal base
+#define FILL '0' // character to fill non-used algarisms.
+
+        uint8_t i = LEN - 1;    // index for each char of the string
+        char str[LEN] = {FILL}; // ascii zero filled array
+        str[i] = '\0';          // adds string null terminator
+        while (i--)
+        {
+            str[i] = FILL + (percentage % BASE); // gets each algarism}
+            percentage /= BASE;                  // prepare the next
+        }
+        printf("publicado");
+        old_percentage = percentage;
+
+        data["status_bateria"] = str;
+        fb_client.putData(path_vaso.c_str(), data);
+
+#undef LEN
+#undef BASE
+#undef FILL
+    }
+    return 0;
 }

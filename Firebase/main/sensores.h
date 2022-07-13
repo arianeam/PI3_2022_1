@@ -10,12 +10,12 @@
 #define BATTERY_NOMINAL_VOLTAGE 3700
 #define BATTERY_MIN_VOLTAGE     3200
 
-#define CONVERSION_VALUE        1.26984
+#define CONVERSION_VALUE        1.62884
 
-// #define MONITOR_CHARGE_STATE
+#define MONITOR_CHARGE_STATE
 
 #define CHARGING_COMPLETE_INPUT GPIO_NUM_13
-#define CHARGING_INPUT          GPIO_NUM_12
+#define CHARGING_INPUT          GPIO_NUM_14
 
 enum
 {
@@ -44,7 +44,7 @@ void battery_measure_init(void)
     battery.percentage = 0;
     battery.voltage = BATTERY_MIN_VOLTAGE;
 
-    adc_battery.adc_init(ADC1_CHANNEL_5);
+    adc_battery.adc_init(ADC1_CHANNEL_6);
 
 #ifdef MONITOR_CHARGE_STATE
     ESP_LOGI("BAT", "Monitor charge state");

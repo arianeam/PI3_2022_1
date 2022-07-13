@@ -36,6 +36,8 @@ public:
     std::string get_mac_address(void);
 
     void banco_de_dados_init(void);
+    int publish_battery_info(uint16_t mV, uint8_t percentage);
+    int publish_temperature_info(float temp, float humi);
 };
 
 #endif

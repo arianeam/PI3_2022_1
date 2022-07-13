@@ -36,7 +36,9 @@ void task_db(void *pvParameters);   // Atualiza o banco de dados
 
 #define LED_STATUS  GPIO_NUM_25
 #define LED_1       GPIO_NUM_26
-#define DHT_PIN     GPIO_NUM_18
+#define DHT_PIN     GPIO_NUM_27
+
+BancoDeDados bd;
 
 extern "C" void app_main(void)
 {
@@ -57,11 +59,10 @@ extern "C" void app_main(void)
     xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 #endif
 
-    xTaskCreate(task_adc, "task_adc", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 
     wifiInit(SSID, PASSWORD); // blocking until it connects
 
-    BancoDeDados bd;
+    // BancoDeDados bd;
     bd.banco_de_dados_init();
 
     // // Config and Authentication
@@ -132,6 +133,8 @@ extern "C" void app_main(void)
     // }
     // std::cout << std::endl;
 
+    xTaskCreate(task_adc, "task_adc", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+
     gpio_set_level(LED_1, 0);
 
     while (1)
@@ -201,5 +204,18 @@ void task_adc(void *pvParameters)
         measure_battery();
         
         vTaskDelay(pdMS_TO_TICKS(1000));
+
+        bd.publish_battery_info(4000, get_battery_percentage());
     }
+}
+
+void task_db(void *pvParameters)
+{
+
+    while (1)
+    {
+        /* code */
+        
+    }
+    
 }
