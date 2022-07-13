@@ -21,21 +21,46 @@
 #include "adc_1.h"
 #include "banco_de_dados.h"
 
+static uint8_t state;
+
+#define DHT_ON
+
+
 //-----tasks---------------------
 void task_display(void *pvParameters);
 void task_dht(void *pvParameters);
 void task_adc(void *pvParameters);
+void task_db(void *pvParameters);   // Atualiza o banco de dados
+
 //---------------------------
+
+#define LED_STATUS  GPIO_NUM_25
+#define LED_1       GPIO_NUM_26
+#define DHT_PIN     GPIO_NUM_18
 
 extern "C" void app_main(void)
 {
+    // gpio_num_t led_status = GPIO_NUM_6;
+
+    // gpio_reset_pin(led_gpio);
+    gpio_set_direction(LED_STATUS, GPIO_MODE_OUTPUT);
+    gpio_set_direction(LED_1, GPIO_MODE_OUTPUT);
+
+    gpio_set_level(LED_STATUS, 1);
+    gpio_set_level(LED_1, 1);
+
+#ifdef DISPLAY_ON
     xTaskCreate(task_display, "task_display", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+#endif
+
+#ifdef DHT_ON
     xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+#endif
+
     xTaskCreate(task_adc, "task_adc", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 
-
     wifiInit(SSID, PASSWORD); // blocking until it connects
-    
+
     BancoDeDados bd;
     bd.banco_de_dados_init();
 
@@ -52,9 +77,6 @@ extern "C" void app_main(void)
     // We can put a json str directly at /person1
     // std::string json_str = R"({"name": "Madjid", "age": 20, "random_float": 8.56})";
     // fb_client.putData("/person1", json_str.c_str());
-
-
- 
 
     vTaskDelay(500 / portTICK_PERIOD_MS);
 
@@ -109,6 +131,15 @@ extern "C" void app_main(void)
     //     std::cout << member << ", ";
     // }
     // std::cout << std::endl;
+
+    gpio_set_level(LED_1, 0);
+
+    while (1)
+    {
+        state = !state;
+        gpio_set_level(LED_STATUS, state);
+        vTaskDelay(500 / portTICK_PERIOD_MS);
+    }
 }
 
 void task_display(void *pvParameters)
@@ -136,12 +167,12 @@ void task_dht(void *pvParameters)
 
     float temperatura = -100;
     float umidade = -100;
-    gpio_set_pull_mode(GPIO_NUM_18, GPIO_PULLUP_ONLY);
+    gpio_set_pull_mode(DHT_PIN, GPIO_PULLUP_ONLY);
 
     while (1)
     {
 
-        if (dht_read_float_data(DHT_TYPE_DHT11, GPIO_NUM_18, &umidade, &temperatura) == ESP_OK)
+        if (dht_read_float_data(DHT_TYPE_DHT11, DHT_PIN, &umidade, &temperatura) == ESP_OK)
         {
             printf("Umidade: %.1f%% Temp: %.1fC\n", umidade, temperatura);
         }
@@ -153,14 +184,22 @@ void task_dht(void *pvParameters)
     }
 }
 
+#include "sensores.h"
 
 void task_adc(void *pvParameters)
 {
-    adc adc1_canal_6;
-    adc1_canal_6.adc_init(ADC1_CHANNEL_6);
+    // adc adc1_canal_6;
+    // adc1_canal_6.adc_init(ADC1_CHANNEL_6);
+
+    battery_measure_init();
+
     while (1)
     {
-        adc1_canal_6.read_adc();
+        // adc1_canal_6.read_adc();
+        vTaskDelay(pdMS_TO_TICKS(1000));
+
+        measure_battery();
+        
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
