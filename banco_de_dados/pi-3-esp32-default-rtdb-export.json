@@ -6,23 +6,27 @@
       "teste": 123456789
     },
     "vasos": {
-      "vaso1": {
-        "dispositivo": "6011319116123228",
-        "especie": "\"planta-jade\"",
-        "luminosidade_ideal": "\"meia-sombra\"",
-        "luminosidade_lida": "meia-sombra",
-        "nome_cientifico": "\"Crassula-ovata\"",
+      "vaso1_parametros_ideais": {
+        "especie": "",
+        "luminosidade_ideal": "",
+        "nome_cientifico": "",
         "nome_vaso": "",
-        "status_bateria": "30",
-        "status_planta": "feliz",
-        "temperatura_ideal_max": "30",
-        "temperatura_ideal_min": "14",
-        "temperatura_lida": "18",
-        "umidade_ideal_ar": "\"baixa\"",
-        "umidade_ideal_solo": "\"úmido\"",
+        "status_planta": "",
+        "temperatura_ideal_max": "",
+        "temperatura_ideal_min": "",
+        "umidade_ideal_ar": "",
+        "umidade_ideal_solo": "",
+        "umidade_regar": ""
+      },
+      "vaso1_parametros_lidos": {
+        "dispositivo": "6011319116123228",
+        "luminosidade_lida": "",
+        "nome_vaso": "",
+        "status_bateria": "015",
+        "status_planta": "",
+        "temperatura_lida": "",
         "umidade_lida_ar": "",
-        "umidade_lida_solo": "úmido",
-        "umidade_regar": "\"seco\""
+        "umidade_lida_solo": ""
       }
     }
   },
