@@ -2,8 +2,12 @@
 #define FIREBASE_CONFIG_H
 
 // Wifi Credentials
-#define SSID "VIVO-10"
-#define PASSWORD "nina2017j09"
+// #define SSID "VIVO-10"
+// #define PASSWORD "nina2017j09"
+
+#define SSID "Andreia_NeoRede"
+#define PASSWORD "70960600"
+
 
 
 // Read readme.md to properly configure api key and authentication
