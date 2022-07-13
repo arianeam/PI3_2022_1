@@ -64,9 +64,9 @@ void BancoDeDados::banco_de_dados_init(void)
     std::string json_ids = mac_addr;
 
     std::string path_ids_dispositivos = "/dispositivos/ids/";
-    std::string path_vaso = "/dispositivos/vasos/";
+    std::string path_vaso = "/dispositivos/vasos/vaso1";
     // path_vaso.append(mac_addr);
-    path_vaso.append("vaso1");
+   // path_vaso.append("vaso1");
     path_ids_dispositivos.append(mac_addr);
 
     std::string teste = "123456789";
@@ -103,7 +103,7 @@ int BancoDeDados::publish_temperature_info(float temp, float humi)
 
 int BancoDeDados::publish_battery_info(uint16_t mV, uint8_t percentage)
 {
-    std::string path_vaso = "/dispositivos/vasos/";
+    std::string path_vaso = "/dispositivos/vasos/vaso1";
     static uint8_t old_percentage = 0;
 
 
