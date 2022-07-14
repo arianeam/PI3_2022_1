@@ -23,7 +23,7 @@
 
 static uint8_t state;
 
-//#define DHT_ON
+#define DHT_ON
 #define DISPLAY_ON
 
 
