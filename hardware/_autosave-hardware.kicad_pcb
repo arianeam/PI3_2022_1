@@ -2291,7 +2291,7 @@
 
   (footprint "Package_TO_SOT_SMD:SOT-23-6_Handsoldering" (layer "B.Cu")
     (tedit 5A02FF57) (tstamp d04e2706-b34f-42b1-bc6a-58264be8dbad)
-    (at 121.5975 150.2 180)
+    (at 122.6375 143.68 180)
     (descr "6-pin SOT-23 package, Handsoldering")
     (tags "SOT-23-6 Handsoldering")
     (property "Sheetfile" "hardware.kicad_sch")
@@ -2407,7 +2407,7 @@
 
   (footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" (layer "B.Cu")
     (tedit 5F68FEEF) (tstamp d6590c15-d26a-4e4d-b38e-c32f9cafe4e8)
-    (at 56.3375 96.47 180)
+    (at 117.4475 149.47 180)
     (descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
     (tags "capacitor handsolder")
     (property "Sheetfile" "hardware.kicad_sch")
