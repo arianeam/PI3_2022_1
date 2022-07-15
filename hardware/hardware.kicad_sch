@@ -2506,7 +2506,7 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid b4fe98ae-5934-4285-9cde-8a8c7014c471)
   )
-  (label "LUMINOSIDADE" (at 83.82 156.21 180)
+  (label "LUX_ADC" (at 83.82 156.21 180)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid b55357eb-0e10-4de6-aecf-9f8b0efedaea)
   )
