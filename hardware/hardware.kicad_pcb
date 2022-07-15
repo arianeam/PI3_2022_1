@@ -2900,6 +2900,9 @@
   (gr_rect (start 95.5255 97.752) (end 148.0755 155.662) (layer "F.Cu") (width 0.2) (fill none) (tstamp 16cd7299-3420-47ab-9acc-5ad716bff765))
   (gr_rect (start 95.5255 155.662) (end 148.0755 97.752) (layer "B.Cu") (width 0.2) (fill none) (tstamp a3b88305-3ae7-4912-86de-4c5723f07251))
   (gr_rect (start 95 97.238) (end 148.508 156.254) (layer "Edge.Cuts") (width 0.2) (fill none) (tstamp 5bf04c3b-d042-4031-8c64-d56f492433a6))
+  (gr_text "PI3 - 2022/1\nVaso Inteligente\nGuilherme Camargo Valese\nAriane Andréia Martins" (at 120.8575 102.8) (layer "F.Cu") (tstamp 1655e92d-ecf2-41e7-bd63-c7eec74531d3)
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
 
   (segment (start 116.2275 147.8) (end 112.3615 151.666) (width 0.25) (layer "F.Cu") (net 1) (tstamp 402bcb4d-174d-4988-84a6-58a888407e64))
   (segment (start 108.7025 145.605) (end 110.2925 145.605) (width 0.25) (layer "F.Cu") (net 1) (tstamp 44fe1c11-f18f-4f5c-b2f2-00b9c53384a4))
