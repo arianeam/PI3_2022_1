@@ -26,24 +26,27 @@ static uint8_t state;
 #define DHT_ON
 #define DISPLAY_ON
 
-
-
 //-----tasks---------------------
 void task_display(void *pvParameters);
 void task_dht(void *pvParameters);
 void task_adc(void *pvParameters);
-void task_db(void *pvParameters);   // Atualiza o banco de dados
+void task_db(void *pvParameters); // Atualiza o banco de dados
 
 //---------------------------
 
-#define LED_STATUS  GPIO_NUM_25
-#define LED_1       GPIO_NUM_26
-#define DHT_PIN     GPIO_NUM_27
+#define LED_STATUS GPIO_NUM_25
+#define LED_1 GPIO_NUM_26
+#define DHT_PIN GPIO_NUM_27
 
 BancoDeDados bd;
 
 extern "C" void app_main(void)
 {
+
+    wifiInit(SSID, PASSWORD); // blocking until it connects
+
+    // BancoDeDados bd;
+    bd.banco_de_dados_init();
     // gpio_num_t led_status = GPIO_NUM_6;
 
     // gpio_reset_pin(led_gpio);
@@ -61,11 +64,7 @@ extern "C" void app_main(void)
     xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 #endif
 
-
-    wifiInit(SSID, PASSWORD); // blocking until it connects
-
-    // BancoDeDados bd;
-    bd.banco_de_dados_init();
+    // xTaskCreate(task_db, "task_db", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 
     // // Config and Authentication
     // ESPFirebase::config_t config = {API_KEY, DATABASE_URL};
@@ -180,12 +179,16 @@ void task_dht(void *pvParameters)
         if (dht_read_float_data(DHT_TYPE_DHT11, DHT_PIN, &umidade, &temperatura) == ESP_OK)
         {
             printf("Umidade: %.1f%% Temp: %.1fC\n", umidade, temperatura);
+            vTaskDelay(pdMS_TO_TICKS(1000));
+
+            bd.publish_temperature_info(temperatura, umidade);
+            
         }
         else
         {
             printf("Erro ao ler dados do sensor dht11\n");
         }
-        vTaskDelay(pdMS_TO_TICKS(2000));
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 
@@ -204,7 +207,7 @@ void task_adc(void *pvParameters)
         vTaskDelay(pdMS_TO_TICKS(1000));
 
         measure_battery();
-        
+
         vTaskDelay(pdMS_TO_TICKS(1000));
 
         bd.publish_battery_info(4000, get_battery_percentage());
@@ -216,8 +219,6 @@ void task_db(void *pvParameters)
 
     while (1)
     {
-        /* code */
-        
+       
     }
-    
 }
