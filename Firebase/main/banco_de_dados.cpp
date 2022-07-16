@@ -105,8 +105,8 @@ int BancoDeDados::publish_temperature_info(float temp, float humi)
 
     std::string path_temp = "/dispositivos/vasos/vaso1_parametros_lidos/temperatura_lida";
     std::string path_umid = "/dispositivos/vasos/vaso1_parametros_lidos/umidade_lida_ar";
-    std::string temperatura = std::to_string(temp);
-    std::string umidade = std::to_string(humi);
+    temperatura = std::to_string(temp);
+    umidade = std::to_string(humi);
 
     if (fb_client.putData(path_temp.c_str(), temperatura.c_str()) == ESP_FAIL)
     {

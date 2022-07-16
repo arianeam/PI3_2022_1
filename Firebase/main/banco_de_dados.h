@@ -22,7 +22,6 @@
 #include "esp_event.h"
 #include "esp_netif.h"
 
-
 #define TAG "BASE_MAC"
 
 class BancoDeDados
@@ -30,10 +29,10 @@ class BancoDeDados
 private:
     std::string mac = "";
     void read_mac_address(void);
-    //void json_str_bd(void);
+    // void json_str_bd(void);
 
-    // std::string umidade;
-    // std::string temperatura;
+    std::string umidade;
+    std::string temperatura;
 
 public:
     std::string get_mac_address(void);
@@ -41,8 +40,9 @@ public:
     void banco_de_dados_init(void);
     int publish_battery_info(uint16_t mV, uint8_t percentage);
     int publish_temperature_info(float temp, float humi);
-    //int publish_temperature_info(void);
-    
+    //int publish_temperature_info(float temp, float humi);
+
+    // int publish_temperature_info(void);
 };
 
 #endif
