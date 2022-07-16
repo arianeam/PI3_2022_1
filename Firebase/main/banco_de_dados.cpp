@@ -128,34 +128,102 @@ int BancoDeDados::publish_temperature_info(float temp, float humi)
     return 0;
 }
 
-int BancoDeDados::publish_battery_info(uint16_t mV, uint8_t percentage)
+/**
+ * @brief 
+ * 
+ * @param key 
+ * @param value 
+ * @return esp_err_t 
+ */
+esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value)
 {
-    std::string path_vaso = "/dispositivos/vasos/vaso1_parametros_lidos";
-    static uint8_t old_percentage = 0;
+    std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
-    if (old_percentage != percentage)
+    data[key] = std::to_string(value);
+
+    if(fb_client.putData(path.c_str(), data) == ESP_OK)
     {
-#define LEN 4    // length of the string w/ null terminator
-#define BASE 10  // string as a decimal base
-#define FILL '0' // character to fill non-used algarisms.
-
-        uint8_t i = LEN - 1;    // index for each char of the string
-        char str[LEN] = {FILL}; // ascii zero filled array
-        str[i] = '\0';          // adds string null terminator
-        while (i--)
-        {
-            str[i] = FILL + (percentage % BASE); // gets each algarism}
-            percentage /= BASE;                  // prepare the next
-        }
-        printf("publicado");
-        old_percentage = percentage;
-
-        data["status_bateria"] = str;
-        fb_client.putData(path_vaso.c_str(), data);
-
-#undef LEN
-#undef BASE
-#undef FILL
+        connection_state = true;
+        return ESP_OK;
     }
-    return 0;
+    else
+    {
+        connection_state = false;
+        return ESP_FAIL;
+    }
+}
+
+/**
+ * @brief 
+ * 
+ * @param key 
+ * @param value 
+ * @return esp_err_t 
+ */
+esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value)
+{
+    std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
+
+    data[key] = std::to_string(value);
+
+    if(fb_client.putData(path.c_str(), data) == ESP_OK)
+    {
+        connection_state = true;
+        return ESP_OK;
+    }
+    else
+    {
+        connection_state = false;
+        return ESP_FAIL;
+    }
+}
+
+/**
+ * @brief 
+ * 
+ * @param key 
+ * @param value 
+ * @return esp_err_t 
+ */
+esp_err_t BancoDeDados::publish_data(std::string key, float value)
+{
+    std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
+
+    data[key] = std::to_string(value);
+
+    if(fb_client.putData(path.c_str(), data) == ESP_OK)
+    {
+        connection_state = true;
+        return ESP_OK;
+    }
+    else
+    {
+        connection_state = false;
+        return ESP_FAIL;
+    }
+}
+
+/**
+ * @brief 
+ * 
+ * @param key 
+ * @param value 
+ * @return esp_err_t 
+ */
+esp_err_t BancoDeDados::publish_data(std::string key, std::string value)
+{
+    std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
+
+    data[key] = value;
+
+    if(fb_client.putData(path.c_str(), data) == ESP_OK)
+    {
+        connection_state = true;
+        return ESP_OK;
+    }
+    else
+    {
+        connection_state = false;
+        return ESP_FAIL;
+    }
 }

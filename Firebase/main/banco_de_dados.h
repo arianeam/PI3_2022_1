@@ -22,11 +22,14 @@
 #include "esp_event.h"
 #include "esp_netif.h"
 
+
 #define TAG "BASE_MAC"
 
 class BancoDeDados
 {
 private:
+    bool connection_state;
+    
     std::string mac = "";
     void read_mac_address(void);
     // void json_str_bd(void);
@@ -38,11 +41,13 @@ public:
     std::string get_mac_address(void);
 
     void banco_de_dados_init(void);
-    int publish_battery_info(uint16_t mV, uint8_t percentage);
     int publish_temperature_info(float temp, float humi);
-    //int publish_temperature_info(float temp, float humi);
 
     // int publish_temperature_info(void);
+    esp_err_t publish_data(std::string key, uint8_t value);
+    esp_err_t publish_data(std::string key, uint16_t value);
+    esp_err_t publish_data(std::string key, float value);
+    esp_err_t publish_data(std::string key, std::string value);
 };
 
 #endif

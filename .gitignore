@@ -58,3 +58,4 @@ sensores/SENSORES_ESP_IDF/sdkconfig
 sensores/SENSORES_ESP_IDF/sdkconfig.old
 
 hardware/hardware-backups/*
+Firebase/main/firebase_config.h

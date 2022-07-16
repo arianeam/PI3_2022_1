@@ -2,11 +2,11 @@
 #define FIREBASE_CONFIG_H
 
 // Wifi Credentials
-// #define SSID "VIVO-10"
-// #define PASSWORD "nina2017j09"
+ #define SSID "VIVO-10"
+ #define PASSWORD "nina2017j09"
 
-#define SSID "Andreia_NeoRede"
-#define PASSWORD "70960600"
+//#define SSID "Andreia_NeoRede"
+//#define PASSWORD "70960600"
 
 
 
@@ -19,5 +19,13 @@
 
 #define USER_EMAIL "testemail@gmail.com"   // This gmail does not exist outside your database. it only exists in the firebase project as a user
 #define USER_PASSWORD "testpass"      // Dont add your gmail credentials. Setup users authentication in your Firebase project first
+
+
+#define TEMPERATURA__LIDA       "temperatura_lida"
+#define UMIDADE_AR_LIDA         "umidade_lida_ar"
+#define UMIDADE_SOLO_LIDA       "umidade_lida_solo"
+#define STATUS_BATERIA          "status_bateria"
+#define LUMINOSIDADE_LIDA       "luminosidade_lida"
+
 
 #endif

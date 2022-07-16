@@ -181,8 +181,16 @@ void task_dht(void *pvParameters)
             printf("Umidade: %.1f%% Temp: %.1fC\n", umidade, temperatura);
             vTaskDelay(pdMS_TO_TICKS(1000));
 
-            bd.publish_temperature_info(temperatura, umidade);
-            
+            if(bd.publish_data("temperatura_lida", temperatura) == ESP_OK)
+            {
+                printf("Temp OK\n");
+            }
+
+            if(bd.publish_data("umidade_lida_ar", umidade) == ESP_OK)
+            {
+                printf("Umidade OK\n");
+            }
+
         }
         else
         {
@@ -196,29 +204,16 @@ void task_dht(void *pvParameters)
 
 void task_adc(void *pvParameters)
 {
-    // adc adc1_canal_6;
-    // adc1_canal_6.adc_init(ADC1_CHANNEL_6);
-
     battery_measure_init();
 
     while (1)
     {
-        // adc1_canal_6.read_adc();
         vTaskDelay(pdMS_TO_TICKS(1000));
 
         measure_battery();
 
         vTaskDelay(pdMS_TO_TICKS(1000));
 
-        bd.publish_battery_info(4000, get_battery_percentage());
-    }
-}
-
-void task_db(void *pvParameters)
-{
-
-    while (1)
-    {
-       
+        bd.publish_data("status_bateria", get_battery_percentage());
     }
 }
