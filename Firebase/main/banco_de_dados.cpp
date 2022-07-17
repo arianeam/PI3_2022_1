@@ -6,6 +6,7 @@ void BancoDeDados::read_mac_address(void)
     uint8_t base_mac_addr[6] = {0};
     esp_err_t ret = ESP_OK;
 
+
     ret = esp_efuse_mac_get_default(base_mac_addr);
     if (ret != ESP_OK)
     {
@@ -136,14 +137,12 @@ int BancoDeDados::publish_temperature_info(float temp, float humi)
  * @param value
  * @return esp_err_t
  */
-esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value, int index)
+esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value)
 {
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = std::to_string(value);
-    printf("Sensor data[%d]: %s", index, sensor_data[index].c_str());
-
-    sensor_data[index] = std::to_string(value);
+    
 
     if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
@@ -166,14 +165,12 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value, int index)
  * @param value
  * @return esp_err_t
  */
-esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value, int index)
+esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value)
 {
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = std::to_string(value);
-    sensor_data[index] = std::to_string(value);
-    printf("Sensor data[%d]: %s", index, sensor_data[index].c_str());
-
+   
     if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
         connection_state = true;
@@ -195,15 +192,12 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value, int index)
  * @param value
  * @return esp_err_t
  */
-esp_err_t BancoDeDados::publish_data(std::string key, float value, int index)
+esp_err_t BancoDeDados::publish_data(std::string key, float value)
 {
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = std::to_string(value);
-    printf("Sensor data[%d]: %s", index, sensor_data[index].c_str());
-
-    sensor_data[index] = std::to_string(value);
-
+  
     if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
         connection_state = true;
@@ -225,13 +219,12 @@ esp_err_t BancoDeDados::publish_data(std::string key, float value, int index)
  * @param value
  * @return esp_err_t
  */
-esp_err_t BancoDeDados::publish_data(std::string key, std::string value, int index)
+esp_err_t BancoDeDados::publish_data(std::string key, std::string value)
 {
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = value;
-    sensor_data[index] = value;
-    printf("Sensor data[%d]: %s", index, sensor_data[index].c_str());
+   
 
     if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
@@ -241,7 +234,7 @@ esp_err_t BancoDeDados::publish_data(std::string key, std::string value, int ind
     else
     {
         fb_client.loginUserAccount(account);
-        
+
         connection_state = false;
         return ESP_FAIL;
     }
@@ -258,4 +251,30 @@ std::string BancoDeDados::get_data_bd(std::string key)
     data_received = data_received_json.asCString();
 
     return data_received;
+}
+
+
+std::string BancoDeDados::get_sensor_data(int index)
+{
+    return sensor_data[index];
+}
+
+void BancoDeDados::set_sensor_data(int index, uint8_t value)
+{
+    sensor_data[index] = std::to_string(value);
+}
+
+void BancoDeDados::set_sensor_data(int index, uint16_t value)
+{
+    sensor_data[index] = std::to_string(value);
+}
+
+void BancoDeDados::set_sensor_data(int index, float value)
+{
+    sensor_data[index] = std::to_string(value);
+}
+
+void BancoDeDados::set_sensor_data(int index, std::string value)
+{
+    sensor_data[index] = value;
 }
