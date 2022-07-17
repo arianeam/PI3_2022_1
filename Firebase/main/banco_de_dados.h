@@ -22,14 +22,13 @@
 #include "esp_event.h"
 #include "esp_netif.h"
 
-
 #define TAG "BASE_MAC"
 
 class BancoDeDados
 {
 private:
     bool connection_state;
-    
+
     std::string mac = "";
     void read_mac_address(void);
     // void json_str_bd(void);
@@ -48,6 +47,10 @@ public:
     esp_err_t publish_data(std::string key, uint16_t value);
     esp_err_t publish_data(std::string key, float value);
     esp_err_t publish_data(std::string key, std::string value);
+
+    // get data db
+    esp_err_t get_data_bd(std::string key, std::string var);
+
 };
 
 #endif

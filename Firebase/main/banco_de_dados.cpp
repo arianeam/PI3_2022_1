@@ -44,6 +44,7 @@ ESPFirebase::user_account_t account = {USER_EMAIL, USER_PASSWORD};
 
 ESPFirebase::Firebase fb_client(config);
 Json::Value data;
+Json::Value data_received;
 
 void BancoDeDados::banco_de_dados_init(void)
 {
@@ -129,11 +130,11 @@ int BancoDeDados::publish_temperature_info(float temp, float humi)
 }
 
 /**
- * @brief 
- * 
- * @param key 
- * @param value 
- * @return esp_err_t 
+ * @brief
+ *
+ * @param key
+ * @param value
+ * @return esp_err_t
  */
 esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value)
 {
@@ -141,7 +142,7 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value)
 
     data[key] = std::to_string(value);
 
-    if(fb_client.putData(path.c_str(), data) == ESP_OK)
+    if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
         connection_state = true;
         return ESP_OK;
@@ -154,11 +155,11 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value)
 }
 
 /**
- * @brief 
- * 
- * @param key 
- * @param value 
- * @return esp_err_t 
+ * @brief
+ *
+ * @param key
+ * @param value
+ * @return esp_err_t
  */
 esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value)
 {
@@ -166,7 +167,7 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value)
 
     data[key] = std::to_string(value);
 
-    if(fb_client.putData(path.c_str(), data) == ESP_OK)
+    if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
         connection_state = true;
         return ESP_OK;
@@ -179,11 +180,11 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value)
 }
 
 /**
- * @brief 
- * 
- * @param key 
- * @param value 
- * @return esp_err_t 
+ * @brief
+ *
+ * @param key
+ * @param value
+ * @return esp_err_t
  */
 esp_err_t BancoDeDados::publish_data(std::string key, float value)
 {
@@ -191,7 +192,7 @@ esp_err_t BancoDeDados::publish_data(std::string key, float value)
 
     data[key] = std::to_string(value);
 
-    if(fb_client.putData(path.c_str(), data) == ESP_OK)
+    if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
         connection_state = true;
         return ESP_OK;
@@ -204,11 +205,11 @@ esp_err_t BancoDeDados::publish_data(std::string key, float value)
 }
 
 /**
- * @brief 
- * 
- * @param key 
- * @param value 
- * @return esp_err_t 
+ * @brief
+ *
+ * @param key
+ * @param value
+ * @return esp_err_t
  */
 esp_err_t BancoDeDados::publish_data(std::string key, std::string value)
 {
@@ -216,7 +217,7 @@ esp_err_t BancoDeDados::publish_data(std::string key, std::string value)
 
     data[key] = value;
 
-    if(fb_client.putData(path.c_str(), data) == ESP_OK)
+    if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
         connection_state = true;
         return ESP_OK;
@@ -224,6 +225,21 @@ esp_err_t BancoDeDados::publish_data(std::string key, std::string value)
     else
     {
         connection_state = false;
+        return ESP_FAIL;
+    }
+}
+
+esp_err_t BancoDeDados::get_data_bd(std::string key, std::string var)
+{
+    std::string path = "/dispositivos/vasos/vaso1_parametros_ideais/";
+    if ((data_received = fb_client.getData(path.c_str())) == ESP_OK)
+    {
+        printf("Data received [%s]: %s ", key.c_str(), data_received[key].asCString());
+        var = data_received[key].asCString();
+        return ESP_OK;
+    }
+    else
+    {
         return ESP_FAIL;
     }
 }

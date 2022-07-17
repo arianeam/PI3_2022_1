@@ -135,6 +135,7 @@ extern "C" void app_main(void)
     // std::cout << std::endl;
 
     xTaskCreate(task_adc, "task_adc", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+    xTaskCreate(task_db, "task_db", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 
     gpio_set_level(LED_1, 0);
 
@@ -184,6 +185,7 @@ void task_dht(void *pvParameters)
             if(bd.publish_data("temperatura_lida", temperatura) == ESP_OK)
             {
                 printf("Temp OK\n");
+                
             }
 
             if(bd.publish_data("umidade_lida_ar", umidade) == ESP_OK)
@@ -216,4 +218,15 @@ void task_adc(void *pvParameters)
 
         bd.publish_data("status_bateria", get_battery_percentage());
     }
+}
+
+void task_db(void *pvParameters)
+{
+    std::string data;
+    while (1)
+    {
+        bd.get_data_bd("temperatura_ideal_min", data);
+        printf("TEMP IDEAL MIN: %s",data.c_str());
+    }
+    
 }
