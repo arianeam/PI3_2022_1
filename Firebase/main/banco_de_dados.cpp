@@ -152,6 +152,8 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value, int index)
     }
     else
     {
+        fb_client.loginUserAccount(account);
+
         connection_state = false;
         return ESP_FAIL;
     }
@@ -179,6 +181,8 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value, int index)
     }
     else
     {
+        fb_client.loginUserAccount(account);
+
         connection_state = false;
         return ESP_FAIL;
     }
@@ -207,6 +211,8 @@ esp_err_t BancoDeDados::publish_data(std::string key, float value, int index)
     }
     else
     {
+        fb_client.loginUserAccount(account);
+
         connection_state = false;
         return ESP_FAIL;
     }
@@ -234,6 +240,8 @@ esp_err_t BancoDeDados::publish_data(std::string key, std::string value, int ind
     }
     else
     {
+        fb_client.loginUserAccount(account);
+        
         connection_state = false;
         return ESP_FAIL;
     }

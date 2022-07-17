@@ -32,7 +32,8 @@ static uint8_t state;
 void task_display(void *pvParameters);
 void task_dht(void *pvParameters);
 void task_adc(void *pvParameters);
-void task_db(void *pvParameters); // Atualiza o banco de dados
+//void task_db(void *pvParameters); // Atualiza o banco de dados
+void task_parametros_ideais(void *pvParameters);
 
 //---------------------------
 
@@ -203,7 +204,7 @@ void task_dht(void *pvParameters)
         if (dht_read_float_data(DHT_TYPE_DHT11, DHT_PIN, &umidade, &temperatura) == ESP_OK)
         {
             printf("Umidade: %.1f%% Temp: %.1fC\n", umidade, temperatura);
-            vTaskDelay(pdMS_TO_TICKS(1000));
+             vTaskDelay(pdMS_TO_TICKS(3000));
 
             if (bd.publish_data("temperatura_lida", temperatura, 0) == ESP_OK)
             {
