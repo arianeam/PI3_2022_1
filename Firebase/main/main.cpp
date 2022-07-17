@@ -102,14 +102,16 @@ extern "C" void app_main(void)
     xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
 #endif
 
+    xTaskCreate(task_db, "task_db", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
+
+    // xTaskCreate(task_status_planta, "task_status_planta", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+
     while (1)
     {
         state = !state;
         gpio_set_level(LED_STATUS, state);
         vTaskDelay(500 / portTICK_PERIOD_MS);
     }
-
-    // xTaskCreate(task_status_planta, "task_status_planta", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 }
 
 void task_display(void *pvParameters)
@@ -202,19 +204,24 @@ void task_db(void *pvParameters)
 {
     while (1)
     {
+        // index: 0-temperatura lida, 1-umidade solo, 2-luminosidade,3-umidade ar, 4-bateria
         vTaskDelay(1000 / portTICK_RATE_MS);
 
         if (bd.publish_data("temperatura_lida", bd.get_sensor_data(0)) == ESP_OK)
         {
             printf("Temp OK\n");
         }
+        else
+        {
+            printf("get sensor data %s\n", bd.get_sensor_data(0).c_str());
+        }
 
-        if (bd.publish_data("umidade_lida_ar",  bd.get_sensor_data(1)) == ESP_OK)
+        if (bd.publish_data("umidade_lida_ar", bd.get_sensor_data(1)) == ESP_OK)
         {
             printf("Umidade OK\n");
         }
 
-        if (bd.publish_data("status_bateria",  bd.get_sensor_data(4)) == ESP_OK)
+        if (bd.publish_data("status_bateria", bd.get_sensor_data(4)) == ESP_OK)
         {
             printf("Bateria OK\n");
         }

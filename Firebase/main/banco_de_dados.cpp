@@ -6,7 +6,6 @@ void BancoDeDados::read_mac_address(void)
     uint8_t base_mac_addr[6] = {0};
     esp_err_t ret = ESP_OK;
 
-
     ret = esp_efuse_mac_get_default(base_mac_addr);
     if (ret != ESP_OK)
     {
@@ -142,9 +141,10 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value)
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = std::to_string(value);
-    
 
-    if (fb_client.putData(path.c_str(), data) == ESP_OK)
+    path.append(key);
+
+    if (fb_client.putData(path.c_str(), data[key]) == ESP_OK)
     {
         connection_state = true;
         return ESP_OK;
@@ -170,8 +170,10 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value)
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = std::to_string(value);
-   
-    if (fb_client.putData(path.c_str(), data) == ESP_OK)
+
+    path.append(key);
+
+    if (fb_client.putData(path.c_str(), data[key]) == ESP_OK)
     {
         connection_state = true;
         return ESP_OK;
@@ -197,8 +199,12 @@ esp_err_t BancoDeDados::publish_data(std::string key, float value)
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = std::to_string(value);
-  
-    if (fb_client.putData(path.c_str(), data) == ESP_OK)
+
+    printf("VALOR PUBLISH DATA: %s ", data.asCString());
+
+    path.append(key);
+
+    if (fb_client.putData(path.c_str(), data[key]) == ESP_OK)
     {
         connection_state = true;
         return ESP_OK;
@@ -224,9 +230,10 @@ esp_err_t BancoDeDados::publish_data(std::string key, std::string value)
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = value;
-   
 
-    if (fb_client.putData(path.c_str(), data) == ESP_OK)
+    path.append(key);
+
+    if (fb_client.putData(path.c_str(), data[key]) == ESP_OK)
     {
         connection_state = true;
         return ESP_OK;
@@ -252,7 +259,6 @@ std::string BancoDeDados::get_data_bd(std::string key)
 
     return data_received;
 }
-
 
 std::string BancoDeDados::get_sensor_data(int index)
 {
