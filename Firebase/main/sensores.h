@@ -6,16 +6,24 @@
  */
 #include "adc_1.h"
 
+#define ADC_BAT                 ADC1_CHANNEL_6
+#define ADC_LUX                 ADC1_CHANNEL_5
+
+
 #define BATTERY_MAX_VOLTAGE     4200
 #define BATTERY_NOMINAL_VOLTAGE 3700
 #define BATTERY_MIN_VOLTAGE     3200
-
 #define CONVERSION_VALUE        1.62884
-
 #define MONITOR_CHARGE_STATE
-
 #define CHARGING_COMPLETE_INPUT GPIO_NUM_13
 #define CHARGING_INPUT          GPIO_NUM_14
+
+#define LUX_SCALAR_COEF         1
+#define LUX_EXPONENTIAL_COEF    1
+#define REF_RESISTANCE          2200
+#define ADC_MAX_VALUE           1024
+#define ADC_REF                 3300
+
 
 enum
 {
@@ -33,7 +41,8 @@ struct
 }battery;
 
 adc adc_battery;
- 
+adc adc_lux;
+
 /**
  * @brief Inicializa a medição da bateria
  */
@@ -44,7 +53,7 @@ void battery_measure_init(void)
     battery.percentage = 0;
     battery.voltage = BATTERY_MIN_VOLTAGE;
 
-    adc_battery.adc_init(ADC1_CHANNEL_6);
+    adc_battery.adc_init(ADC_BAT);
 
 #ifdef MONITOR_CHARGE_STATE
     ESP_LOGI("BAT", "Monitor charge state");
@@ -113,20 +122,33 @@ uint8_t get_battery_percentage(void)
     return battery.percentage;
 }
 
+#include "math.h"
+
 /**
  * @brief 
  * 
  */
 void luximeter_init(void)
 {
-
+    adc_lux.adc_init(ADC_LUX);
 }
+
 
 /**
  * @brief 
  * 
  */
-void luximeter_read(void)
+float luximeter_read(void)
 {
+    float lux, ldrR, ldrV, resV;
+    uint16_t adc_raw;
 
+    adc_raw = adc_lux.read();
+    resV = (float)(adc_raw / ADC_MAX_VALUE) * ADC_REF;
+    ldrV = ADC_REF - resV;
+    ldrR = (ldrV/resV) * REF_RESISTANCE;
+
+    lux = LUX_SCALAR_COEF * pow(ldrR, LUX_EXPONENTIAL_COEF);
+
+    return lux;
 }
