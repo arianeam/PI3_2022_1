@@ -33,7 +33,7 @@ private:
     void read_mac_address(void);
     // void json_str_bd(void);
 
-    std::string sensor_data[4]; // 0- temperatura lida, 1 umidade solo, 2- luminosidade, 3 umidade ar
+    std::string sensor_data[5]; //0-temperatura lida, 1-umidade solo, 2-luminosidade,3-umidade ar, 4-bateria
 
     std::string temperatura, umidade;
     

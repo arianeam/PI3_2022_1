@@ -141,6 +141,7 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value, int index)
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = std::to_string(value);
+    printf("Sensor data[%d]: %s", index, sensor_data[index].c_str());
 
     sensor_data[index] = std::to_string(value);
 
@@ -169,6 +170,7 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value, int index)
 
     data[key] = std::to_string(value);
     sensor_data[index] = std::to_string(value);
+    printf("Sensor data[%d]: %s", index, sensor_data[index].c_str());
 
     if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
@@ -194,6 +196,7 @@ esp_err_t BancoDeDados::publish_data(std::string key, float value, int index)
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = std::to_string(value);
+    printf("Sensor data[%d]: %s", index, sensor_data[index].c_str());
 
     sensor_data[index] = std::to_string(value);
 
@@ -222,6 +225,7 @@ esp_err_t BancoDeDados::publish_data(std::string key, std::string value, int ind
 
     data[key] = value;
     sensor_data[index] = value;
+    printf("Sensor data[%d]: %s", index, sensor_data[index].c_str());
 
     if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {

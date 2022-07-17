@@ -3,7 +3,7 @@
 #define DISPLAY_HEIGHT          64
 
 #define I2C_MASTER_PORT         I2C_NUM_0
-#define I2C_SDA_PIN             4
-#define I2C_SCL_PIN             5
+// #define I2C_SDA_PIN             4
+// #define I2C_SCL_PIN             5
 
 
