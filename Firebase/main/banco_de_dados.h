@@ -33,8 +33,12 @@ private:
     void read_mac_address(void);
     // void json_str_bd(void);
 
-    std::string umidade;
-    std::string temperatura;
+    std::string sensor_data[4]; // 0- temperatura lida, 1 umidade solo, 2- luminosidade, 3 umidade ar
+
+    std::string temperatura, umidade;
+    
+
+    std::string data_received;
 
 public:
     std::string get_mac_address(void);
@@ -43,13 +47,15 @@ public:
     int publish_temperature_info(float temp, float humi);
 
     // int publish_temperature_info(void);
-    esp_err_t publish_data(std::string key, uint8_t value);
-    esp_err_t publish_data(std::string key, uint16_t value);
-    esp_err_t publish_data(std::string key, float value);
-    esp_err_t publish_data(std::string key, std::string value);
+    esp_err_t publish_data(std::string key, uint8_t value, int index);
+    esp_err_t publish_data(std::string key, uint16_t value, int index);
+    esp_err_t publish_data(std::string key, float value, int index);
+    esp_err_t publish_data(std::string key, std::string value, int index);
 
     // get data db
-    esp_err_t get_data_bd(std::string key, std::string var);
+    std::string get_data_bd(std::string key);
+    
+
 
 };
 

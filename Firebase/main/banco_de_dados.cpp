@@ -44,7 +44,7 @@ ESPFirebase::user_account_t account = {USER_EMAIL, USER_PASSWORD};
 
 ESPFirebase::Firebase fb_client(config);
 Json::Value data;
-Json::Value data_received;
+Json::Value data_received_json;
 
 void BancoDeDados::banco_de_dados_init(void)
 {
@@ -136,11 +136,13 @@ int BancoDeDados::publish_temperature_info(float temp, float humi)
  * @param value
  * @return esp_err_t
  */
-esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value)
+esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value, int index)
 {
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = std::to_string(value);
+
+    sensor_data[index] = std::to_string(value);
 
     if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
@@ -161,11 +163,12 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value)
  * @param value
  * @return esp_err_t
  */
-esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value)
+esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value, int index)
 {
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = std::to_string(value);
+    sensor_data[index] = std::to_string(value);
 
     if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
@@ -186,11 +189,13 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value)
  * @param value
  * @return esp_err_t
  */
-esp_err_t BancoDeDados::publish_data(std::string key, float value)
+esp_err_t BancoDeDados::publish_data(std::string key, float value, int index)
 {
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = std::to_string(value);
+
+    sensor_data[index] = std::to_string(value);
 
     if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
@@ -211,11 +216,12 @@ esp_err_t BancoDeDados::publish_data(std::string key, float value)
  * @param value
  * @return esp_err_t
  */
-esp_err_t BancoDeDados::publish_data(std::string key, std::string value)
+esp_err_t BancoDeDados::publish_data(std::string key, std::string value, int index)
 {
     std::string path = "/dispositivos/vasos/vaso1_parametros_lidos/";
 
     data[key] = value;
+    sensor_data[index] = value;
 
     if (fb_client.putData(path.c_str(), data) == ESP_OK)
     {
@@ -229,17 +235,15 @@ esp_err_t BancoDeDados::publish_data(std::string key, std::string value)
     }
 }
 
-esp_err_t BancoDeDados::get_data_bd(std::string key, std::string var)
+std::string BancoDeDados::get_data_bd(std::string key)
 {
     std::string path = "/dispositivos/vasos/vaso1_parametros_ideais/";
-    if ((data_received = fb_client.getData(path.c_str())) == ESP_OK)
-    {
-        printf("Data received [%s]: %s ", key.c_str(), data_received[key].asCString());
-        var = data_received[key].asCString();
-        return ESP_OK;
-    }
-    else
-    {
-        return ESP_FAIL;
-    }
+
+    path.append(key);
+    data_received_json = fb_client.getData(path.c_str());
+    printf("Data received : %s \n", data_received_json.asCString());
+
+    data_received = data_received_json.asCString();
+
+    return data_received;
 }

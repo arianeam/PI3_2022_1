@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdio.h>
+
 #include <esp_err.h>
 
 #include "freertos/FreeRTOS.h"
@@ -40,28 +42,33 @@ void task_db(void *pvParameters); // Atualiza o banco de dados
 
 BancoDeDados bd;
 
+struct
+{
+    float temperatura_minima;
+    float temperatura_maxima;
+    std::string umidade_ideal_ar;
+    std::string umidade_ideal_solo;
+    std::string luminosidade_ideal;
+    std::string nome_vaso;
+} parametros_ideais;
+
 extern "C" void app_main(void)
 {
-
-    wifiInit(SSID, PASSWORD); // blocking until it connects
-
-    // BancoDeDados bd;
-    bd.banco_de_dados_init();
-    // gpio_num_t led_status = GPIO_NUM_6;
-
-    // gpio_reset_pin(led_gpio);
     gpio_set_direction(LED_STATUS, GPIO_MODE_OUTPUT);
     gpio_set_direction(LED_1, GPIO_MODE_OUTPUT);
 
     gpio_set_level(LED_STATUS, 1);
     gpio_set_level(LED_1, 1);
 
+    wifiInit(SSID, PASSWORD); // blocking until it connects
+
+    gpio_set_level(LED_1, 0);
+
+    // BancoDeDados bd;
+    bd.banco_de_dados_init();
+
 #ifdef DISPLAY_ON
     xTaskCreate(task_display, "task_display", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
-#endif
-
-#ifdef DHT_ON
-    xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 #endif
 
     // xTaskCreate(task_db, "task_db", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
@@ -134,10 +141,26 @@ extern "C" void app_main(void)
     // }
     // std::cout << std::endl;
 
-    xTaskCreate(task_adc, "task_adc", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
-    xTaskCreate(task_db, "task_db", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+    parametros_ideais.temperatura_minima = std::stof(bd.get_data_bd("temperatura_ideal_min"));
+    parametros_ideais.temperatura_maxima = std::stof(bd.get_data_bd("temperatura_ideal_max"));
+    parametros_ideais.umidade_ideal_solo = bd.get_data_bd("umidade_ideal_ar");
+    parametros_ideais.luminosidade_ideal = bd.get_data_bd("luminosidade_ideal");
 
-    gpio_set_level(LED_1, 0);
+    gpio_set_level(LED_STATUS, 0);
+
+    printf("TEMP IDEAL MIN: %f -------\n", parametros_ideais.temperatura_minima);
+    printf("TEMP IDEAL MAX: %f -------\n", parametros_ideais.temperatura_maxima);
+    printf("UMIDADE IDEAL AR: %s -------\n", parametros_ideais.umidade_ideal_solo.c_str());
+    printf("LUMINOSIDADE IDEAL: %s -------\n", parametros_ideais.luminosidade_ideal.c_str());
+
+    vTaskDelay(3000 / portTICK_PERIOD_MS);
+
+    xTaskCreate(task_adc, "task_adc", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+    // xTaskCreate(task_db, "task_db", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
+
+#ifdef DHT_ON
+    xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+#endif
 
     while (1)
     {
@@ -182,17 +205,15 @@ void task_dht(void *pvParameters)
             printf("Umidade: %.1f%% Temp: %.1fC\n", umidade, temperatura);
             vTaskDelay(pdMS_TO_TICKS(1000));
 
-            if(bd.publish_data("temperatura_lida", temperatura) == ESP_OK)
+            if (bd.publish_data("temperatura_lida", temperatura) == ESP_OK)
             {
                 printf("Temp OK\n");
-                
             }
 
-            if(bd.publish_data("umidade_lida_ar", umidade) == ESP_OK)
+            if (bd.publish_data("umidade_lida_ar", umidade) == ESP_OK)
             {
                 printf("Umidade OK\n");
             }
-
         }
         else
         {
@@ -222,11 +243,12 @@ void task_adc(void *pvParameters)
 
 void task_db(void *pvParameters)
 {
-    std::string data;
+
     while (1)
     {
-        bd.get_data_bd("temperatura_ideal_min", data);
-        printf("TEMP IDEAL MIN: %s",data.c_str());
+
+        // parametros_ideais.luminosidade_ideal = std::stof()
+
+        vTaskDelay(10000 / portTICK_RATE_MS);
     }
-    
 }
