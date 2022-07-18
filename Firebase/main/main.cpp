@@ -2,10 +2,8 @@
 #include <stdio.h>
 
 #include <esp_err.h>
-
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-
 #include "jsoncpp/value.h"
 #include "jsoncpp/json.h"
 #include "esp_firebase/esp_firebase.h"
@@ -16,18 +14,15 @@
 #include "nvs_flash.h"
 #include "esp_event.h"
 #include "esp_netif.h"
-
 #include "../components/dht/dht.h"
 #include "display.h"
 #include "sorriso.h"
 #include "adc_1.h"
 #include "banco_de_dados.h"
 #include "sensores.h"
+#include "config.h"
 
 static uint8_t state;
-
-#define DHT_ON
-#define DISPLAY_ON
 
 //-----tasks---------------------
 void task_display(void *pvParameters);
@@ -36,12 +31,7 @@ void task_adc(void *pvParameters);
 void task_db(void *pvParameters); // Atualiza o banco de dados
 void task_parametros_ideais(void *pvParameters);
 void task_status_planta(void *pvParameters);
-
 //---------------------------
-
-#define LED_STATUS GPIO_NUM_25
-#define LED_1 GPIO_NUM_26
-#define DHT_PIN GPIO_NUM_27
 
 BancoDeDados bd;
 display display1;
@@ -78,23 +68,13 @@ extern "C" void app_main(void)
 
     vTaskDelay(500 / portTICK_PERIOD_MS);
 
-    // parametros_ideais.temperatura_minima = std::stof(bd.get_data_bd("temperatura_ideal_min"));
-    // parametros_ideais.temperatura_maxima = std::stof(bd.get_data_bd("temperatura_ideal_max"));
-    // parametros_ideais.umidade_ideal_solo = bd.get_data_bd("umidade_ideal_ar");
-    // parametros_ideais.luminosidade_ideal = bd.get_data_bd("luminosidade_ideal");
-
     gpio_set_level(LED_STATUS, 0);
-
-    // printf("TEMP IDEAL MIN: %f -------\n", parametros_ideais.temperatura_minima);
-    // printf("TEMP IDEAL MAX: %f -------\n", parametros_ideais.temperatura_maxima);
-    // printf("UMIDADE IDEAL AR: %s -------\n", parametros_ideais.umidade_ideal_solo.c_str());
-    // printf("LUMINOSIDADE IDEAL: %s -------\n", parametros_ideais.luminosidade_ideal.c_str());
 
     xTaskCreate(task_adc, "task_adc", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
 
     vTaskDelay(500 / portTICK_PERIOD_MS);
 
-    xTaskCreate(task_parametros_ideais, "task_parametros_ideais", configMINIMAL_STACK_SIZE * 8, NULL, 5, NULL);
+    // xTaskCreate(task_parametros_ideais, "task_parametros_ideais", configMINIMAL_STACK_SIZE * 8, NULL, 5, NULL);
 
     // vTaskDelay(3000 / portTICK_PERIOD_MS);
 
@@ -102,7 +82,7 @@ extern "C" void app_main(void)
     xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
 #endif
 
-    xTaskCreate(task_db, "task_db", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
+    // xTaskCreate(task_db, "task_db", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
 
     // xTaskCreate(task_status_planta, "task_status_planta", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 
@@ -136,13 +116,19 @@ void task_adc(void *pvParameters)
 {
     battery_measure_init();
 
+    luximeter_init();
+    float lux;
+
     while (1)
     {
         vTaskDelay(pdMS_TO_TICKS(10000));
 
         measure_battery();
 
-        bd.set_sensor_data(4, get_battery_percentage());
+        lux = luximeter_read();
+
+        bd.set_sensor_data(BATERIA, get_battery_percentage());
+        bd.set_sensor_data(LUMINOSIDADE, lux);
 
         vTaskDelay(10000 / portTICK_RATE_MS);
     }

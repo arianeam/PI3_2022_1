@@ -26,7 +26,6 @@ static const adc_bits_width_t width = ADC_WIDTH_BIT_12;
 static const adc_unit_t unit = ADC_UNIT_1;
 static esp_adc_cal_characteristics_t *adc_chars;
 
-#define DEFAULT_VREF 1100 // Use adc2_vref_to_gpio() to obtain a better estimate
 #define NO_OF_SAMPLES 64  // Multisampling
 
 

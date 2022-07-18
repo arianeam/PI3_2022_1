@@ -22,7 +22,14 @@
 #include "esp_event.h"
 #include "esp_netif.h"
 
-#define TAG "BASE_MAC"
+#define TAG "BANCO_DE_DADOS"
+
+#define TEMPERATURA         0
+#define UMIDADE_SOLO        1
+#define LUMINOSIDADE        2
+#define UMIDADE_AR          3
+#define BATERIA             4
+
 
 class BancoDeDados
 {

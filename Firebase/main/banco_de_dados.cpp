@@ -1,5 +1,13 @@
 #include "banco_de_dados.h"
 
+ESPFirebase::config_t config = {API_KEY, DATABASE_URL};
+ESPFirebase::user_account_t account = {USER_EMAIL, USER_PASSWORD};
+
+ESPFirebase::Firebase fb_client(config);
+Json::Value data;
+Json::Value data_received_json;
+
+
 void BancoDeDados::read_mac_address(void)
 {
     // o endereço mac identificará as esp32 no firebase
@@ -38,13 +46,6 @@ std::string BancoDeDados::get_mac_address(void)
     read_mac_address();
     return mac;
 }
-
-ESPFirebase::config_t config = {API_KEY, DATABASE_URL};
-ESPFirebase::user_account_t account = {USER_EMAIL, USER_PASSWORD};
-
-ESPFirebase::Firebase fb_client(config);
-Json::Value data;
-Json::Value data_received_json;
 
 void BancoDeDados::banco_de_dados_init(void)
 {

@@ -21,7 +21,7 @@ CONDITIONS OF ANY KIND, either express or implied.
 extern "C" {
 #endif
 
-#define EXAMPLE_ESP_MAXIMUM_RETRY 5
+#define EXAMPLE_ESP_MAXIMUM_RETRY 10
 
 static EventGroupHandle_t s_wifi_event_group;
 
@@ -97,11 +97,11 @@ void wifi_init_sta(const char* ssid, const char* password) {
     * can test which event actually happened. */
     if (bits & WIFI_CONNECTED_BIT) 
     {
-        ESP_LOGW(WIFI_TAG, "connected to ap SSID: %s || password: %s", ssid, password);
+        ESP_LOGW(WIFI_TAG, "connected to ap SSID: %s", ssid);
     } 
     else if (bits & WIFI_FAIL_BIT) 
     {
-        ESP_LOGE(WIFI_TAG, "Failed to connect to SSID: %s || password: %s", ssid, password);
+        ESP_LOGE(WIFI_TAG, "Failed to connect to SSID: %s", ssid);
     } 
     else 
     {

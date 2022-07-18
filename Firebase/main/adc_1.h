@@ -13,6 +13,9 @@
 
 #include <stdlib.h>
 
+#define DEFAULT_VREF 1100 // Use adc2_vref_to_gpio() to obtain a better estimate
+
+
 class adc
 {
 private:

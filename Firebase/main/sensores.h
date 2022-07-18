@@ -5,24 +5,10 @@
  * @date 2022-07-09
  */
 #include "adc_1.h"
+#include "config.h"
+#include "math.h"
 
-#define ADC_BAT                 ADC1_CHANNEL_6
-#define ADC_LUX                 ADC1_CHANNEL_5
-
-
-#define BATTERY_MAX_VOLTAGE     4200
-#define BATTERY_NOMINAL_VOLTAGE 3700
-#define BATTERY_MIN_VOLTAGE     3200
-#define CONVERSION_VALUE        1.62884
-#define MONITOR_CHARGE_STATE
-#define CHARGING_COMPLETE_INPUT GPIO_NUM_13
-#define CHARGING_INPUT          GPIO_NUM_14
-
-#define LUX_SCALAR_COEF         1
-#define LUX_EXPONENTIAL_COEF    1
-#define REF_RESISTANCE          2200
-#define ADC_MAX_VALUE           1024
-#define ADC_REF                 3300
+#define ADC_REF                     DEFAULT_VREF
 
 
 enum
@@ -88,14 +74,16 @@ void measure_battery()
         battery.status = DISCHARGING;
 #endif
 
-    printf("Battery raw %d\nVoltage %d, Status %d, Percentage %d\n", raw, battery.voltage, battery.status, battery.percentage);
+    printf("Battery raw %d\nVoltage %d mV, Status %d, Percentage %d\n", raw, battery.voltage, battery.status, battery.percentage);
 }
 
 
 /**
- * @brief Get the battery state object
+ * @brief Obtem o estado da bateria
  * 
- * @return uint8_t 
+ * @return uint8_t : 0 - Descarregando
+ *                   1 - Carregando
+ *                   2 - Carga completa
  */
 uint8_t get_battery_state(void)
 {
@@ -103,9 +91,9 @@ uint8_t get_battery_state(void)
 }
 
 /**
- * @brief Get the battery voltage object
+ * @brief Obtem a tensão da bateria
  * 
- * @return uint16_t 
+ * @return uint16_t : tensão em mV
  */
 uint16_t get_battery_voltage(void)
 {
@@ -113,19 +101,18 @@ uint16_t get_battery_voltage(void)
 }
 
 /**
- * @brief Get the battery percentage object
+ * @brief Obtem a porcentagem de carga da bateria
  * 
- * @return uint8_t 
+ * @return uint8_t : carga restante (0 ~ 100%)
  */
 uint8_t get_battery_percentage(void)
 {
     return battery.percentage;
 }
 
-#include "math.h"
 
 /**
- * @brief 
+ * @brief Inicializa o ADC utilizado pelo luximetro
  * 
  */
 void luximeter_init(void)
@@ -135,8 +122,9 @@ void luximeter_init(void)
 
 
 /**
- * @brief 
+ * @brief Mede a luminosidade do ambiente
  * 
+ * @return float : valor em lux
  */
 float luximeter_read(void)
 {
@@ -151,4 +139,35 @@ float luximeter_read(void)
     lux = LUX_SCALAR_COEF * pow(ldrR, LUX_EXPONENTIAL_COEF);
 
     return lux;
+}
+
+
+/**
+ * @brief Retorna a faixa de luminosidade lida como string
+ */
+std::string obter_faixa_luminosidade(void)
+{
+    float lux;
+    lux = luximeter_read();
+    std::string info;
+
+    if(lux > SOMBRA_MIN && lux < SOMBRA_MAX)
+    {
+        info = "SOMBRA";    
+    }
+    else if(lux > MEIA_SOMBRA_MIN && lux < MEIA_SOMBRA_MAX)
+    {
+        info = "MEIA_SOMBRA";
+    }
+    else if(lux > SOL_DIRETO)
+    {
+        info = "SOL";
+    }
+    else
+    {
+        info = "ESCURO";
+    }
+
+    printf("Faixa lida: %s", info.c_str());
+    return info;
 }
