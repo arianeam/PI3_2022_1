@@ -1,4 +1,4 @@
-#include "gpio_types.h"
+//#include "gpio_types.h"
 
 /* Display OLED */
 #define DISPLAY_I2C_ADDRESS         0x3C
@@ -20,7 +20,7 @@
 #define SOLO_MOLHADO                3
 
 /* Firebase */
-#define TEMPERATURA__LIDA           "temperatura_lida"
+#define TEMPERATURA_LIDA           "temperatura_lida"
 #define UMIDADE_AR_LIDA             "umidade_lida_ar"
 #define UMIDADE_SOLO_LIDA           "umidade_lida_solo"
 #define STATUS_BATERIA              "status_bateria"
@@ -48,3 +48,10 @@
 #define LED_STATUS                  GPIO_NUM_25
 #define LED_1                       GPIO_NUM_26
 #define DHT_PIN                     GPIO_NUM_27
+
+/* STATUS PLANTA */
+#define FELIZ "feliz"
+#define TRISTE "triste"
+#define DEFINHANDO "definhando"
+#define FRIO "frio"
+#define CALOR "calor"
