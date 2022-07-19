@@ -200,8 +200,8 @@ O Firebase é uma plataforma para agilizar a criação e engajamento de aplicati
 O aplicativo foi desenvolvido na plataforma Kodular, através de blocos lógicos de programação. Com o link do Realtime Database e a chave de API fornecida na criação do projeto no Firebase, além de algumas configurações de regras, é fácil realizar a comunicação com o aplicativo que foi desenvolvido no Kodular. E para o ESP32 se comunicar com o Firebase também foi utilizado o link do banco de dados e a chave API, aplicados na biblioteca utilizada, disponível no seguinte github: https://github.com/dahmadjid/Firebase-idf.
 
 <img src="imagens PI3/firebase.PNG" style="width:500px;height:250px;">
-<img src="imagens PI3/Kodular_dev_1.jpg" style="width:500px;height:250px;">
-<img src="imagens PI3/Kodular_dev_2.jpg" style="width:500px;height:250px;">
+<img src="imagens PI3/Kodular_dev_1.PNG" style="width:500px;height:250px;">
+<img src="imagens PI3/Kodular_dev_2.PNG" style="width:500px;height:250px;">
 
 
 
