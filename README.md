@@ -187,8 +187,19 @@ A linguagem de programação utilizada no firmware foi C++/C. Os componentes do 
 **Biblioteca utilizada para o DHT11**: https://github.com/UncleRus/esp-idf-lib/tree/master/components
 **Biblioteca utilizada para o Google Firebase Realtime Database**: https://github.com/dahmadjid/Firebase-idf 
 
+# Display oled SSD1306 128x64
+
+O display utilizado foi o oled SSD1306 de 128x64. As animações para o display foram desenhadas no software Inkscape, com a área de 128x64px, exportadas para PNG, e em seguida convertida para outra extensão bitmap, a extensão XBM, respeitando a função da biblioteca para display SSD1306 utilizada no firmware, ssd1306_load_xbm. É importante observar quais formatos as funções aceitam quando utilizar bibliotecas de terceiros, caso contrário a imagem será exibida no display de forma distorcida, devido a forma como os bits são dispostos em cada tipo de extensão bitmap. 
+
 ## Armazenamento de dados e aplicativo de celular
 Para armazenar os dados do aplicativo e dados lidos dos sensores do ESP32, e agilizar a comunicação com o aplicativo foi utilizada a ferramenta do Google Firebase.
 O Firebase é uma plataforma para agilizar a criação e engajamento de aplicativos. Foi criado um projeto no Google Firebase, no qual foi vinculado o aplicativo de celular criado para o Vaso Inteligente. E para armazenar os dados e sincronizar em tempo real, tanto com o aplicativo quanto com o ESP32, foi utilizada a ferramenta Firebase Realtime Database. O Firebase Realtime Database é um banco de dados NoSQL hospedado na nuvem. Com ele, você armazena e sincroniza dados JSON entre os usuários em tempo real.
 O aplicativo foi desenvolvido na plataforma Kodular, através de blocos lógicos de programação. Com o link do Realtime Database e a chave de API fornecida na criação do projeto no Firebase, além de algumas configurações de regras, é fácil realizar a comunicação com o aplicativo que foi desenvolvido no Kodular. E para o ESP32 se comunicar com o Firebase também foi utilizado o link do banco de dados e a chave API, aplicados na biblioteca utilizada, disponível no seguinte github: https://github.com/dahmadjid/Firebase-idf.
+
+<img src="imagens PI3/firebase.PNG" style="width:500px;height:250px;">
+<img src="imagens PI3/Kodular_dev_1.jpg" style="width:500px;height:250px;">
+<img src="imagens PI3/Kodular_dev_2.jpg" style="width:500px;height:250px;">
+
+
+
 
