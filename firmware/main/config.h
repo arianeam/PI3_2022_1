@@ -42,11 +42,12 @@
 #define SOLO_MOLHADO                3
 
 /* Firebase */
-#define TEMPERATURA_LIDA           "temperatura_lida"
-#define UMIDADE_AR_LIDA             "umidade_lida_ar"
-#define UMIDADE_SOLO_LIDA           "umidade_lida_solo"
-#define STATUS_BATERIA              "status_bateria"
-#define LUMINOSIDADE_LIDA           "luminosidade_lida"
+#define FB_TEMPERATURA_LIDA         "temperatura_lida"
+#define FB_UMIDADE_AR_LIDA          "umidade_lida_ar"
+#define FB_UMIDADE_SOLO_LIDA        "umidade_lida_solo"
+#define FB_STATUS_BATERIA           "status_bateria"
+#define FB_LUMINOSIDADE_LIDA        "luminosidade_lida"
+#define FB_STATUS_PLANTA            "status_planta"
 
 /* Bateria */
 #define BATTERY_MAX_VOLTAGE         4200
@@ -56,10 +57,10 @@
 #define MONITOR_CHARGE_STATE
 
 /* Luximetro */
-#define LUX_SCALAR_COEF             82.018158288
+#define LUX_SCALAR_COEF             82018.158288
 #define LUX_EXPONENTIAL_COEF        -0.5834
-#define REF_RESISTANCE              2200
-#define ADC_MAX_VALUE               4096
+#define REF_RESISTANCE              3300.0
+#define ADC_MAX_VALUE               4096.0
 
 /* GPIO */
 #define ADC_BAT                     ADC1_CHANNEL_6
@@ -67,8 +68,8 @@
 #define ADC_SOLO                    ADC1_CHANNEL_4
 #define CHARGING_COMPLETE_INPUT     GPIO_NUM_13
 #define CHARGING_INPUT              GPIO_NUM_14
-#define LED_STATUS                  GPIO_NUM_25
-#define LED_1                       GPIO_NUM_26
+#define LED_STATUS                  GPIO_NUM_26
+#define LED_COMUNICACAO             GPIO_NUM_25
 #define DHT_PIN                     GPIO_NUM_27
 
 /* STATUS PLANTA */
@@ -78,6 +79,7 @@
 #define FRIO                        "frio"
 #define CALOR                       "calor"
 #define SEDE                        "sede"
+#define ENCHARCADO                  "encharcado"
 
 /* Index */
 #define TEMPERATURA                 0
@@ -85,6 +87,7 @@
 #define LUMINOSIDADE                2
 #define UMIDADE_AR                  3
 #define BATERIA                     4
+#define PLANTA                      5
 
 
 #endif

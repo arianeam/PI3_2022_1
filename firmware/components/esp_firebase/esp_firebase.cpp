@@ -299,7 +299,7 @@ Json::Value Firebase::getData(const char* path)
         reader.parse(begin, end, data, false);
 
         ESP_LOGI(RTDB_TAG, "Data with path=%s acquired", path);
-        Firebase::clearHTTPBuffer();
+        //Firebase::clearHTTPBuffer();
         return data;
     }
     else

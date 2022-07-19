@@ -8,8 +8,6 @@
 #include "config.h"
 #include "math.h"
 
-#define ADC_REF                     DEFAULT_VREF
-
 enum
 {
     DISCHARGING,
@@ -131,13 +129,16 @@ float luximeter_read(void)
     uint16_t adc_raw;
 
     adc_raw = adc_lux.read();
-    resV = (float)(adc_raw / ADC_MAX_VALUE) * ADC_REF;
-    ldrV = ADC_REF - resV;
+    resV = (adc_raw / ADC_MAX_VALUE) * DEFAULT_VREF;
+    ldrV = DEFAULT_VREF - resV;
     ldrR = (ldrV/resV) * REF_RESISTANCE;
 
     lux = LUX_SCALAR_COEF * pow(ldrR, LUX_EXPONENTIAL_COEF);
+    printf("Luximetro RAW %d - %f lux\n", adc_raw, lux);
+    printf("ldrV %f, ldrR %f, resV %f", ldrV, ldrR, resV);
 
     return lux;
+
 }
 
 
@@ -167,7 +168,7 @@ std::string obter_faixa_luminosidade(void)
         info = "ESCURO";
     }
 
-    printf("Faixa lida: %s", info.c_str());
+    printf("Faixa lida: %s\n", info.c_str());
     return info;
 }
 
@@ -176,7 +177,7 @@ void umidade_solo_init(void)
 
 }
 
-float ler_umidade_solo(void)
+std::string ler_umidade_solo(void)
 {
-    return 0.0;
+    return "SECO";
 }
