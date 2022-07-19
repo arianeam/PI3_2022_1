@@ -1,0 +1,68 @@
+{
+  "dispositivos": {
+    "ids": {
+      "236989614710188": 236989614710188,
+      "6011319116123228": 6011319116123228,
+      "teste": 123456789
+    },
+    "vasos": {
+      "vaso1_parametros_ideais": {
+        "especie": "",
+        "luminosidade_ideal": "",
+        "nome_cientifico": "",
+        "nome_vaso": "",
+        "status_planta": "",
+        "temperatura_ideal_max": "",
+        "temperatura_ideal_min": "",
+        "umidade_ideal_ar": "",
+        "umidade_ideal_solo": "",
+        "umidade_regar": ""
+      },
+      "vaso1_parametros_lidos": {
+        "dispositivo": "6011319116123228",
+        "luminosidade_lida": "",
+        "nome_vaso": "",
+        "status_bateria": "015",
+        "status_planta": "",
+        "temperatura_lida": "",
+        "umidade_lida_ar": "",
+        "umidade_lida_solo": ""
+      }
+    }
+  },
+  "plantas": {
+    "lírio-da-paz": {
+      "luminosidade_ideal": "meia-sombra",
+      "nome_cientifico": "Spathiphyllum-wallisii",
+      "temperatura_ideal_max": 30,
+      "temperatura_ideal_min": 18,
+      "umidade_ideal_ar": "úmido",
+      "umidade_ideal_solo": "úmido",
+      "umidade_regar": "seco"
+    },
+    "planta-fantasma": {
+      "luminosidade_ideal": "sol-pleno",
+      "nome_cientifico": "Graptopetalum-paraguayense",
+      "temperatura_ideal_max": 30,
+      "temperatura_ideal_min": 15,
+      "umidade_ideal_ar": "baixa",
+      "umidade_ideal_solo": "úmido",
+      "umidade_regar": "seco"
+    },
+    "planta-jade": {
+      "luminosidade_ideal": "meia-sombra",
+      "nome_cientifico": "Crassula-ovata",
+      "temperatura_ideal_max": 30,
+      "temperatura_ideal_min": 14,
+      "umidade_ideal_ar": "baixa umidade",
+      "umidade_ideal_solo": "úmido",
+      "umidade_regar": "seco"
+    }
+  },
+  "tags_plantas": [
+    null,
+    "lírio-da-paz",
+    "planta-fantasma",
+    "planta-jade"
+  ]
+}

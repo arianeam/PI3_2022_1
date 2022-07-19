@@ -1,0 +1,84 @@
+Informação: Processando o símbolo 'C101:Capacitor_SMD:CP_Elec_5x3'.
+Informação: Processando o símbolo 'C102:Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder'.
+Informação: Processando o símbolo 'C103:Capacitor_SMD:CP_Elec_5x3'.
+Informação: Processando o símbolo 'C104:Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder'.
+Informação: Processando o símbolo 'C105:Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder'.
+Informação: Processando o símbolo 'C106:Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder'.
+Informação: Processando o símbolo 'C107:Capacitor_SMD:CP_Elec_5x3'.
+Informação: Processando o símbolo 'C108:Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder'.
+Informação: Processando o símbolo 'C109:Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder'.
+Informação: Processando o símbolo 'C110:Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder'.
+Informação: Processando o símbolo 'C111:Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder'.
+Informação: Processando o símbolo 'C112:Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder'.
+Informação: Processando o símbolo 'C113:Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder'.
+Informação: Processando o símbolo 'SW101:Button_Switch_SMD:SW_SPST_CK_RS282G05A3'.
+Informação: Processando o símbolo 'U101:Package_SO:SOIC-14_3.9x8.7mm_P1.27mm'.
+Informação: Processando o símbolo 'D101:Diode_SMD:D_MiniMELF_Handsoldering'.
+Informação: Processando o símbolo 'D102:Diode_SMD:D_MiniMELF_Handsoldering'.
+Informação: Processando o símbolo 'D103:LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'D104:LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'D105:LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'D106:LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'J101:Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J102:Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J103:Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J104:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'U102:Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm'.
+Informação: Processando o símbolo 'U103:Package_TO_SOT_SMD:SOT-23-6_Handsoldering'.
+Informação: Processando o símbolo 'J105:Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'U104:Package_TO_SOT_SMD:SOT-23-6_Handsoldering'.
+Informação: Processando o símbolo 'U105:Package_TO_SOT_SMD:SOT-223-3_TabPin2'.
+Informação: Processando o símbolo 'J106:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J107:Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'U106:RF_Module:ESP32-WROOM-32'.
+Informação: Processando o símbolo 'R101:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R102:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R103:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R104:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R105:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R106:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R107:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R108:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R109:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R110:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R111:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R112:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R113:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R114:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R115:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R116:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R117:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R118:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R119:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R120:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R121:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Informação: Processando o símbolo 'R122:Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder'.
+Adiciona rede Net-(C113-Pad2).
+Reconecta C113 pino 2 de Net-(U101-Pad12) para Net-(C113-Pad2).
+Adiciona rede Net-(J104-Pad2).
+Reconecta J104 pino 2 de Net-(U101-Pad5) para Net-(J104-Pad2).
+Adiciona rede Net-(J105-Pad2).
+Reconecta J105 pino 2 de Net-(U101-Pad10) para Net-(J105-Pad2).
+Reconecta J107 pino 1 de Net-(U101-Pad12) para Net-(C113-Pad2).
+Adiciona rede Net-(R120-Pad1).
+A associação do símbolo U101 foi atualizada de /59aa1a2f-e798-4dd8-a82b-7737bd9ce78c para /f67d0a77-cf22-4714-bb32-86d422b38175.
+Reconecta U101 pino 1 de Net-(U101-Pad1) para Net-(R119-Pad1).
+Reconecta U101 pino 2 de Net-(U101-Pad1) para Net-(R119-Pad1).
+Reconecta U101 pino 5 de Net-(U101-Pad5) para Net-(J104-Pad2).
+Reconecta U101 pino 6 de Net-(U101-Pad7) para Net-(R120-Pad1).
+Reconecta U101 pino 7 de Net-(U101-Pad7) para Net-(R120-Pad1).
+Reconecta U101 pino 10 de Net-(U101-Pad10) para Net-(J105-Pad2).
+Reconecta U101 pino 12 de Net-(U101-Pad12) para Net-(C113-Pad2).
+Reconecta R120 pino 1 de Net-(U101-Pad7) para Net-(R120-Pad1).
+Adiciona rede Net-(R119-Pad1).
+Reconecta R119 pino 1 de Net-(U101-Pad1) para Net-(R119-Pad1).
+Reconecta R122 pino 2 de Net-(U101-Pad12) para Net-(C113-Pad2).
+Reconecta R118 pino 1 de Net-(U101-Pad10) para Net-(J105-Pad2).
+Rede sem uso Net-(U101-Pad1) foi removida.
+Rede sem uso Net-(U101-Pad10) foi removida.
+Rede sem uso Net-(U101-Pad12) foi removida.
+Rede sem uso Net-(U101-Pad5) foi removida.
+Rede sem uso Net-(U101-Pad7) foi removida.
+
+
+Informação: Total de avisos: 0, erros: 0.
