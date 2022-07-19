@@ -1,4 +1,5 @@
 # PI3_2022_1: Vaso Inteligente
+<img src="imagens PI3/ze_vasinho.svg" style="width:500px;height:500px;">
 O objetivo deste projeto é implementar um vaso inteligente baseado em Internet das Coisas, que irá monitorar os parâmetros de umidade do solo, luminosidade e temperatura de uma planta, e a partir destes parâmetros avaliar o estado da planta, com base em um banco de dados que contenha informações de espécies de plantas, ou dados personalizados pelo usuário. Detectando o estado da planta, será gerada uma expressão facial em um display contido no vaso, que representará esse estado, como por exemplo, em caso de falta de água para a planta, o vaso exibiria uma expressão de sede. O usuário poderá selecionar configurar os parâmetros da planta através do aplicativo de celular. Essa configuração poderá ser manual ou automática (selecionando a espécie de planta no aplicativo). 
 
 
@@ -182,13 +183,27 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 O desenvolvimento ocorreu no microcontrolador ESP32-WROOM-32, da Espressif, utilizando o  framework oficial da Espressif, o ESP-IDF, que é voltado para o desenvolvimento de aplicações parar toda a família ESP32. Foi utilizada a extensão ESP-IDF no editor de códigos Visual Studio Code. 
 A linguagem de programação utilizada no firmware foi C++/C. Os componentes do framework ESP-IDF são disponibilizados em C, porém, devido o uso de uma biblioteca em C++, necessária para comunicação com o banco de dados.
 
-**Github Espressif**: https://github.com/espressif
-**Github Espressif ESP-IDF**: https://github.com/espressif/esp-idf
-**Biblioteca utilizada para o DHT11**: https://github.com/UncleRus/esp-idf-lib/tree/master/components
-**Biblioteca utilizada para o Google Firebase Realtime Database**: https://github.com/dahmadjid/Firebase-idf 
+* **Github Espressif**: https://github.com/espressif
+
+* **Github Espressif ESP-IDF**: https://github.com/espressif/esp-idf
+
+* **Biblioteca utilizada para o DHT11**: https://github.com/UncleRus/esp-idf-lib/tree/master/components
+
+* **Biblioteca utilizada para o Google Firebase Realtime Database**: https://github.com/dahmadjid/Firebase-idf 
+
+# Display oled SSD1306 128x64
+
+O display utilizado foi o oled SSD1306 de 128x64. As animações para o display foram desenhadas no software Inkscape, com a área de 128x64px, exportadas para PNG, e em seguida convertida para outra extensão bitmap, a extensão XBM, respeitando a função da biblioteca para display SSD1306 utilizada no firmware, ssd1306_load_xbm. É importante observar quais formatos as funções aceitam quando utilizar bibliotecas de terceiros, caso contrário a imagem será exibida no display de forma distorcida, devido a forma como os bits são dispostos em cada tipo de extensão bitmap. 
 
 ## Armazenamento de dados e aplicativo de celular
 Para armazenar os dados do aplicativo e dados lidos dos sensores do ESP32, e agilizar a comunicação com o aplicativo foi utilizada a ferramenta do Google Firebase.
 O Firebase é uma plataforma para agilizar a criação e engajamento de aplicativos. Foi criado um projeto no Google Firebase, no qual foi vinculado o aplicativo de celular criado para o Vaso Inteligente. E para armazenar os dados e sincronizar em tempo real, tanto com o aplicativo quanto com o ESP32, foi utilizada a ferramenta Firebase Realtime Database. O Firebase Realtime Database é um banco de dados NoSQL hospedado na nuvem. Com ele, você armazena e sincroniza dados JSON entre os usuários em tempo real.
 O aplicativo foi desenvolvido na plataforma Kodular, através de blocos lógicos de programação. Com o link do Realtime Database e a chave de API fornecida na criação do projeto no Firebase, além de algumas configurações de regras, é fácil realizar a comunicação com o aplicativo que foi desenvolvido no Kodular. E para o ESP32 se comunicar com o Firebase também foi utilizado o link do banco de dados e a chave API, aplicados na biblioteca utilizada, disponível no seguinte github: https://github.com/dahmadjid/Firebase-idf.
+
+<img src="imagens PI3/firebase.PNG" style="width:500px;height:250px;">
+<img src="imagens PI3/Kodular_dev_1.PNG" style="width:500px;height:250px;">
+<img src="imagens PI3/Kodular_dev_2.PNG" style="width:500px;height:250px;">
+
+
+
 
