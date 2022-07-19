@@ -97,6 +97,8 @@ Esses parâmetros foram utilizados paraentender quais parâmetros medir e como t
 
 43. https://greenpower.net.br/blog/cultivo-indoor-controle-de-temperatura/
 
+44. https://www.orquideasnoape.com.br/2021/02/suculenta-echeveria-lilacina.html
+
 # Plantas que foram inseridas no banco de dados:
 ## lírio da paz
 
@@ -112,9 +114,7 @@ https://vivercomplantas.wordpress.com/2018/01/30/lirio-da-paz-para-locais-sombre
 
 ---------
 
-https://www.orquideasnoape.com.br/2021/02/suculenta-echeveria-lilacina.html
 
------
 # planta-jade
 
 https://www.jardineiro.net/plantas/planta-jade-crassula-ovata.html
