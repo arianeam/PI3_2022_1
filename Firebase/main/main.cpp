@@ -259,7 +259,7 @@ void task_adc(void *pvParameters)
         lux = luximeter_read();
 
         bd.set_sensor_data(BATERIA, get_battery_percentage());
-        bd.set_sensor_data(LUMINOSIDADE, lux);
+        bd.set_sensor_data(LUMINOSIDADE, obter_faixa_luminosidade());
 
         vTaskDelay(10000 / portTICK_RATE_MS);
     }
