@@ -168,7 +168,21 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 
 ## DHT11: sensor de temperatura e umidade
 
-<img src="imagens PI3/dht11.jpg" style="width:581px;height:px;">
+<img src="imagens PI3/dht11.jpg" style="width:381px;height:381px;">
 
 ## LDR 
 ## Higrômetro HL-69
+
+<img src="imagens PI3/hl69.jpg" style="width:400px;height:400px;">
+
+#Desenvolvimento
+
+##Firmware
+
+O desenvolvimento ocorreu no microcontrolador ESP32-WROOM-32, da Espressif, utilizando o  framework oficial da Espressif, o ESP-IDF, que é voltado para o desenvolvimento de aplicações parar toda a família ESP32. Foi utilizada a extensão ESP-IDF no editor de códigos Visual Studio Code. 
+A linguagem de programação utilizada no firmware foi C++/C. Os componentes do framework ESP-IDF são disponibilizados em C, porém, devido o uso de uma biblioteca em C++, necessária para comunicação com o banco de dados.
+
+
+Sincronização de dados JSON em tempo real
+O Firebase Realtime Database é um banco de dados NoSQL hospedado na nuvem. Com ele, você armazena e sincroniza dados entre os seus usuários em tempo real.
+
