@@ -137,7 +137,7 @@ https://cibercactus.com/pt/graptopetalum-paraguayense/
 
 
 
-Serão monitorados os seguintes itens no vaso/planta:
+# Serão monitorados os seguintes itens no vaso/planta:
 
 * Temperatura;
 * Umidade do solo;
@@ -155,8 +155,14 @@ Variando de iluminação de poucas horas na parte da manhã e mais algumas pouca
 * **Sombra**:
 Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 
+## Umidade do solo
+
+* **Seco**
+* **Úmido**
+* **Molhado**
 
 
+--------------------
 
 # Sensores
 
