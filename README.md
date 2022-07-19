@@ -1,5 +1,5 @@
 # PI3_2022_1: Vaso Inteligente
-O objetivo deste projeto é implementar um vaso inteligente baseado em Internet das Coisas, que irá monitorar os parâmetros de umidade, luminosidade e temperatura de uma planta, e a partir destes parâmetros avaliar o estado da planta, com base em um banco de dados que contenha informações de espécies de plantas. Detectando o estado da planta, será gerada uma expressão facial em um display contido no vaso, que representará esse estado, como por exemplo, em caso de falta de água para a planta, o vaso exibiria uma expressão triste. O usuário poderá selecionar configurar os parâmetros da planta através do aplicativo de celular. Essa configuração poderá ser manual ou automática (selecionando a espécie de planta no aplicativo). 
+O objetivo deste projeto é implementar um vaso inteligente baseado em Internet das Coisas, que irá monitorar os parâmetros de umidade do solo, luminosidade e temperatura de uma planta, e a partir destes parâmetros avaliar o estado da planta, com base em um banco de dados que contenha informações de espécies de plantas, ou dados personalizados pelo usuário. Detectando o estado da planta, será gerada uma expressão facial em um display contido no vaso, que representará esse estado, como por exemplo, em caso de falta de água para a planta, o vaso exibiria uma expressão de sede. O usuário poderá selecionar configurar os parâmetros da planta através do aplicativo de celular. Essa configuração poderá ser manual ou automática (selecionando a espécie de planta no aplicativo). 
 
 
 
@@ -9,7 +9,7 @@ O objetivo deste projeto é implementar um vaso inteligente baseado em Internet 
 # Pesquisa bibliográfica
 
 Os links a seguir referem-se a pesquisa sobre os parâmetros de umidade, temperatura e luminosidade para os cuidados com diferentes espécies de plantas. 
-Esses parâmetros foram utilizados para a criação do banco de dados das espécies para o aplicativo de celular.
+Esses parâmetros foram utilizados paraentender quais parâmetros medir e como trabalhá-los.
 
 1. https://feelingsandflowers.com/cactus-care-guide-watering
 
