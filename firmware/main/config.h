@@ -80,6 +80,9 @@
 #define CALOR                       "calor"
 #define SEDE                        "sede"
 #define ENCHARCADO                  "encharcado"
+#define PALIDO                      "palido"
+#define DORMINDO                    "dormindo"
+#define OFUSCADO                    "ofuscado"
 
 /* Index */
 #define TEMPERATURA                 0
