@@ -15,7 +15,7 @@
 #include "jsoncpp/value.h"
 #include "jsoncpp/json.h"
 #include "esp_firebase/esp_firebase.h"
-#include "firebase_config.h"
+#include "config.h"
 #include "esp_log.h"
 #include "esp_system.h"
 #include "nvs_flash.h"
@@ -23,13 +23,6 @@
 #include "esp_netif.h"
 
 #define TAG "BANCO_DE_DADOS"
-
-#define TEMPERATURA         0
-#define UMIDADE_SOLO        1
-#define LUMINOSIDADE        2
-#define UMIDADE_AR          3
-#define BATERIA             4
-
 
 class BancoDeDados
 {
@@ -50,9 +43,7 @@ public:
     std::string get_mac_address(void);
 
     void banco_de_dados_init(void);
-    int publish_temperature_info(float temp, float humi);
 
-    // int publish_temperature_info(void);
     esp_err_t publish_data(std::string key, uint8_t value);
     esp_err_t publish_data(std::string key, uint16_t value);
     esp_err_t publish_data(std::string key, float value);

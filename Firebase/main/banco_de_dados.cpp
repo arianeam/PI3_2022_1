@@ -1,4 +1,5 @@
 #include "banco_de_dados.h"
+#include <driver/gpio.h>
 
 ESPFirebase::config_t config = {API_KEY, DATABASE_URL};
 ESPFirebase::user_account_t account = {USER_EMAIL, USER_PASSWORD};
@@ -6,7 +7,6 @@ ESPFirebase::user_account_t account = {USER_EMAIL, USER_PASSWORD};
 ESPFirebase::Firebase fb_client(config);
 Json::Value data;
 Json::Value data_received_json;
-
 
 void BancoDeDados::read_mac_address(void)
 {
@@ -57,7 +57,13 @@ void BancoDeDados::banco_de_dados_init(void)
 
     // ESPFirebase::Firebase fb_client(config);
 
-    fb_client.loginUserAccount(account);
+    if (fb_client.loginUserAccount(account) == ESP_FAIL)
+    {
+        gpio_set_level(LED_1, 1);
+        return;
+    }
+
+    gpio_set_level(LED_1, 0);
 
     // R"()" allow us to write string as they are without escaping the characters with backslash
 
@@ -73,9 +79,24 @@ void BancoDeDados::banco_de_dados_init(void)
 
     std::string teste = "123456789";
 
-    fb_client.putData(path_vaso.c_str(), json_str.c_str());
-    fb_client.putData(path_ids_dispositivos.c_str(), json_ids.c_str());
-    fb_client.putData("/dispositivos/ids/teste", teste.c_str());
+    if(fb_client.putData(path_vaso.c_str(), json_str.c_str()) == ESP_FAIL)
+    {
+        gpio_set_level(LED_1, 1);
+        return;
+    }
+
+    if(fb_client.putData(path_ids_dispositivos.c_str(), json_ids.c_str()) == ESP_FAIL)
+    {
+        gpio_set_level(LED_1, 1);
+        return;
+    }
+    
+    if(fb_client.putData("/dispositivos/ids/teste", teste.c_str()) == ESP_FAIL)
+    {
+        gpio_set_level(LED_1, 1);
+        return;
+    }
+    
 
     // We can parse the json_str and access the members and edit them
     // Json::Value data;
@@ -85,7 +106,12 @@ void BancoDeDados::banco_de_dados_init(void)
     std::string device = data["dispositivo"].asString(); // convert value to primitives (read jsoncpp docs for more of these
 
     data["dispositivo"] = mac_addr.c_str();
-    fb_client.putData(path_vaso.c_str(), data);
+    
+    if(fb_client.putData(path_vaso.c_str(), data) == ESP_FAIL)
+    {
+        gpio_set_level(LED_1, 1);
+        return;
+    }
 
     // Json::Value teste_leitura = fb_client.getData("/tags_plantas/1");
 
@@ -100,34 +126,6 @@ void BancoDeDados::banco_de_dados_init(void)
     // fb_client.putData("/teste", json_test_str.c_str());
 
     //-----------------------------------------------------------------
-}
-
-int BancoDeDados::publish_temperature_info(float temp, float humi)
-{
-
-    std::string path_temp = "/dispositivos/vasos/vaso1_parametros_lidos/temperatura_lida";
-    std::string path_umid = "/dispositivos/vasos/vaso1_parametros_lidos/umidade_lida_ar";
-    temperatura = std::to_string(temp);
-    umidade = std::to_string(humi);
-
-    if (fb_client.putData(path_temp.c_str(), temperatura.c_str()) == ESP_FAIL)
-    {
-        fb_client.loginUserAccount(account);
-    }
-    else
-    {
-        printf("Temperatura registrada!");
-    }
-    if (fb_client.putData(path_umid.c_str(), umidade.c_str()) == ESP_FAIL)
-    {
-        fb_client.loginUserAccount(account);
-    }
-    else
-    {
-        printf("Umidade registrada!");
-    }
-
-    return 0;
 }
 
 /**
@@ -148,10 +146,13 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value)
     if (fb_client.putData(path.c_str(), data[key]) == ESP_OK)
     {
         connection_state = true;
+        gpio_set_level(LED_1, 0);
+
         return ESP_OK;
     }
     else
     {
+        gpio_set_level(LED_1, 1);
         fb_client.loginUserAccount(account);
 
         connection_state = false;
@@ -177,10 +178,14 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value)
     if (fb_client.putData(path.c_str(), data[key]) == ESP_OK)
     {
         connection_state = true;
+        gpio_set_level(LED_1, 0);
+
         return ESP_OK;
     }
     else
     {
+        gpio_set_level(LED_1, 1);
+
         fb_client.loginUserAccount(account);
 
         connection_state = false;
@@ -207,13 +212,14 @@ esp_err_t BancoDeDados::publish_data(std::string key, float value)
 
     if (fb_client.putData(path.c_str(), data[key]) == ESP_OK)
     {
+        gpio_set_level(LED_1, 0);
         connection_state = true;
         return ESP_OK;
     }
     else
     {
+        gpio_set_level(LED_1, 1);
         fb_client.loginUserAccount(account);
-
         connection_state = false;
         return ESP_FAIL;
     }
@@ -236,13 +242,14 @@ esp_err_t BancoDeDados::publish_data(std::string key, std::string value)
 
     if (fb_client.putData(path.c_str(), data[key]) == ESP_OK)
     {
+        gpio_set_level(LED_1, 0);
         connection_state = true;
         return ESP_OK;
     }
     else
     {
+        gpio_set_level(LED_1, 1);
         fb_client.loginUserAccount(account);
-
         connection_state = false;
         return ESP_FAIL;
     }

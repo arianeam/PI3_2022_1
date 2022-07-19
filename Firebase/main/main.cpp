@@ -8,7 +8,6 @@
 #include "jsoncpp/json.h"
 #include "esp_firebase/esp_firebase.h"
 #include "wifi_utils.h"
-#include "firebase_config.h"
 #include "esp_log.h"
 #include "esp_system.h"
 #include "nvs_flash.h"
@@ -27,7 +26,7 @@
 #define DISPLAY_ON
 #define DHT_ON
 
-static uint8_t state;
+static uint8_t led_state;
 std::string emote_status = FELIZ;
 int8_t count = 0;
 //-----tasks---------------------
@@ -60,16 +59,18 @@ extern "C" void app_main(void)
     gpio_set_level(LED_STATUS, 1);
     gpio_set_level(LED_1, 1);
 
+    display1.init();
+    display1.load_bitmap(triste[0]);
+
     wifiInit(SSID, PASSWORD); // blocking until it connects
 
     gpio_set_level(LED_1, 0);
 
-    display1.init();
     // BancoDeDados bd;
     bd.banco_de_dados_init();
 
 #ifdef DISPLAY_ON
-    xTaskCreate(task_display, "task_display", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+    xTaskCreatePinnedToCore(task_display, "task_display", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL, PRO_CPU_NUM);
 #endif
 
     vTaskDelay(500 / portTICK_PERIOD_MS);
@@ -77,19 +78,9 @@ extern "C" void app_main(void)
     gpio_set_level(LED_STATUS, 0);
 
     xTaskCreate(task_adc, "task_adc", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
-
-    // vTaskDelay(500 / portTICK_PERIOD_MS);
-
     xTaskCreate(task_parametros_ideais, "task_parametros_ideais", configMINIMAL_STACK_SIZE * 8, NULL, 5, NULL);
-
-    // vTaskDelay(3000 / portTICK_PERIOD_MS);
-
-#ifdef DHT_ON
     xTaskCreate(task_dht, "task_dht", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
-#endif
-
     xTaskCreate(task_db, "task_db", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
-
     xTaskCreate(task_status_planta, "task_status_planta", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 
     //------testes-------------------
@@ -99,8 +90,8 @@ extern "C" void app_main(void)
 
     while (1)
     {
-        state = !state;
-        gpio_set_level(LED_STATUS, state);
+        led_state = !led_state;
+        gpio_set_level(LED_STATUS, led_state);
         vTaskDelay(500 / portTICK_PERIOD_MS);
     }
 }
@@ -111,101 +102,109 @@ void task_status_planta(void *pvParameters)
 
     while (1)
     {
-        leitura_sensores = bd.get_sensor_data(TEMPERATURA); // temperatura lida
-         printf("LEITURAS SENSORES %f \n", std::stof(leitura_sensores));
-        if (std::stof(leitura_sensores) < parametros_ideais.temperatura_minima)
-        {
+        // leitura_sensores = bd.get_sensor_data(TEMPERATURA); // temperatura lida
+        //  printf("LEITURAS SENSORES %f \n", std::stof(leitura_sensores));
+        // if (std::stof(leitura_sensores) < parametros_ideais.temperatura_minima)
+        // {
            
-            if (count >= 0 && count < 3)
-            {
-                count++;
-            }
-
-            // emote_status = FRIO;
-        }
-        else if (std::stof(leitura_sensores) > parametros_ideais.temperatura_maxima)
-        {
-            if (count < 3)
-            {
-                count++;
-            }
-            // emote_status = CALOR;
-        }
-        // else
-        // {
-        //     if (count > 0)
+        //     if (count >= 0 && count < 3)
         //     {
-        //         count--;
+        //         count++;
         //     }
+
+        //     // emote_status = FRIO;
         // }
-
-
-        leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
-         printf("LEITURAS SENSORES %s\n ", leitura_sensores.c_str());
-        if (leitura_sensores != parametros_ideais.umidade_ideal_solo)
-        {
-            if (count < 3)
-            {
-                count++;
-            } // emote_status =
-        }
-        // else
+        // else if (std::stof(leitura_sensores) > parametros_ideais.temperatura_maxima)
         // {
-        //     if (count > 0)
+        //     if (count < 3)
         //     {
-        //         count--;
+        //         count++;
         //     }
+        //     // emote_status = CALOR;
         // }
+        // // else
+        // // {
+        // //     if (count > 0)
+        // //     {
+        // //         count--;
+        // //     }
+        // // }
 
-        leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
-         printf("LEITURAS SENSORES %s\n", leitura_sensores.c_str());
-        if (leitura_sensores != parametros_ideais.luminosidade_ideal)
-        {
-            if (count < 3)
-            {
-                count++;
-            } // emote_status =
-        }
-        // else
+
+        // leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
+        //  printf("LEITURAS SENSORES %s\n ", leitura_sensores.c_str());
+        // if (leitura_sensores != parametros_ideais.umidade_ideal_solo)
         // {
-        //     if (count > 0)
+        //     if (count < 3)
         //     {
-        //         count--;
-        //     }
+        //         count++;
+        //     } // emote_status =
         // }
+        // // else
+        // // {
+        // //     if (count > 0)
+        // //     {
+        // //         count--;
+        // //     }
+        // // }
 
-
-        if (count == 0)
-        {
-            emote_status = FELIZ;
-        }
-        else if (count == 2)
-        {
-            emote_status = TRISTE;
-            count = 0;
-        }
-        else if (count == 3)
-        {
-            emote_status = DEFINHANDO;
-            count = 0;
-        }
-      
-       
-        // printf("leitura sensores: %s", leitura_sensores.c_str());
+        // leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
+        //  printf("LEITURAS SENSORES %s\n", leitura_sensores.c_str());
+        // if (leitura_sensores != parametros_ideais.luminosidade_ideal)
+        // {
+        //     if (count < 3)
+        //     {
+        //         count++;
+        //     } // emote_status =
+        // }
+        // // else
+        // // {
+        // //     if (count > 0)
+        // //     {
+        // //         count--;
+        // //     }
+        // // }
         vTaskDelay(1000 / portTICK_RATE_MS);
     }
 }
 
 void task_display(void *pvParameters)
 {
-
     while (1)
     {
         uint8_t i, j;
 
+static unsigned int counte;
+
+        counte++;
+        if (counte == 0)
+        {
+            emote_status = FELIZ;
+        }
+        else if (counte == 5)
+        {
+            emote_status = TRISTE;
+        }
+        else if (counte == 10)
+        {
+            emote_status = DEFINHANDO;
+        }
+        else if (counte == 15)
+        {
+            emote_status = FRIO;
+        }
+        else if(counte == 20)
+        {
+            emote_status = CALOR;
+        }
+        else if(counte >= 25)
+        {
+            emote_status = SEDE;
+            counte = 0;
+        }
         printf("stratus planta %s", emote_status.c_str());
         // emote_status = SEDE;
-        for (i = 0; i < 16; i++)
+        for (i = 0; i < 4; i++)
         {
             for (j = 7; j > 0; j--)
             {
@@ -239,7 +238,7 @@ void task_display(void *pvParameters)
             }
             vTaskDelay(500 / portTICK_PERIOD_MS);
         }
-        vTaskDelay(10000 / portTICK_PERIOD_MS);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }
 
