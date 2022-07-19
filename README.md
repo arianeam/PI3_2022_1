@@ -1,5 +1,5 @@
 # PI3_2022_1: Vaso Inteligente
-O objetivo deste projeto é implementar um vaso inteligente baseado em Internet das Coisas, que irá monitorar os parâmetros de umidade, luminosidade e temperatura de uma planta, e a partir destes parâmetros avaliar o estado da planta, com base em um banco de dados que contenha informações de espécies de plantas. Detectando o estado da planta, será gerada uma expressão facial em um display contido no vaso, que representará esse estado, como por exemplo, em caso de falta de água para a planta, o vaso exibiria uma expressão triste. O usuário poderá selecionar a espécie da planta, bem como manter um histórico de fotos da mesma, através de um aplicativo de celular baseado na plataforma Home Assistant.
+O objetivo deste projeto é implementar um vaso inteligente baseado em Internet das Coisas, que irá monitorar os parâmetros de umidade, luminosidade e temperatura de uma planta, e a partir destes parâmetros avaliar o estado da planta, com base em um banco de dados que contenha informações de espécies de plantas. Detectando o estado da planta, será gerada uma expressão facial em um display contido no vaso, que representará esse estado, como por exemplo, em caso de falta de água para a planta, o vaso exibiria uma expressão triste. O usuário poderá selecionar configurar os parâmetros da planta através do aplicativo de celular. Essa configuração poderá ser manual ou automática (selecionando a espécie de planta no aplicativo). 
 
 
 
@@ -97,15 +97,50 @@ Esses parâmetros foram utilizados para a criação do banco de dados das espéc
 
 43. https://greenpower.net.br/blog/cultivo-indoor-controle-de-temperatura/
 
-44.https://greenpower.net.br/blog/cultivo-indoor-controle-de-temperatura/
+
+lírio da paz
+
+https://guiadejardinagem.com.br/plantas-para-dentro-de-casa/#O_que_sao_Plantas_de_Interior
+
+https://portalvidalivre.com/articles/96
+
+https://casa.abril.com.br/jardins-e-hortas/como-cultivar-lirio-da-paz/
+
+https://blog.plantei.com.br/lirio-da-paz/
+
+https://vivercomplantas.wordpress.com/2018/01/30/lirio-da-paz-para-locais-sombreados-meia-sombra/
+
+---------
+
+https://www.orquideasnoape.com.br/2021/02/suculenta-echeveria-lilacina.html
+
+-----
+planta-jade
+
+https://www.jardineiro.net/plantas/planta-jade-crassula-ovata.html
+https://portalvidalivre.com/articles/44
+https://guiadassuculentas.com/suculenta-jade-saiba-tudo-sobre-essa-planta/
+https://www.picturethisai.com/pt/care/Crassula_ovata.html#:~:text=Forneça%20temperatura%20adequada%20(%2025%20℃,luz%20(luz%20difusa%20brilhante).
+https://www.noticiasdejardim.com/plantas-de-interior/crassula-ovata-arvore-de-jade-uma-especie-muito-facil-de-cultivar/
+
+-------------
+
+planta fantasma 
+
+https://www.floresefolhagens.com.br/planta-fantasma-graptopetalum/
+
+https://portalvidalivre.com/articles/143
+
+https://www.picturethisai.com/pt/care/Graptopetalum_paraguayense.html
+
+https://cibercactus.com/pt/graptopetalum-paraguayense/
 
 
 
 Serão monitorados os seguintes itens no vaso/planta:
 
 * Temperatura;
-* Umidade;
-* Umidade do solo (para indicar o momento de rega);
+* Umidade do solo;
 * Luminosidade
 
 ## Luminosidade
