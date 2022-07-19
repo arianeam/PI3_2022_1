@@ -168,7 +168,9 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 
 ## DHT11: sensor de temperatura e umidade
 
-<img src="imagens PI3/dht11.jpg" style="width:581px;height:px;">
+<img src="imagens PI3/dht11.jpg" style="width:381px;height:381px;">
 
 ## LDR 
 ## Higrômetro HL-69
+
+<img src="imagens PI3/dht11.jpg" style="width:400px;height:400px;">
