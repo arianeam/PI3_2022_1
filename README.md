@@ -172,6 +172,9 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 <img src="imagens PI3/dht11.jpg" style="width:381px;height:381px;">
 
 ## LDR 5mm
+
+<img src="imagens PI3/ldr.jpg" style="width:300px;height:300px;">
+
 ## Higrômetro HL-69
 
 <img src="imagens PI3/hl69.jpg" style="width:400px;height:400px;">
@@ -194,6 +197,9 @@ A linguagem de programação utilizada no firmware foi C++/C. Os componentes do 
 # Display oled SSD1306 128x64
 
 O display utilizado foi o oled SSD1306 de 128x64. As animações para o display foram desenhadas no software Inkscape, com a área de 128x64px, exportadas para PNG, e em seguida convertida para outra extensão bitmap, a extensão XBM, respeitando a função da biblioteca para display SSD1306 utilizada no firmware, ssd1306_load_xbm. É importante observar quais formatos as funções aceitam quando utilizar bibliotecas de terceiros, caso contrário a imagem será exibida no display de forma distorcida, devido a forma como os bits são dispostos em cada tipo de extensão bitmap. 
+
+<img src="imagens PI3/oled.jpg" style="width:400px;height:400px;">
+
 
 ## Armazenamento de dados e aplicativo de celular
 Para armazenar os dados do aplicativo e dados lidos dos sensores do ESP32, e agilizar a comunicação com o aplicativo foi utilizada a ferramenta do Google Firebase.
