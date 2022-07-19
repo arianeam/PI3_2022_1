@@ -194,7 +194,7 @@ A linguagem de programação utilizada no firmware foi C++/C. Os componentes do 
 
 * **Biblioteca utilizada para o Google Firebase Realtime Database**: https://github.com/dahmadjid/Firebase-idf 
 
-# Display oled SSD1306 128x64
+## Display oled SSD1306 128x64
 
 O display utilizado foi o oled SSD1306 de 128x64. As animações para o display foram desenhadas no software Inkscape, com a área de 128x64px, exportadas para PNG, e em seguida convertida para outra extensão bitmap, a extensão XBM, respeitando a função da biblioteca para display SSD1306 utilizada no firmware, ssd1306_load_xbm. É importante observar quais formatos as funções aceitam quando utilizar bibliotecas de terceiros, caso contrário a imagem será exibida no display de forma distorcida, devido a forma como os bits são dispostos em cada tipo de extensão bitmap. 
 
@@ -210,6 +210,12 @@ O aplicativo foi desenvolvido na plataforma Kodular, através de blocos lógicos
 <img src="imagens PI3/Kodular_dev_1.PNG" style="width:500px;height:250px;">
 <img src="imagens PI3/Kodular_dev_2.PNG" style="width:500px;height:250px;">
 
+# Hardware
+
+O esquemático e roteamento da placa foi realizado no software Kicad. A placa foi desenvolvida com face dupla, e a transferência foi realizada com o método "transferência fotográfica de imagem". Para saber mais sobre o método acesse os seguintes links:
+* https://tec-ci.com.br/blog/circuito-impresso/transferencia-fotografica-de-imagem-trilhas-circuito-impresso/
+
+* https://portal.vidadesilicio.com.br/confeccionando-de-placas-de-circuito-impresso-com-tinta-fotossensivel/
 
 
 
