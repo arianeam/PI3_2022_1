@@ -173,4 +173,4 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 ## LDR 
 ## Higrômetro HL-69
 
-<img src="imagens PI3/dht11.jpg" style="width:400px;height:400px;">
+<img src="imagens PI3/hl69.jpg" style="width:400px;height:400px;">
