@@ -182,13 +182,13 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 O desenvolvimento ocorreu no microcontrolador ESP32-WROOM-32, da Espressif, utilizando o  framework oficial da Espressif, o ESP-IDF, que é voltado para o desenvolvimento de aplicações parar toda a família ESP32. Foi utilizada a extensão ESP-IDF no editor de códigos Visual Studio Code. 
 A linguagem de programação utilizada no firmware foi C++/C. Os componentes do framework ESP-IDF são disponibilizados em C, porém, devido o uso de uma biblioteca em C++, necessária para comunicação com o banco de dados.
 
-**Github Espressif**: https://github.com/espressif
+* **Github Espressif**: https://github.com/espressif
 
-**Github Espressif ESP-IDF**: https://github.com/espressif/esp-idf
+* **Github Espressif ESP-IDF**: https://github.com/espressif/esp-idf
 
-**Biblioteca utilizada para o DHT11**: https://github.com/UncleRus/esp-idf-lib/tree/master/components
+* **Biblioteca utilizada para o DHT11**: https://github.com/UncleRus/esp-idf-lib/tree/master/components
 
-**Biblioteca utilizada para o Google Firebase Realtime Database**: https://github.com/dahmadjid/Firebase-idf 
+* **Biblioteca utilizada para o Google Firebase Realtime Database**: https://github.com/dahmadjid/Firebase-idf 
 
 # Display oled SSD1306 128x64
 
