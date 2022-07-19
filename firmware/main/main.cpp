@@ -137,9 +137,9 @@ extern "C" void app_main(void)
     gpio_set_level(LED_COMUNICACAO, 0);
 
     // BancoDeDados bd;
-    bd.banco_de_dados_init();
+    // bd.banco_de_dados_init();
 
-    atualiza_valores_lidos();
+    // atualiza_valores_lidos();
 
     vTaskDelay(2000/portTICK_PERIOD_MS);
 
@@ -269,9 +269,25 @@ void task_display(void *pvParameters)
         {
             emote_status = CALOR;
         }
-        else if (counte >= 25)
+        else if (counte == 25)
         {
             emote_status = SEDE;
+        }
+        else if (counte == 30)
+        {
+            emote_status = ENCHARCADO;
+        }
+        else if (counte == 35)
+        {
+            emote_status = PALIDO;
+        }
+        else if (counte == 40)
+        {
+            emote_status = DORMINDO;
+        }
+        else if (counte >= 45)
+        {
+            emote_status = OFUSCADO;
             counte = 0;
         }
         printf("status planta %s\n", emote_status.c_str());
@@ -305,6 +321,22 @@ void task_display(void *pvParameters)
                 else if (emote_status == "calor")
                 {
                     display1.load_bitmap(calor[j]);
+                }
+                else if (emote_status == "dormindo")
+                {
+                    display1.load_bitmap(dormindo[j]);
+                }
+                else if (emote_status == "encharcado")
+                {
+                    display1.load_bitmap(encharcado[j]);
+                }
+                else if (emote_status == "palido")
+                {
+                    display1.load_bitmap(palido[j]);
+                }
+                else if (emote_status == "ofuscado")
+                {
+                    display1.load_bitmap(ofuscado[j]);
                 }
 
                 vTaskDelay(50 / portTICK_PERIOD_MS);
