@@ -115,7 +115,7 @@ https://vivercomplantas.wordpress.com/2018/01/30/lirio-da-paz-para-locais-sombre
 https://www.orquideasnoape.com.br/2021/02/suculenta-echeveria-lilacina.html
 
 -----
-#planta-jade
+# planta-jade
 
 https://www.jardineiro.net/plantas/planta-jade-crassula-ovata.html
 https://portalvidalivre.com/articles/44
@@ -125,7 +125,7 @@ https://www.noticiasdejardim.com/plantas-de-interior/crassula-ovata-arvore-de-ja
 
 -------------
 
-#planta fantasma 
+# planta fantasma 
 
 https://www.floresefolhagens.com.br/planta-fantasma-graptopetalum/
 
