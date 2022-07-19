@@ -55,3 +55,4 @@
 #define DEFINHANDO "definhando"
 #define FRIO "frio"
 #define CALOR "calor"
+#define SEDE "sede"

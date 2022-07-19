@@ -29,7 +29,7 @@
 
 static uint8_t state;
 std::string emote_status = FELIZ;
-
+int8_t count = 0;
 //-----tasks---------------------
 void task_display(void *pvParameters);
 void task_dht(void *pvParameters);
@@ -90,11 +90,11 @@ extern "C" void app_main(void)
 
     xTaskCreate(task_db, "task_db", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
 
-    // xTaskCreate(task_status_planta, "task_status_planta", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+    xTaskCreate(task_status_planta, "task_status_planta", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
 
     //------testes-------------------
-    bd.set_sensor_data(1, "seco");
-    bd.set_sensor_data(2, "sombra");
+    bd.set_sensor_data(UMIDADE_SOLO, "seco");
+    bd.set_sensor_data(LUMINOSIDADE, "sombra");
     //----------------------------------
 
     while (1)
@@ -105,6 +105,97 @@ extern "C" void app_main(void)
     }
 }
 
+void task_status_planta(void *pvParameters)
+{
+    std::string leitura_sensores;
+
+    while (1)
+    {
+        leitura_sensores = bd.get_sensor_data(TEMPERATURA); // temperatura lida
+         printf("LEITURAS SENSORES %f \n", std::stof(leitura_sensores));
+        if (std::stof(leitura_sensores) < parametros_ideais.temperatura_minima)
+        {
+           
+            if (count >= 0 && count < 3)
+            {
+                count++;
+            }
+
+            // emote_status = FRIO;
+        }
+        else if (std::stof(leitura_sensores) > parametros_ideais.temperatura_maxima)
+        {
+            if (count < 3)
+            {
+                count++;
+            }
+            // emote_status = CALOR;
+        }
+        // else
+        // {
+        //     if (count > 0)
+        //     {
+        //         count--;
+        //     }
+        // }
+
+
+        leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
+         printf("LEITURAS SENSORES %s\n ", leitura_sensores.c_str());
+        if (leitura_sensores != parametros_ideais.umidade_ideal_solo)
+        {
+            if (count < 3)
+            {
+                count++;
+            } // emote_status =
+        }
+        // else
+        // {
+        //     if (count > 0)
+        //     {
+        //         count--;
+        //     }
+        // }
+
+        leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
+         printf("LEITURAS SENSORES %s\n", leitura_sensores.c_str());
+        if (leitura_sensores != parametros_ideais.luminosidade_ideal)
+        {
+            if (count < 3)
+            {
+                count++;
+            } // emote_status =
+        }
+        // else
+        // {
+        //     if (count > 0)
+        //     {
+        //         count--;
+        //     }
+        // }
+
+
+        if (count == 0)
+        {
+            emote_status = FELIZ;
+        }
+        else if (count == 2)
+        {
+            emote_status = TRISTE;
+            count = 0;
+        }
+        else if (count == 3)
+        {
+            emote_status = DEFINHANDO;
+            count = 0;
+        }
+      
+       
+        // printf("leitura sensores: %s", leitura_sensores.c_str());
+        vTaskDelay(1000 / portTICK_RATE_MS);
+    }
+}
+
 void task_display(void *pvParameters)
 {
 
@@ -112,7 +203,8 @@ void task_display(void *pvParameters)
     {
         uint8_t i, j;
 
-        emote_status = TRISTE;
+        printf("stratus planta %s", emote_status.c_str());
+        // emote_status = SEDE;
         for (i = 0; i < 16; i++)
         {
             for (j = 7; j > 0; j--)
@@ -121,23 +213,33 @@ void task_display(void *pvParameters)
                 {
                     display1.load_bitmap(triste[j]);
                 }
-                // if (emote_status == "feliz")
-                // {
-                //     display1.load_bitmap(feliz[j]);
-                // }
-                // if (emote_status == "definhando")
-                // {
-                //     display1.load_bitmap(definhando[j]);
-                // }
-                // if (emote_status == "frio")
-                // {
-                //     display1.load_bitmap(frio[j]);
-                // }
+                else if (emote_status == "sede")
+                {
+                    display1.load_bitmap(sede[j]);
+                }
+
+                else if (emote_status == "feliz")
+                {
+                    display1.load_bitmap(feliz[j]);
+                }
+                else if (emote_status == "definhando")
+                {
+                    display1.load_bitmap(definhando[j]);
+                }
+                else if (emote_status == "frio")
+                {
+                    display1.load_bitmap(frio[j]);
+                }
+                else if (emote_status == "calor")
+                {
+                    display1.load_bitmap(calor[j]);
+                }
+              
                 vTaskDelay(50 / portTICK_PERIOD_MS);
             }
             vTaskDelay(500 / portTICK_PERIOD_MS);
         }
-        vTaskDelay(3000 / portTICK_PERIOD_MS);
+        vTaskDelay(10000 / portTICK_PERIOD_MS);
     }
 }
 
@@ -173,7 +275,7 @@ void task_parametros_ideais(void *pvParameters)
         // parametros_ideais.luminosidade_ideal = std::stof()
         parametros_ideais.temperatura_minima = std::stof(bd.get_data_bd("temperatura_ideal_min"));
         parametros_ideais.temperatura_maxima = std::stof(bd.get_data_bd("temperatura_ideal_max"));
-        parametros_ideais.umidade_ideal_solo = bd.get_data_bd("umidade_ideal_ar");
+        parametros_ideais.umidade_ideal_solo = bd.get_data_bd("umidade_ideal_solo");
         parametros_ideais.luminosidade_ideal = bd.get_data_bd("luminosidade_ideal");
 
         vTaskDelay(10000 / portTICK_RATE_MS);
@@ -193,101 +295,14 @@ void task_dht(void *pvParameters)
         if (dht_read_float_data(DHT_TYPE_DHT11, DHT_PIN, &umidade, &temperatura) == ESP_OK)
         {
             printf("Umidade: %.1f%% Temp: %.1fC\n", umidade, temperatura);
-            bd.set_sensor_data(0, temperatura);
-            bd.set_sensor_data(1, umidade);
+            bd.set_sensor_data(TEMPERATURA, temperatura);
+            bd.set_sensor_data(UMIDADE_AR, umidade);
         }
         else
         {
             printf("Erro ao ler dados do sensor dht11\n");
         }
         vTaskDelay(pdMS_TO_TICKS(10000));
-    }
-}
-
-void task_status_planta(void *pvParameters)
-{
-    std::string leitura_sensores;
-    int8_t count = 0;
-
-    while (1)
-    {
-        leitura_sensores = bd.get_sensor_data(TEMPERATURA); // temperatura lida
-        if (std::stof(leitura_sensores) < parametros_ideais.temperatura_minima)
-        {
-            if (count >= 0 && count < 3)
-            {
-                count++;
-            }
-
-            // emote_status = FRIO;
-        }
-        else if (std::stof(leitura_sensores) > parametros_ideais.temperatura_maxima)
-        {
-            if (count >= 0 && count < 3)
-            {
-                count++;
-            }
-            // emote_status = CALOR;
-        }
-        else
-        {
-            if (count > 0)
-            {
-                count--;
-            }
-        }
-
-        leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
-        if (leitura_sensores != parametros_ideais.umidade_ideal_solo)
-        {
-            if (count >= 0 && count < 3)
-            {
-                count++;
-            } // emote_status =
-        }
-        else
-        {
-            if (count > 0)
-            {
-                count--;
-            }
-        }
-
-        leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
-        if (leitura_sensores != parametros_ideais.luminosidade_ideal)
-        {
-            if (count >= 0 && count < 3)
-            {
-                count++;
-            } // emote_status =
-        }
-        else
-        {
-            if (count > 0)
-            {
-                count--;
-            }
-        }
-
-        if (count == 0)
-        {
-            emote_status = FELIZ;
-        }
-        else if (count == 1)
-        {
-        }
-        else if (count == 2)
-        {
-            emote_status = TRISTE;
-        }
-        else if (count == 3)
-        {
-
-            emote_status = DEFINHANDO;
-        }
-
-        // printf("leitura sensores: %s", leitura_sensores.c_str());
-        vTaskDelay(10000 / portTICK_RATE_MS);
     }
 }
 
