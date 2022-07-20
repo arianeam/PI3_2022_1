@@ -219,3 +219,4 @@ O esquemático e roteamento da placa foi realizado no software Kicad. A placa fo
 
 
 
+
