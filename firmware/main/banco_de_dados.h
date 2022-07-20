@@ -52,13 +52,13 @@ public:
     // get data db
     std::string get_data_bd(std::string key);
 
-    
     std::string get_sensor_data(int index);
 
     void set_sensor_data(int index, uint8_t value);
     void set_sensor_data(int index, uint16_t value);
     void set_sensor_data(int index, float value);
     void set_sensor_data(int index, std::string value);
+    void set_sensor_data(int index, int value);
 };
 
 #endif

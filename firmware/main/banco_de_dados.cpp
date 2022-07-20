@@ -280,6 +280,11 @@ void BancoDeDados::set_sensor_data(int index, uint8_t value)
     sensor_data[index] = std::to_string(value);
 }
 
+void BancoDeDados::set_sensor_data(int index, int value)
+{
+    sensor_data[index] = std::to_string(value);
+}
+
 void BancoDeDados::set_sensor_data(int index, uint16_t value)
 {
     sensor_data[index] = std::to_string(value);
