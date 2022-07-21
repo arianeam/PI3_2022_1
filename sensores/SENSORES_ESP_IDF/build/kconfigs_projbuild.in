@@ -1,0 +1,6 @@
+source "C:/Users/Ari/esp/esp-idf/components/app_update/Kconfig.projbuild"
+source "C:/Users/Ari/esp/esp-idf/components/bootloader/Kconfig.projbuild"
+source "C:/Users/Ari/esp/esp-idf/components/esp_rom/Kconfig.projbuild"
+source "C:/Users/Ari/esp/esp-idf/components/esptool_py/Kconfig.projbuild"
+source "C:/Users/Ari/esp/esp-idf/components/partition_table/Kconfig.projbuild"
+source "C:/Users/Ari/Documents/GitHub/PI3_2022_1/sensores/SENSORES_ESP_IDF/main/Kconfig.projbuild"

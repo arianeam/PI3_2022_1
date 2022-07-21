@@ -15,6 +15,7 @@ CONDITIONS OF ANY KIND, either express or implied.
 #include <string.h>
 #include "lwip/err.h"
 #include "lwip/sys.h"
+#include "config.h"
 
 
 #ifdef __cplusplus

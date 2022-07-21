@@ -73,16 +73,16 @@
 #define DHT_PIN                     GPIO_NUM_27
 
 /* STATUS PLANTA */
-#define FELIZ                       "feliz"
-#define TRISTE                      "triste"
-#define DEFINHANDO                  "definhando"
-#define FRIO                        "frio"
-#define CALOR                       "calor"
-#define SEDE                        "sede"
-#define ENCHARCADO                  "encharcado"
-#define PALIDO                      "palido"
-#define DORMINDO                    "dormindo"
-#define OFUSCADO                    "ofuscado"
+#define FELIZ                       1
+#define TRISTE                      2
+#define DEFINHANDO                  3
+#define FRIO                        4
+#define CALOR                       5
+#define SEDE                        6
+#define ENCHARCADO                  7
+#define PALIDO                      8
+#define DORMINDO                    9
+#define OFUSCADO                    10
 
 /* Index */
 #define TEMPERATURA                 0

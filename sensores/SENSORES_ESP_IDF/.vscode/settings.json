@@ -1,0 +1,26 @@
+{
+    "idf.adapterTargetName": "esp32",
+    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.intelliSenseEngineFallback": "Enabled",
+    "idf.flashType": "UART",
+    "idf.portWin": "COM3",
+    "files.associations": {
+        "sdkconfig.h": "c",
+        "display.h": "c",
+        "config.h": "c",
+        "ssd1306.h": "c",
+        "i2c.h": "c",
+        "esp_err.h": "c",
+        "fonts.h": "c",
+        "*.xbm": "c",
+        "stdlib.h": "c",
+        "*.inc": "c",
+        "wifi_utils.h": "c",
+        "cstdint": "c",
+        "cstddef": "c",
+        "yvals_core.h": "c",
+        "firebase_config.h": "c",
+        "value.h": "c",
+        "istream": "c"
+    }
+}

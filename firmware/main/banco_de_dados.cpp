@@ -113,9 +113,9 @@ void BancoDeDados::banco_de_dados_init(void)
         return;
     }
 
-    // Json::Value teste_leitura = fb_client.getData("/tags_plantas/1");
+    //  Json::Value teste_leitura = fb_client.getData("/dispositivos/vasos/vaso1_parametros_ideais/umidade_regar");
 
-    //  printf("teste leitura: %s ",teste_leitura.asCString());
+    //   printf("teste leitura: %s ",teste_leitura.asCString());
 
     // data["ids"] = device + "," + mac_addr.c_str();
     // fb_client.putData(path_ids_dispositivos.c_str(), data);
@@ -257,7 +257,7 @@ esp_err_t BancoDeDados::publish_data(std::string key, std::string value)
 
 std::string BancoDeDados::get_data_bd(std::string key)
 {
-    std::string path = "dispositivos/vasos/vaso1_parametros_lidos/";
+    std::string path = "/dispositivos/vasos/vaso1_parametros_ideais/";
 
     path.append(key);
 
