@@ -317,8 +317,8 @@ void task_status_planta(void *pvParameters)
 
     while (1)
     {
-        leitura_sensores = "25";
-        // leitura_sensores = bd.get_sensor_data(TEMPERATURA); // temperatura lida
+        
+         leitura_sensores = bd.get_sensor_data(TEMPERATURA); // temperatura lida
         printf("LEITURAS SENSORES %f \n", std::stof(leitura_sensores));
         if (std::stof(leitura_sensores) < parametros_lidos.temperatura_minima)
         {
@@ -338,7 +338,7 @@ void task_status_planta(void *pvParameters)
             status_temporario = CALOR;
         }
 
-        // leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
+         leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
         printf("LEITURAS SENSORES %s\n ", leitura_sensores.c_str());
         if (leitura_sensores != parametros_lidos.umidade_ideal_solo)
         {
@@ -358,7 +358,7 @@ void task_status_planta(void *pvParameters)
             }
         }
 
-        // leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
+         leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
         printf("LEITURAS SENSORES %s\n", leitura_sensores.c_str());
         if (leitura_sensores != parametros_lidos.luminosidade_ideal)
         {

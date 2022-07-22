@@ -14,11 +14,11 @@
 #define DISPLAY_HEIGHT              64
 #define I2C_MASTER_PORT             I2C_NUM_0
 
-/* Wifi */
-#define SSID                        "VIVO-10"
-#define PASSWORD                    "nina2017j09"
-//#define SSID "Andreia_NeoRede"
-//#define PASSWORD "70960600"
+// /* Wifi */
+// #define SSID                        "VIVO-10"
+// #define PASSWORD                    "nina2017j09"
+#define SSID "Andreia_NeoRede"
+#define PASSWORD "70960600"
 
 /* Firebase */
 #define API_KEY                     "AIzaSyDLVTKNaeNSG_lSELBeVdZoQPbkmXfg-Ow"
