@@ -26,24 +26,20 @@ uint8_t emote_status = DORMINDO;
 int8_t count = 0;
 std::string leitura_sensores;
 
-//-----tasks---------------------
-// void task_status_planta(void *pvParameters);
+long long uptime;
 
-void task_parametros_lidos(void *pvParameters);
+
+//-----tasks---------------------
 void task_db(void *pvParameters); // Atualiza o banco de dados
 void task_display(void *pvParameters);
 void task_sensores(void *pvParameters);
 void task_status_planta(void *pvParameters);
 
+void atualiza_parametros(void); 
 //---------------------------
 
 BancoDeDados bd;
 display display1;
-
-// void atualiza_valores_lidos(void)
-// {
-//     printf("\n---- %s -----\n", bd.get_data_bd("temperatura_ideal_min").c_str());
-// }
 
 struct
 {
@@ -56,22 +52,6 @@ struct
     std::string nome_vaso;
     int umidade_solo_index;
 } parametros_lidos;
-
-// 
-
-// void monitora_planta(void)
-// {
-//     float temperatura = std::stof(bd.get_sensor_data(TEMPERATURA));
-
-//     if (temperatura < parametros_lidos.temperatura_minima)
-//     {
-//         emote_status = FRIO;
-//     }
-//     else if (temperatura > parametros_lidos.temperatura_maxima)
-//     {
-//         emote_status = CALOR;
-//     }
-// }
 
 extern "C" void app_main(void)
 {
@@ -88,26 +68,22 @@ extern "C" void app_main(void)
 
     bd.banco_de_dados_init();
 
-    // atualiza_valores_lidos();
-
-    vTaskDelay(2000 / portTICK_PERIOD_MS);
+    if(bd.get_connection_state() == 1)
+    {
+        atualiza_parametros();
+    }
 
     gpio_set_level(LED_STATUS, 0);
 
-    xTaskCreate(task_display, "task_display", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
-    xTaskCreate(task_sensores, "task_sensores", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
-
-    xTaskCreate(task_parametros_lidos, "task_parametros_lidos", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
-
+    xTaskCreate(task_display, "task_display", configMINIMAL_STACK_SIZE * 5, NULL, 3, NULL);
+    xTaskCreate(task_sensores, "task_sensores", configMINIMAL_STACK_SIZE * 10, NULL, 4, NULL);
     xTaskCreate(task_db, "task_db", configMINIMAL_STACK_SIZE * 10, NULL, 5, NULL);
-
-     xTaskCreate(task_status_planta, "task_status_planta", configMINIMAL_STACK_SIZE * 5, NULL, 5, NULL);
+    xTaskCreate(task_status_planta, "task_status_planta", configMINIMAL_STACK_SIZE * 5, NULL, 3, NULL);
 
     //------testes-------------------
     bd.set_sensor_data(UMIDADE_SOLO, "seco");
     bd.set_sensor_data(LUMINOSIDADE, "sombra");
     bd.set_sensor_data(TEMPERATURA, 25);
-
     //----------------------------------
 
     while (1)
@@ -200,22 +176,17 @@ void task_display(void *pvParameters)
     }
 }
 
-void task_parametros_lidos(void *pvParameters)
+/**
+ * @brief Atualiza os valores definidos no aplicativo
+ */
+void atualiza_parametros(void)
 {
-
-    while (1)
-    {
-        // vTaskDelay(10000 / portTICK_RATE_MS);
-        //  parametros_lidos.luminosidade_ideal = std::stof()
-
-        parametros_lidos.temperatura_minima = std::stof(bd.get_data_bd("temperatura_ideal_min"));
-        parametros_lidos.temperatura_maxima = std::stof(bd.get_data_bd("temperatura_ideal_max"));
-        parametros_lidos.umidade_ideal_solo = bd.get_data_bd("umidade_ideal_solo");
-        parametros_lidos.luminosidade_ideal = bd.get_data_bd("luminosidade_ideal");
-        parametros_lidos.umidade_regar = bd.get_data_bd("umidade_regar");
-
-        vTaskDelay(1000 / portTICK_RATE_MS);
-    }
+    printf("Atualizando valores lidos");
+    parametros_lidos.temperatura_minima = std::stof(bd.get_data_bd("temperatura_ideal_min"));
+    parametros_lidos.temperatura_maxima = std::stof(bd.get_data_bd("temperatura_ideal_max"));
+    parametros_lidos.umidade_ideal_solo = bd.get_data_bd("umidade_ideal_solo");
+    parametros_lidos.luminosidade_ideal = bd.get_data_bd("luminosidade_ideal");
+    parametros_lidos.umidade_regar = bd.get_data_bd("umidade_regar");
 }
 
 void task_db(void *pvParameters)
@@ -253,6 +224,19 @@ void task_db(void *pvParameters)
         if (bd.publish_data(FB_STATUS_PLANTA, bd.get_sensor_data(PLANTA)) == ESP_OK)
         {
             printf("Status planta OK\n");
+        }
+
+        if (bd.publish_data(FB_UPTIME, std::to_string(uptime)) == ESP_OK)
+        {
+            printf("Uptime OK\n");
+        }
+
+        static unsigned int counter;
+
+        if (counter++ >= 3)
+        {
+            counter = 0;
+            atualiza_parametros();
         }
 
         vTaskDelay(pdMS_TO_TICKS(10000));
@@ -321,7 +305,8 @@ void task_sensores(void *pvParameters)
                 printf("Erro ao ler dados do sensor dht11\n");
             }
         }
-
+        
+        uptime += 5;
         vTaskDelay(5000 / portTICK_PERIOD_MS);
     }
 }
@@ -333,7 +318,7 @@ void task_status_planta(void *pvParameters)
     while (1)
     {
         leitura_sensores = "25";
-        //leitura_sensores = bd.get_sensor_data(TEMPERATURA); // temperatura lida
+        // leitura_sensores = bd.get_sensor_data(TEMPERATURA); // temperatura lida
         printf("LEITURAS SENSORES %f \n", std::stof(leitura_sensores));
         if (std::stof(leitura_sensores) < parametros_lidos.temperatura_minima)
         {
@@ -353,7 +338,7 @@ void task_status_planta(void *pvParameters)
             status_temporario = CALOR;
         }
 
-       // leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
+        // leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
         printf("LEITURAS SENSORES %s\n ", leitura_sensores.c_str());
         if (leitura_sensores != parametros_lidos.umidade_ideal_solo)
         {
@@ -373,7 +358,7 @@ void task_status_planta(void *pvParameters)
             }
         }
 
-        //leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
+        // leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
         printf("LEITURAS SENSORES %s\n", leitura_sensores.c_str());
         if (leitura_sensores != parametros_lidos.luminosidade_ideal)
         {

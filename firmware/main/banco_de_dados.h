@@ -27,7 +27,7 @@
 class BancoDeDados
 {
 private:
-    bool connection_state;
+    uint8_t connected;
 
     std::string mac = "";
     void read_mac_address(void);
@@ -51,9 +51,9 @@ public:
 
     // get data db
     std::string get_data_bd(std::string key);
-
     std::string get_sensor_data(int index);
-
+    uint8_t get_connection_state(void);
+    
     void set_sensor_data(int index, uint8_t value);
     void set_sensor_data(int index, uint16_t value);
     void set_sensor_data(int index, float value);

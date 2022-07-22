@@ -3,8 +3,8 @@
 
 ESPFirebase::config_t config = {API_KEY, DATABASE_URL};
 ESPFirebase::user_account_t account = {USER_EMAIL, USER_PASSWORD};
-
 ESPFirebase::Firebase fb_client(config);
+
 Json::Value data;
 Json::Value data_received_json;
 
@@ -57,6 +57,8 @@ void BancoDeDados::banco_de_dados_init(void)
 
     // ESPFirebase::Firebase fb_client(config);
 
+    connected = 0;
+
     if (fb_client.loginUserAccount(account) == ESP_FAIL)
     {
         gpio_set_level(LED_COMUNICACAO, 1);
@@ -64,10 +66,11 @@ void BancoDeDados::banco_de_dados_init(void)
     }
 
     gpio_set_level(LED_COMUNICACAO, 0);
+    connected = 1;
 
     // R"()" allow us to write string as they are without escaping the characters with backslash
 
-    std::string json_str = R"({"dispositivo":"", "nome_vaso": "", "luminosidade_lida": "", "umidade_lida_solo": "", "umidade_lida_ar": "", "FB_TEMPERATURA_LIDA": "", "status_planta": "", "status_bateria": ""})";
+    std::string json_str = R"({"dispositivo":"", "nome_vaso": "", "luminosidade_lida": "", "umidade_lida_solo": "", "umidade_lida_ar": "", "status_planta": "", "status_bateria": ""})";
 
     std::string json_ids = mac_addr;
 
@@ -82,18 +85,21 @@ void BancoDeDados::banco_de_dados_init(void)
     if(fb_client.putData(path_vaso.c_str(), json_str.c_str()) == ESP_FAIL)
     {
         gpio_set_level(LED_COMUNICACAO, 1);
+        connected = 0;
         return;
     }
 
     if(fb_client.putData(path_ids_dispositivos.c_str(), json_ids.c_str()) == ESP_FAIL)
     {
         gpio_set_level(LED_COMUNICACAO, 1);
+        connected = 0;
         return;
     }
     
     if(fb_client.putData("/dispositivos/ids/teste", teste.c_str()) == ESP_FAIL)
     {
         gpio_set_level(LED_COMUNICACAO, 1);
+        connected = 0;
         return;
     }
     
@@ -110,6 +116,7 @@ void BancoDeDados::banco_de_dados_init(void)
     if(fb_client.putData(path_vaso.c_str(), data) == ESP_FAIL)
     {
         gpio_set_level(LED_COMUNICACAO, 1);
+        connected = 0;
         return;
     }
 
@@ -145,9 +152,8 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value)
 
     if (fb_client.putData(path.c_str(), data[key]) == ESP_OK)
     {
-        connection_state = true;
+        connected = 1;
         gpio_set_level(LED_COMUNICACAO, 0);
-
         return ESP_OK;
     }
     else
@@ -155,7 +161,7 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint8_t value)
         gpio_set_level(LED_COMUNICACAO, 1);
         fb_client.loginUserAccount(account);
 
-        connection_state = false;
+        connected = 0;
         return ESP_FAIL;
     }
 }
@@ -177,18 +183,15 @@ esp_err_t BancoDeDados::publish_data(std::string key, uint16_t value)
 
     if (fb_client.putData(path.c_str(), data[key]) == ESP_OK)
     {
-        connection_state = true;
+        connected = 1;
         gpio_set_level(LED_COMUNICACAO, 0);
-
         return ESP_OK;
     }
     else
     {
         gpio_set_level(LED_COMUNICACAO, 1);
-
         fb_client.loginUserAccount(account);
-
-        connection_state = false;
+        connected = 0;
         return ESP_FAIL;
     }
 }
@@ -213,14 +216,14 @@ esp_err_t BancoDeDados::publish_data(std::string key, float value)
     if (fb_client.putData(path.c_str(), data[key]) == ESP_OK)
     {
         gpio_set_level(LED_COMUNICACAO, 0);
-        connection_state = true;
+        connected = 1;
         return ESP_OK;
     }
     else
     {
         gpio_set_level(LED_COMUNICACAO, 1);
+        connected = 0;
         fb_client.loginUserAccount(account);
-        connection_state = false;
         return ESP_FAIL;
     }
 }
@@ -243,20 +246,22 @@ esp_err_t BancoDeDados::publish_data(std::string key, std::string value)
     if (fb_client.putData(path.c_str(), data[key]) == ESP_OK)
     {
         gpio_set_level(LED_COMUNICACAO, 0);
-        connection_state = true;
+        connected = 1;
         return ESP_OK;
     }
     else
     {
         gpio_set_level(LED_COMUNICACAO, 1);
+        connected = 0;
         fb_client.loginUserAccount(account);
-        connection_state = false;
         return ESP_FAIL;
     }
 }
 
 std::string BancoDeDados::get_data_bd(std::string key)
 {
+    printf("get_data_bd\n");
+
     std::string path = "/dispositivos/vasos/vaso1_parametros_ideais/";
 
     path.append(key);
@@ -298,4 +303,9 @@ void BancoDeDados::set_sensor_data(int index, float value)
 void BancoDeDados::set_sensor_data(int index, std::string value)
 {
     sensor_data[index] = value;
+}
+
+uint8_t BancoDeDados::get_connection_state(void)
+{
+    return connected;
 }
