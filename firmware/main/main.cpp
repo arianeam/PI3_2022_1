@@ -81,8 +81,8 @@ extern "C" void app_main(void)
     xTaskCreate(task_status_planta, "task_status_planta", configMINIMAL_STACK_SIZE * 5, NULL, 3, NULL);
 
     //------testes-------------------
-    bd.set_sensor_data(UMIDADE_SOLO, "molhado");
-    bd.set_sensor_data(LUMINOSIDADE, "sombra");
+    bd.set_sensor_data(UMIDADE_SOLO, "úmido");
+    bd.set_sensor_data(LUMINOSIDADE, "meia-sombra");
     float temp_teste = 20.0;
     bd.set_temperatura_sensor(temp_teste);
     //----------------------------------
@@ -259,7 +259,7 @@ void task_sensores(void *pvParameters)
             contador_lux = 0;
             printf("Luminosidade = %f lux\n", luximeter_read());
             // bd.set_sensor_data(LUMINOSIDADE, obter_faixa_luminosidade());
-            bd.set_sensor_data(LUMINOSIDADE, "sombra");
+            // bd.set_sensor_data(LUMINOSIDADE, "sombra");
         }
 
         if (contador_bat++ == 10)
@@ -334,61 +334,66 @@ void verificar_status(void)
     //     status_temporario = CALOR;
     // }
 
-    leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
-    leitura_sensores = "\"" + leitura_sensores + "\""; // devido o kodular inserir aspas nas strings comparadas aqui
-    printf("UMIDADE SOLO SENSOR %s\n", leitura_sensores.c_str());
+    // leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
+    // leitura_sensores = "\"" + leitura_sensores + "\""; // devido o kodular inserir aspas nas strings comparadas aqui
+    // // printf("UMIDADE SOLO SENSOR %s\n", leitura_sensores.c_str());
 
-    printf("UMIDADE IDEAL SOLO  %s\n", parametros_lidos.umidade_ideal_solo.c_str());
+    // // printf("UMIDADE IDEAL SOLO  %s\n", parametros_lidos.umidade_ideal_solo.c_str());
 
-    if (leitura_sensores != parametros_lidos.umidade_ideal_solo)
-    {
-        printf("\n\nDIFERENTE\n\n");
-        if (count < 3)
-        {
-            count++;
-        }
+    // // printf("UMIDADE REGAR  %s\n", parametros_lidos.umidade_regar.c_str());
 
-        if (leitura_sensores == parametros_lidos.umidade_regar)
-        {
-            status_temporario = SEDE;
-        }
-        else if (leitura_sensores != parametros_lidos.umidade_regar)
-        {
-
-            status_temporario = ENCHARCADO;
-        }
-    }
-
-    // leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
-    // printf("LUMINOSIDADE SENSOR %s\n", leitura_sensores.c_str());
-    // if (leitura_sensores != parametros_lidos.luminosidade_ideal)
+    // if (leitura_sensores != parametros_lidos.umidade_ideal_solo)
     // {
-    //     if (leitura_sensores != "escuro")
+    //     //printf("\n\nDIFERENTE\n\n");
+    //     if (count < 3)
+    //     {
+    //         count++;
+    //     }
+
+    //     if (leitura_sensores == parametros_lidos.umidade_regar)
+    //     {
+    //         status_temporario = SEDE;
+    //     }
+    //     else if (leitura_sensores != parametros_lidos.umidade_regar)
     //     {
 
-    //         if (count < 3)
-    //         {
-    //              count++;
-    //         }
-
-    //         if (parametros_lidos.luminosidade_ideal == "sombra")
-    //         {
-    //             status_temporario = OFUSCADO;
-    //         }
-    //         else if (parametros_lidos.luminosidade_ideal == "meia-sombra" && leitura_sensores == "sombra")
-    //         {
-    //             status_temporario = PALIDO;
-    //         }
-    //         else if (parametros_lidos.luminosidade_ideal == "meia-sombra" && leitura_sensores == "sol-pleno")
-    //         {
-    //             status_temporario = OFUSCADO;
-    //         }
-    //         else
-    //         {
-    //             status_temporario = PALIDO;
-    //         }
+    //         status_temporario = ENCHARCADO;
     //     }
     // }
+
+    leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
+    leitura_sensores = "\"" + leitura_sensores + "\"";   // devido o kodular inserir aspas nas strings comparadas aqui
+    printf("LUMINOSIDADE SENSOR %s\n", leitura_sensores.c_str());
+    printf("LUMINOSIDADE IDEAL %s\n", leitura_sensores.c_str());
+
+    if (leitura_sensores != parametros_lidos.luminosidade_ideal)
+    {
+        if (leitura_sensores != "\"escuro\"")
+        {
+
+            if (count < 3)
+            {
+                count++;
+            }
+
+            if (parametros_lidos.luminosidade_ideal == "sombra")
+            {
+                status_temporario = OFUSCADO;
+            }
+            else if (parametros_lidos.luminosidade_ideal == "meia-sombra" && leitura_sensores == "sombra")
+            {
+                status_temporario = PALIDO;
+            }
+            else if (parametros_lidos.luminosidade_ideal == "meia-sombra" && leitura_sensores == "sol-pleno")
+            {
+                status_temporario = OFUSCADO;
+            }
+            else
+            {
+                status_temporario = PALIDO;
+            }
+        }
+    }
     emote_status = status_temporario;
 
     // switch (count)
