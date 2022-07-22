@@ -376,15 +376,15 @@ void verificar_status(void)
                 count++;
             }
 
-            if (parametros_lidos.luminosidade_ideal == "sombra")
+            if (parametros_lidos.luminosidade_ideal == "\"sombra\"")
             {
                 status_temporario = OFUSCADO;
             }
-            else if (parametros_lidos.luminosidade_ideal == "meia-sombra" && leitura_sensores == "sombra")
+            else if (parametros_lidos.luminosidade_ideal == "\"meia-sombra\"" && leitura_sensores == "\"sombra\"")
             {
                 status_temporario = PALIDO;
             }
-            else if (parametros_lidos.luminosidade_ideal == "meia-sombra" && leitura_sensores == "sol-pleno")
+            else if (parametros_lidos.luminosidade_ideal == "\"meia-sombra\"" && leitura_sensores == "\"sol-pleno\"")
             {
                 status_temporario = OFUSCADO;
             }
