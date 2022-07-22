@@ -273,7 +273,7 @@ void task_sensores(void *pvParameters)
         {
             contador_solo = 0;
             // bd.set_sensor_data(UMIDADE_SOLO, ler_umidade_solo());
-            bd.set_sensor_data(UMIDADE_SOLO, "seco");
+            //bd.set_sensor_data(UMIDADE_SOLO, "seco");
         }
 
         if (contador_temperatura++ == 10)
@@ -316,50 +316,50 @@ void verificar_status(void)
     float temp = bd.get_temperatura_sensor();
     printf("TEMPERATURA SENSOR %f\n", temp);
 
-    // if (temp < parametros_lidos.temperatura_minima)
-    // {
-    //     if (count < 3)
-    //     {
-    //         count++;
-    //     }
+    if (temp < parametros_lidos.temperatura_minima)
+    {
+        if (count < 3)
+        {
+            count++;
+        }
 
-    //     status_temporario = FRIO;
-    // }
-    // else if (temp > parametros_lidos.temperatura_maxima)
-    // {
-    //     if (count < 3)
-    //     {
-    //         count++;
-    //     }
-    //     status_temporario = CALOR;
-    // }
+        status_temporario = FRIO;
+    }
+    else if (temp > parametros_lidos.temperatura_maxima)
+    {
+        if (count < 3)
+        {
+            count++;
+        }
+        status_temporario = CALOR;
+    }
 
-    // leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
-    // leitura_sensores = "\"" + leitura_sensores + "\""; // devido o kodular inserir aspas nas strings comparadas aqui
-    // // printf("UMIDADE SOLO SENSOR %s\n", leitura_sensores.c_str());
+    leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
+    leitura_sensores = "\"" + leitura_sensores + "\""; // devido o kodular inserir aspas nas strings comparadas aqui
+    // printf("UMIDADE SOLO SENSOR %s\n", leitura_sensores.c_str());
 
-    // // printf("UMIDADE IDEAL SOLO  %s\n", parametros_lidos.umidade_ideal_solo.c_str());
+    // printf("UMIDADE IDEAL SOLO  %s\n", parametros_lidos.umidade_ideal_solo.c_str());
 
-    // // printf("UMIDADE REGAR  %s\n", parametros_lidos.umidade_regar.c_str());
+    // printf("UMIDADE REGAR  %s\n", parametros_lidos.umidade_regar.c_str());
 
-    // if (leitura_sensores != parametros_lidos.umidade_ideal_solo)
-    // {
-    //     //printf("\n\nDIFERENTE\n\n");
-    //     if (count < 3)
-    //     {
-    //         count++;
-    //     }
+    if (leitura_sensores != parametros_lidos.umidade_ideal_solo)
+    {
+        //printf("\n\nDIFERENTE\n\n");
+        if (count < 3)
+        {
+            count++;
+        }
 
-    //     if (leitura_sensores == parametros_lidos.umidade_regar)
-    //     {
-    //         status_temporario = SEDE;
-    //     }
-    //     else if (leitura_sensores != parametros_lidos.umidade_regar)
-    //     {
+        if (leitura_sensores == parametros_lidos.umidade_regar)
+        {
+            status_temporario = SEDE;
+        }
+        else if (leitura_sensores != parametros_lidos.umidade_regar)
+        {
 
-    //         status_temporario = ENCHARCADO;
-    //     }
-    // }
+            status_temporario = ENCHARCADO;
+        }
+    }
 
     leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
     leitura_sensores = "\"" + leitura_sensores + "\"";   // devido o kodular inserir aspas nas strings comparadas aqui
@@ -396,20 +396,20 @@ void verificar_status(void)
     }
     emote_status = status_temporario;
 
-    // switch (count)
-    // {
-    // case 0:
-    //     emote_status = FELIZ;
-    //     break;
-    // case 2:
-    //     emote_status = TRISTE;
-    //     break;
-    // case 3:
-    //     emote_status = DEFINHANDO;
-    //     break;
-    // default:
-    //     break;
-    // }
+    switch (count)
+    {
+    case 0:
+        emote_status = FELIZ;
+        break;
+    case 2:
+        emote_status = TRISTE;
+        break;
+    case 3:
+        emote_status = DEFINHANDO;
+        break;
+    default:
+        break;
+    }
 
     printf("STATUS %d\n", emote_status);
 }
