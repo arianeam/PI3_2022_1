@@ -193,11 +193,11 @@ std::string ler_umidade_solo(void)
     }
     else if (raw > SOLO_SECO && raw < SOLO_UMIDO)
     {
-        retorno_umidade_solo = "umido";
+        retorno_umidade_solo = "úmido";
     }
     else if (raw > SOLO_UMIDO && raw < SOLO_MOLHADO)
     {
-        retorno_umidade_solo = "encharcado";
+        retorno_umidade_solo = "molhado";
     }
 
     return retorno_umidade_solo;

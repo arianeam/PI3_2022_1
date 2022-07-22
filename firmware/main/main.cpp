@@ -81,9 +81,10 @@ extern "C" void app_main(void)
     xTaskCreate(task_status_planta, "task_status_planta", configMINIMAL_STACK_SIZE * 5, NULL, 3, NULL);
 
     //------testes-------------------
-    bd.set_sensor_data(UMIDADE_SOLO, "seco");
+    bd.set_sensor_data(UMIDADE_SOLO, "molhado");
     bd.set_sensor_data(LUMINOSIDADE, "sombra");
-    bd.set_sensor_data(TEMPERATURA, 25);
+    float temp_teste = 20.0;
+    bd.set_temperatura_sensor(temp_teste);
     //----------------------------------
 
     while (1)
@@ -101,13 +102,12 @@ void task_display(void *pvParameters)
     {
         uint8_t i, j;
 
-      
-
         bd.set_sensor_data(PLANTA, emote_status);
+        // emote_status = OFUSCADO;
 
         for (i = 0; i < 4; i++)
         {
-            for (j = 9; j > 0; j--)
+            for (j = 0; j < 8; j++)
             {
                 switch (emote_status)
                 {
@@ -159,7 +159,7 @@ void task_display(void *pvParameters)
             }
             vTaskDelay(500 / portTICK_PERIOD_MS);
         }
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(500 / portTICK_PERIOD_MS);
     }
 }
 
@@ -226,7 +226,7 @@ void task_db(void *pvParameters)
             atualiza_parametros();
         }
 
-        vTaskDelay(pdMS_TO_TICKS(10000));
+        vTaskDelay(pdMS_TO_TICKS(5000));
     }
 }
 
@@ -285,8 +285,7 @@ void task_sensores(void *pvParameters)
                 // bd.set_sensor_data(TEMPERATURA, temperatura);
                 // bd.set_sensor_data(UMIDADE_AR, umidade);
 
-               // bd.set_sensor_data(TEMPERATURA, 20);
-               bd.set_temperatura_sensor(20.0);
+                // bd.set_sensor_data(TEMPERATURA, 20);
             }
             else
             {
@@ -295,7 +294,7 @@ void task_sensores(void *pvParameters)
         }
 
         uptime += 5;
-        vTaskDelay(5000 / portTICK_PERIOD_MS);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }
 
@@ -306,38 +305,44 @@ void task_status_planta(void *pvParameters)
     {
         verificar_status();
 
-        vTaskDelay(5000 / portTICK_PERIOD_MS);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }
 
 void verificar_status(void)
 {
     uint8_t status_temporario = FELIZ;
-    //leitura_sensores = bd.get_sensor_data(TEMPERATURA); // temperatura lida
-    float temp = bd.get_temperatura_sensor();
-  
-    if (temp < parametros_lidos.temperatura_minima)
-    {
-        if (count >= 0 && count < 3)
-        {
-            count++;
-        }
 
-        status_temporario = FRIO;
-    }
-    else if (temp > parametros_lidos.temperatura_maxima)
-    {
-        if (count < 3)
-        {
-            count++;
-        }
-        status_temporario = CALOR;
-    }
+    float temp = bd.get_temperatura_sensor();
+    printf("TEMPERATURA SENSOR %f\n", temp);
+
+    // if (temp < parametros_lidos.temperatura_minima)
+    // {
+    //     if (count < 3)
+    //     {
+    //         count++;
+    //     }
+
+    //     status_temporario = FRIO;
+    // }
+    // else if (temp > parametros_lidos.temperatura_maxima)
+    // {
+    //     if (count < 3)
+    //     {
+    //         count++;
+    //     }
+    //     status_temporario = CALOR;
+    // }
 
     leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
+    leitura_sensores = "\"" + leitura_sensores + "\""; // devido o kodular inserir aspas nas strings comparadas aqui
+    printf("UMIDADE SOLO SENSOR %s\n", leitura_sensores.c_str());
+
+    printf("UMIDADE IDEAL SOLO  %s\n", parametros_lidos.umidade_ideal_solo.c_str());
 
     if (leitura_sensores != parametros_lidos.umidade_ideal_solo)
     {
+        printf("\n\nDIFERENTE\n\n");
         if (count < 3)
         {
             count++;
@@ -347,57 +352,59 @@ void verificar_status(void)
         {
             status_temporario = SEDE;
         }
-        else
+        else if (leitura_sensores != parametros_lidos.umidade_regar)
         {
 
             status_temporario = ENCHARCADO;
         }
     }
 
-    leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
+    // leitura_sensores = bd.get_sensor_data(LUMINOSIDADE); // luminosidade
+    // printf("LUMINOSIDADE SENSOR %s\n", leitura_sensores.c_str());
+    // if (leitura_sensores != parametros_lidos.luminosidade_ideal)
+    // {
+    //     if (leitura_sensores != "escuro")
+    //     {
 
-    if (leitura_sensores != parametros_lidos.luminosidade_ideal)
-    {
-        if (leitura_sensores != "escuro")
-        {
+    //         if (count < 3)
+    //         {
+    //              count++;
+    //         }
 
-            if (count < 3)
-            {
-                count++;
-            }
-
-            if (parametros_lidos.luminosidade_ideal == "sombra")
-            {
-                status_temporario = OFUSCADO;
-            }
-            else if (parametros_lidos.luminosidade_ideal == "meia-sombra" && leitura_sensores == "sombra")
-            {
-                status_temporario = PALIDO;
-            }
-            else if (parametros_lidos.luminosidade_ideal == "meia-sombra" && leitura_sensores == "sol-pleno")
-            {
-                status_temporario = OFUSCADO;
-            }
-            else
-            {
-                status_temporario = PALIDO;
-            }
-        }
-    }
+    //         if (parametros_lidos.luminosidade_ideal == "sombra")
+    //         {
+    //             status_temporario = OFUSCADO;
+    //         }
+    //         else if (parametros_lidos.luminosidade_ideal == "meia-sombra" && leitura_sensores == "sombra")
+    //         {
+    //             status_temporario = PALIDO;
+    //         }
+    //         else if (parametros_lidos.luminosidade_ideal == "meia-sombra" && leitura_sensores == "sol-pleno")
+    //         {
+    //             status_temporario = OFUSCADO;
+    //         }
+    //         else
+    //         {
+    //             status_temporario = PALIDO;
+    //         }
+    //     }
+    // }
     emote_status = status_temporario;
 
-      switch (count)
-        {
-        case 0:
-            emote_status = FELIZ;
-            break;
-        case 2:
-            emote_status = TRISTE;
-            break;
-        case 3:
-            emote_status = DEFINHANDO;
-            break;
-        default:
-            break;
-        }
+    // switch (count)
+    // {
+    // case 0:
+    //     emote_status = FELIZ;
+    //     break;
+    // case 2:
+    //     emote_status = TRISTE;
+    //     break;
+    // case 3:
+    //     emote_status = DEFINHANDO;
+    //     break;
+    // default:
+    //     break;
+    // }
+
+    printf("STATUS %d\n", emote_status);
 }
