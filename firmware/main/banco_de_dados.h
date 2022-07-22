@@ -35,6 +35,8 @@ private:
 
     std::string sensor_data[6]; // 0-temperatura lida, 1-umidade solo, 2-luminosidade,3-umidade ar, 4-bateria, 5 - status planta
 
+    float temperatura_sensor;
+
     std::string temperatura, umidade;
 
     std::string data_received;
@@ -59,6 +61,9 @@ public:
     void set_sensor_data(int index, float value);
     void set_sensor_data(int index, std::string value);
     void set_sensor_data(int index, int value);
+
+    void set_temperatura_sensor(float value);
+    float get_temperatura_sensor(void);
 };
 
 #endif

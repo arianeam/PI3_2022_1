@@ -309,3 +309,13 @@ uint8_t BancoDeDados::get_connection_state(void)
 {
     return connected;
 }
+
+void BancoDeDados::set_temperatura_sensor(float value)
+{
+    temperatura_sensor = value;
+}
+
+float BancoDeDados::get_temperatura_sensor(void)
+{
+    return temperatura_sensor;
+}
