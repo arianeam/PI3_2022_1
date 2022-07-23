@@ -273,7 +273,7 @@ void task_sensores(void *pvParameters)
         {
             contador_solo = 0;
             // bd.set_sensor_data(UMIDADE_SOLO, ler_umidade_solo());
-            //bd.set_sensor_data(UMIDADE_SOLO, "seco");
+            // bd.set_sensor_data(UMIDADE_SOLO, "seco");
         }
 
         if (contador_temperatura++ == 10)
@@ -335,16 +335,16 @@ void verificar_status(void)
     }
 
     leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
-    leitura_sensores = "\"" + leitura_sensores + "\""; // devido o kodular inserir aspas nas strings comparadas aqui
-    // printf("UMIDADE SOLO SENSOR %s\n", leitura_sensores.c_str());
+    leitura_sensores = "\"" + leitura_sensores + "\"";   // devido o kodular inserir aspas nas strings comparadas aqui
+    printf("UMIDADE SOLO SENSOR %s\n", leitura_sensores.c_str());
 
-    // printf("UMIDADE IDEAL SOLO  %s\n", parametros_lidos.umidade_ideal_solo.c_str());
+    printf("UMIDADE IDEAL SOLO  %s\n", parametros_lidos.umidade_ideal_solo.c_str());
 
-    // printf("UMIDADE REGAR  %s\n", parametros_lidos.umidade_regar.c_str());
+    printf("UMIDADE REGAR  %s\n", parametros_lidos.umidade_regar.c_str());
 
     if (leitura_sensores != parametros_lidos.umidade_ideal_solo)
     {
-        //printf("\n\nDIFERENTE\n\n");
+        // printf("\n\nDIFERENTE\n\n");
         if (count < 3)
         {
             count++;
@@ -354,10 +354,21 @@ void verificar_status(void)
         {
             status_temporario = SEDE;
         }
-        else if (leitura_sensores != parametros_lidos.umidade_regar)
+        else if (parametros_lidos.umidade_ideal_solo == "\"molhado\"")
+        {
+            status_temporario = SEDE;
+        }
+        else if (parametros_lidos.umidade_ideal_solo == "\"seco\"")
         {
 
             status_temporario = ENCHARCADO;
+        }else if(parametros_lidos.umidade_ideal_solo == "\"úmido\"" && leitura_sensores == "\"seco\""){
+
+            emote_status = SEDE;
+        }
+        else if(parametros_lidos.umidade_ideal_solo == "\"úmido\"" && leitura_sensores == "\"molhado\""){
+            
+            emote_status = ENCHARCADO;
         }
     }
 
@@ -380,6 +391,10 @@ void verificar_status(void)
             {
                 status_temporario = OFUSCADO;
             }
+            else if(parametros_lidos.luminosidade_ideal == "\"sol-pleno\"")
+            {
+                status_temporario = PALIDO;
+            }
             else if (parametros_lidos.luminosidade_ideal == "\"meia-sombra\"" && leitura_sensores == "\"sombra\"")
             {
                 status_temporario = PALIDO;
@@ -388,10 +403,7 @@ void verificar_status(void)
             {
                 status_temporario = OFUSCADO;
             }
-            else
-            {
-                status_temporario = PALIDO;
-            }
+            
         }
     }
     emote_status = status_temporario;
