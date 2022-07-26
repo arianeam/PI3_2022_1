@@ -260,7 +260,7 @@ O esquemático e roteamento da placa foi realizado no software Kicad. A placa fo
 
 ### Esquemático:
 
-<img src="imagens PI3/firebase.svg">
+<img src="imagens PI3/hardware.svg">
 
 
 
