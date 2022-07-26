@@ -113,7 +113,6 @@ https://blog.plantei.com.br/lirio-da-paz/
 
 https://vivercomplantas.wordpress.com/2018/01/30/lirio-da-paz-para-locais-sombreados-meia-sombra/
 
----------
 
 
 # planta-jade
@@ -124,7 +123,6 @@ https://guiadassuculentas.com/suculenta-jade-saiba-tudo-sobre-essa-planta/
 https://www.picturethisai.com/pt/care/Crassula_ovata.html#:~:text=Forneça%20temperatura%20adequada%20(%2025%20℃,luz%20(luz%20difusa%20brilhante).
 https://www.noticiasdejardim.com/plantas-de-interior/crassula-ovata-arvore-de-jade-uma-especie-muito-facil-de-cultivar/
 
--------------
 
 # planta fantasma 
 
@@ -168,6 +166,10 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 # Sensores
 
 Todos sensores, o display oled, e um dos ESP32 utilizados para o desenvolvimento do PI3, não foram comprados. Ambos integrantes da dupla já possuiam o material em casa. Foi efetuada a compra de mais um ESP32 para um dos integrantes da dupla. E o microprocessador utilizado na placa desenvolvida foi removido de um dos ESP32. Poderiam ter sido utilizados outros sensores de melhor desempenho, porém optou-se por manter o menor custo possível nesta primeira versão do Vaso Inteligente.
+
+**OBS.: Os sensores que utilizam os canais de ADC passam pelo circuito de entradas analógicas antes de chegar aos canais ADC**
+
+<img src="imagens PI3/entradas_analogicas.PNG">
 
 ## DHT11: sensor de temperatura e umidade
 
