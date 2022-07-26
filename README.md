@@ -186,7 +186,7 @@ O DHT11 foi alimentado com o 3v3 e o GND do ESP32, e o pino de dados foi ligado 
 <img src="imagens PI3/dht11_especificacoes.PNG">
 
 
-### LDR 5mm
+## LDR 5mm
 
 <img src="imagens PI3/ldr.jpg" style="width:300px;height:300px;">
 
@@ -199,7 +199,7 @@ Datasheet: https://www.filipeflop.com/img/files/download/Datasheet_LDR.pdf
 <img src="imagens PI3/luximetro.PNG">
 
 
-### Higrômetro HL-69 (YL-69)
+## Higrômetro HL-69 (YL-69)
 
 <img src="imagens PI3/hl69.jpg" style="width:400px;height:400px;">
 
@@ -223,7 +223,7 @@ O display utilizado foi o oled SSD1306 de 128x64. As animações para o display 
 <img src="imagens PI3/oled.jpg" style="width:400px;height:400px;">
 
 
-#### Pinos utilizados do microprocessador ESP32-WROOM-32
+## Pinos utilizados do microprocessador ESP32-WROOM-32
 <img src="imagens PI3/uc_sch.PNG">
 
 
