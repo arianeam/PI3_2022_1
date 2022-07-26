@@ -23,6 +23,7 @@
 
 static uint8_t led_state;
 uint8_t emote_status = DORMINDO;
+std::string emote_status_string;
 int8_t count = 0;
 std::string leitura_sensores;
 
@@ -81,10 +82,10 @@ extern "C" void app_main(void)
     xTaskCreate(task_status_planta, "task_status_planta", configMINIMAL_STACK_SIZE * 5, NULL, 3, NULL);
 
     //------testes-------------------
-    bd.set_sensor_data(UMIDADE_SOLO, "úmido");
-    bd.set_sensor_data(LUMINOSIDADE, "meia-sombra");
-    float temp_teste = 20.0;
-    bd.set_temperatura_sensor(temp_teste);
+    // bd.set_sensor_data(UMIDADE_SOLO, "úmido");
+    // bd.set_sensor_data(LUMINOSIDADE, "meia-sombra");
+    // float temp_teste = 20.0;
+    // bd.set_temperatura_sensor(temp_teste);
     //----------------------------------
 
     while (1)
@@ -102,8 +103,7 @@ void task_display(void *pvParameters)
     {
         uint8_t i, j;
 
-        bd.set_sensor_data(PLANTA, emote_status);
-        // emote_status = OFUSCADO;
+        bd.set_sensor_data(PLANTA, emote_status_string);
 
         for (i = 0; i < 4; i++)
         {
@@ -258,8 +258,7 @@ void task_sensores(void *pvParameters)
         {
             contador_lux = 0;
             printf("Luminosidade = %f lux\n", luximeter_read());
-            // bd.set_sensor_data(LUMINOSIDADE, obter_faixa_luminosidade());
-            // bd.set_sensor_data(LUMINOSIDADE, "sombra");
+            bd.set_sensor_data(LUMINOSIDADE, obter_faixa_luminosidade());
         }
 
         if (contador_bat++ == 10)
@@ -272,8 +271,7 @@ void task_sensores(void *pvParameters)
         if (contador_solo++ == 30)
         {
             contador_solo = 0;
-            // bd.set_sensor_data(UMIDADE_SOLO, ler_umidade_solo());
-            // bd.set_sensor_data(UMIDADE_SOLO, "seco");
+            bd.set_sensor_data(UMIDADE_SOLO, ler_umidade_solo());
         }
 
         if (contador_temperatura++ == 10)
@@ -282,10 +280,8 @@ void task_sensores(void *pvParameters)
             if (dht_read_float_data(DHT_TYPE_DHT11, DHT_PIN, &umidade, &temperatura) == ESP_OK)
             {
                 printf("Umidade: %.1f%% Temp: %.1fC\n", umidade, temperatura);
-                // bd.set_sensor_data(TEMPERATURA, temperatura);
-                // bd.set_sensor_data(UMIDADE_AR, umidade);
-
-                // bd.set_sensor_data(TEMPERATURA, 20);
+                bd.set_sensor_data(TEMPERATURA, temperatura);
+                bd.set_sensor_data(UMIDADE_AR, umidade);
             }
             else
             {
@@ -294,7 +290,7 @@ void task_sensores(void *pvParameters)
         }
 
         uptime += 5;
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(1500 / portTICK_PERIOD_MS);
     }
 }
 
@@ -305,7 +301,7 @@ void task_status_planta(void *pvParameters)
     {
         verificar_status();
 
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(1500 / portTICK_PERIOD_MS);
     }
 }
 
@@ -324,6 +320,7 @@ void verificar_status(void)
         }
 
         status_temporario = FRIO;
+        emote_status_string = "frio";
     }
     else if (temp > parametros_lidos.temperatura_maxima)
     {
@@ -332,6 +329,7 @@ void verificar_status(void)
             count++;
         }
         status_temporario = CALOR;
+        emote_status_string = "calor";
     }
 
     leitura_sensores = bd.get_sensor_data(UMIDADE_SOLO); // umidade solo
@@ -344,7 +342,6 @@ void verificar_status(void)
 
     if (leitura_sensores != parametros_lidos.umidade_ideal_solo)
     {
-        // printf("\n\nDIFERENTE\n\n");
         if (count < 3)
         {
             count++;
@@ -353,22 +350,30 @@ void verificar_status(void)
         if (leitura_sensores == parametros_lidos.umidade_regar)
         {
             status_temporario = SEDE;
+            emote_status_string = "sede";
         }
         else if (parametros_lidos.umidade_ideal_solo == "\"molhado\"")
         {
             status_temporario = SEDE;
+            emote_status_string = "sede";
         }
         else if (parametros_lidos.umidade_ideal_solo == "\"seco\"")
         {
 
             status_temporario = ENCHARCADO;
-        }else if(parametros_lidos.umidade_ideal_solo == "\"úmido\"" && leitura_sensores == "\"seco\""){
+            emote_status_string = "encharcado";
+        }
+        else if (parametros_lidos.umidade_ideal_solo == "\"úmido\"" && leitura_sensores == "\"seco\"")
+        {
 
             emote_status = SEDE;
+            emote_status_string = "sede";
         }
-        else if(parametros_lidos.umidade_ideal_solo == "\"úmido\"" && leitura_sensores == "\"molhado\""){
-            
+        else if (parametros_lidos.umidade_ideal_solo == "\"úmido\"" && leitura_sensores == "\"molhado\"")
+        {
+
             emote_status = ENCHARCADO;
+            emote_status_string = "encharcado";
         }
     }
 
@@ -390,20 +395,23 @@ void verificar_status(void)
             if (parametros_lidos.luminosidade_ideal == "\"sombra\"")
             {
                 status_temporario = OFUSCADO;
+                emote_status_string = "ofuscado";
             }
-            else if(parametros_lidos.luminosidade_ideal == "\"sol-pleno\"")
+            else if (parametros_lidos.luminosidade_ideal == "\"sol-pleno\"")
             {
                 status_temporario = PALIDO;
+                emote_status_string = "pálido";
             }
             else if (parametros_lidos.luminosidade_ideal == "\"meia-sombra\"" && leitura_sensores == "\"sombra\"")
             {
                 status_temporario = PALIDO;
+                emote_status_string = "pálido";
             }
             else if (parametros_lidos.luminosidade_ideal == "\"meia-sombra\"" && leitura_sensores == "\"sol-pleno\"")
             {
                 status_temporario = OFUSCADO;
+                emote_status_string = "ofuscado";
             }
-            
         }
     }
     emote_status = status_temporario;
@@ -412,12 +420,18 @@ void verificar_status(void)
     {
     case 0:
         emote_status = FELIZ;
+        emote_status_string = "feliz";
+
         break;
     case 2:
         emote_status = TRISTE;
+        emote_status_string = "triste";
+
         break;
     case 3:
         emote_status = DEFINHANDO;
+        emote_status_string = "definhando";
+
         break;
     default:
         break;

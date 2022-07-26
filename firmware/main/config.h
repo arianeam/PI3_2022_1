@@ -19,6 +19,7 @@
 #define PASSWORD                    "nina2017j09"
 
 
+
 /* Firebase */
 #define API_KEY                     "AIzaSyDLVTKNaeNSG_lSELBeVdZoQPbkmXfg-Ow"
 // Copy your firebase real time database link here 
@@ -83,6 +84,7 @@
 #define PALIDO                      8
 #define DORMINDO                    9
 #define OFUSCADO                    10
+
 
 /* Index */
 #define TEMPERATURA                 0
