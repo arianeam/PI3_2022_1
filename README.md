@@ -173,9 +173,13 @@ Todos sensores, o display oled, e um dos ESP32 utilizados para o desenvolvimento
 
 <img src="imagens PI3/dht11.jpg" style="width:381px;height:381px;">
 
+
 Datasheet: https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
 
+[O elemento sensor de temperatura é um termistor do tipo NTC e o sensor de Umidade é do modelo HR202, o circuito interno faz a leitura dos sensores e se comunica a um microcontrolador, através de um sinal serial de uma via.](https://www.filipeflop.com/produto/modulo-sensor-de-umidade-e-temperatura-dht11-ky-015/)
+
 <img src="imagens PI3/dht11_especificacoes.PNG">
+Para o funcionamento do sensor DHT11 com o microcontrolador ESP32 foi utilizada uma [biblioteca](https://github.com/UncleRus/esp-idf-lib/tree/master/components), na qual disponibiliza a função de inicialização do sensor, e leitura dos dados, bastando definir o pino de dados, passar o tipo de sensor e as variáveis que iriam receber os dados de temperatura e umidade lidos.
 
 ## LDR 5mm
 
