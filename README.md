@@ -190,7 +190,7 @@ O DHT11 foi alimentado com o 3v3 e o GND do ESP32, e o pino de dados foi ligado 
 
 Datasheet: https://www.filipeflop.com/img/files/download/Datasheet_LDR.pdf
 
-[O Sensor de Luminosidade LDR (Light Dependent Resistor) é um componente cuja resistência varia de acordo com a intensidade da luz. Quanto mais luz incidir sobre o componente, menor a resistência.](https://www.filipeflop.com/produto/sensor-de-luminosidade-ldr-5mm/). Foi utilizado o canal 5 do ADC1 do ESP32 para receber a tensão do LDR e o valor passou por uma função de linearização.
+[O Sensor de Luminosidade LDR (Light Dependent Resistor) é um componente cuja resistência varia de acordo com a intensidade da luz. Quanto mais luz incidir sobre o componente, menor a resistência.](https://www.filipeflop.com/produto/sensor-de-luminosidade-ldr-5mm/). Foi utilizado o canal 5 do ADC1 do ESP32 para receber a tensão do LDR, que em seguida, passa por uma função de linearização.
 
 <img src="imagens PI3/luximetro_circuito.PNG">
 
@@ -203,8 +203,10 @@ Datasheet: https://www.filipeflop.com/img/files/download/Datasheet_LDR.pdf
 
 Guia (datasheet não encontrado): https://usermanual.wiki/Pdf/instructions.261306374.pdf
 
-[Este Sensor de Umidade do Solo Higrômetro foi feito para detectar as variações de umidade no solo. Ele funciona da seguinte forma: quando o solo está seco, a saída do sensor fica em estado alto e quando úmido, a saída do sensor fica em estado baixo. O limite entre seco e úmido pode ser ajustado através do potenciômetro presente no sensor que regulará a saída digital D0. Contudo, para ter uma resolução melhor, é possível utilizar a saída analógica A0 e conectar a um conversor AD.](https://www.filipeflop.com/produto/sensor-de-umidade-do-solo-higrometro/). Para este projeto foi utilizada a saída analógica A0 ligada ao canal 4 do ADC1 do ESP32. A alimentação do sensor foi feita através do 3v3 e GND do ESP32.
+[Este Sensor de Umidade do Solo Higrômetro foi feito para detectar as variações de umidade no solo. Ele funciona da seguinte forma: quando o solo está seco, a saída do sensor fica em estado alto e quando úmido, a saída do sensor fica em estado baixo. O limite entre seco e úmido pode ser ajustado através do potenciômetro presente no sensor que regulará a saída digital D0. Contudo, para ter uma resolução melhor, é possível utilizar a saída analógica A0 e conectar a um conversor AD.](https://www.filipeflop.com/produto/sensor-de-umidade-do-solo-higrometro/). Para este projeto foi utilizada a saída analógica A0. O canal 4 do ADC1 do ESP32 é o respinsável por receber o valor analógico do higrômetro. A alimentação do sensor foi feita através do 3v3 e GND do ESP32.
 
+# Bateria
+<img src="imagens PI3/carregador_bateria.PNG">
 
 # Desenvolvimento
 
