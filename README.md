@@ -173,6 +173,10 @@ Todos sensores, o display oled, e um dos ESP32 utilizados para o desenvolvimento
 
 <img src="imagens PI3/dht11.jpg" style="width:381px;height:381px;">
 
+Datasheet: https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
+
+<img src="imagens PI3/dht11_especificacoes.PNG">
+
 ## LDR 5mm
 
 <img src="imagens PI3/ldr.jpg" style="width:300px;height:300px;">
