@@ -177,12 +177,15 @@ Todos sensores, o display oled, e um dos ESP32 utilizados para o desenvolvimento
 Datasheet: https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
 
 [O elemento sensor de temperatura é um termistor do tipo NTC e o sensor de Umidade é do modelo HR202, o circuito interno faz a leitura dos sensores e se comunica a um microcontrolador, através de um sinal serial de uma via.](https://www.filipeflop.com/produto/modulo-sensor-de-umidade-e-temperatura-dht11-ky-015/)
+O DHT11 foi alimentado com o 3v3 e o GND do ESP32, e o pino de dados foi ligado ao pino D27 do microcontrolador.
 
 <img src="imagens PI3/dht11_especificacoes.PNG">
 
 ## LDR 5mm
 
 <img src="imagens PI3/ldr.jpg" style="width:300px;height:300px;">
+
+[O Sensor de Luminosidade LDR (Light Dependent Resistor) é um componente cuja resistência varia de acordo com a intensidade da luz. Quanto mais luz incidir sobre o componente, menor a resistência.](https://www.filipeflop.com/produto/sensor-de-luminosidade-ldr-5mm/).
 
 ## Higrômetro HL-69
 
