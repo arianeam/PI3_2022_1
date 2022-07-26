@@ -161,9 +161,9 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 * **Molhado**
 
 
+# Desenvolvimento
 
-
-# Sensores
+## Sensores
 
 Todos sensores, o display oled, e um dos ESP32 utilizados para o desenvolvimento do PI3, não foram comprados. Ambos integrantes da dupla já possuiam o material em casa. Foi efetuada a compra de mais um ESP32 para um dos integrantes da dupla. E o microprocessador utilizado na placa desenvolvida foi removido de um dos ESP32. Poderiam ter sido utilizados outros sensores de melhor desempenho, porém optou-se por manter o menor custo possível nesta primeira versão do Vaso Inteligente.
 
@@ -171,7 +171,7 @@ Todos sensores, o display oled, e um dos ESP32 utilizados para o desenvolvimento
 
 <img src="imagens PI3/entradas_analogicas.PNG">
 
-## DHT11: sensor de temperatura e umidade
+### DHT11: sensor de temperatura e umidade
 
 <img src="imagens PI3/dht11.jpg" style="width:381px;height:381px;">
 
@@ -184,7 +184,7 @@ O DHT11 foi alimentado com o 3v3 e o GND do ESP32, e o pino de dados foi ligado 
 <img src="imagens PI3/dht11_especificacoes.PNG">
 
 
-## LDR 5mm
+### LDR 5mm
 
 <img src="imagens PI3/ldr.jpg" style="width:300px;height:300px;">
 
@@ -197,7 +197,7 @@ Datasheet: https://www.filipeflop.com/img/files/download/Datasheet_LDR.pdf
 <img src="imagens PI3/luximetro.PNG">
 
 
-## Higrômetro HL-69 (YL-69)
+### Higrômetro HL-69 (YL-69)
 
 <img src="imagens PI3/hl69.jpg" style="width:400px;height:400px;">
 
@@ -205,7 +205,7 @@ Guia (datasheet não encontrado): https://usermanual.wiki/Pdf/instructions.26130
 
 [Este Sensor de Umidade do Solo Higrômetro foi feito para detectar as variações de umidade no solo. Ele funciona da seguinte forma: quando o solo está seco, a saída do sensor fica em estado alto e quando úmido, a saída do sensor fica em estado baixo. O limite entre seco e úmido pode ser ajustado através do potenciômetro presente no sensor que regulará a saída digital D0. Contudo, para ter uma resolução melhor, é possível utilizar a saída analógica A0 e conectar a um conversor AD.](https://www.filipeflop.com/produto/sensor-de-umidade-do-solo-higrometro/). Para este projeto foi utilizada a saída analógica A0. O canal 4 do ADC1 do ESP32 é o respinsável por receber o valor analógico do higrômetro. A alimentação do sensor foi feita através do 3v3 e GND do ESP32.
 
-# Bateria
+## Bateria
 
 Abaixo imagem do circuito do carregador da bateria e função de leitura no firmware. Para medir a tensão da bateria proveniente do circuito do carregador foi utilizado o canal 6 do ADC1 do ESP32.
 
@@ -213,7 +213,16 @@ Abaixo imagem do circuito do carregador da bateria e função de leitura no firm
 
 <img src="imagens PI3/measure_battery.PNG">
 
-# Desenvolvimento
+
+## Display oled SSD1306 128x64
+
+O display utilizado foi o oled SSD1306 de 128x64. As animações para o display foram desenhadas no software Inkscape, com a área de 128x64px, exportadas para PNG, e em seguida convertida para outra extensão bitmap, a extensão XBM, respeitando a função da biblioteca para display SSD1306 utilizada no firmware, ssd1306_load_xbm. É importante observar quais formatos as funções aceitam quando utilizar bibliotecas de terceiros, caso contrário a imagem será exibida no display de forma distorcida, devido a forma como os bits são dispostos em cada tipo de extensão bitmap. Uma melhoria interessante para a estética do projeto é utilizar um display maior e com uma melhor resolução. Como um dos integrantes da dupla já possuia o display SSD1306, optou-se por usá-lo no projeto, reduzindo os custos do protótipo.
+
+<img src="imagens PI3/oled.jpg" style="width:400px;height:400px;">
+
+
+<img src="imagens PI3/uc_sch.PNG">
+
 
 ## Firmware
 
@@ -228,12 +237,6 @@ A linguagem de programação utilizada no firmware foi C++/C. Os componentes do 
 
 * **Biblioteca utilizada para o Google Firebase Realtime Database**: https://github.com/dahmadjid/Firebase-idf 
 
-## Display oled SSD1306 128x64
-
-O display utilizado foi o oled SSD1306 de 128x64. As animações para o display foram desenhadas no software Inkscape, com a área de 128x64px, exportadas para PNG, e em seguida convertida para outra extensão bitmap, a extensão XBM, respeitando a função da biblioteca para display SSD1306 utilizada no firmware, ssd1306_load_xbm. É importante observar quais formatos as funções aceitam quando utilizar bibliotecas de terceiros, caso contrário a imagem será exibida no display de forma distorcida, devido a forma como os bits são dispostos em cada tipo de extensão bitmap. Uma melhoria interessante para a estética do projeto é utilizar um display maior e com uma melhor resolução. Como um dos integrantes da dupla já possuia o display SSD1306, optou-se por usá-lo no projeto, reduzindo os custos do protótipo.
-
-<img src="imagens PI3/oled.jpg" style="width:400px;height:400px;">
-
 
 ## Armazenamento de dados e aplicativo de celular
 Para armazenar os dados do aplicativo e dados lidos dos sensores do ESP32, e agilizar a comunicação com o aplicativo foi utilizada a ferramenta do Google Firebase.
@@ -244,7 +247,7 @@ O aplicativo foi desenvolvido na plataforma Kodular, através de blocos lógicos
 <img src="imagens PI3/Kodular_dev_1.PNG" style="width:500px;height:250px;">
 <img src="imagens PI3/Kodular_dev_2.PNG" style="width:500px;height:250px;">
 
-# Hardware
+## Hardware
 
 O esquemático e roteamento da placa foi realizado no software Kicad. A placa foi desenvolvida com face dupla, e a transferência foi realizada com o método "transferência fotográfica de imagem". Para saber mais sobre o método acesse os seguintes links:
 * https://tec-ci.com.br/blog/circuito-impresso/transferencia-fotografica-de-imagem-trilhas-circuito-impresso/
