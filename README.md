@@ -167,6 +167,8 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 
 # Sensores
 
+Todos sensores, o display oled, e um dos ESP32 utilizados para o desenvolvimento do PI3, não foram comprados. Ambos integrantes da dupla já possuiam o material em casa. Foi efetuada a compra de mais um ESP32 para um dos integrantes da dupla. E o microprocessador utilizado na placa desenvolvida foi removido de um dos ESP32. Poderiam ter sido utilizados outros sensores de melhor desempenho, porém optou-se por manter o menor custo possível nesta primeira versão do Vaso Inteligente.
+
 ## DHT11: sensor de temperatura e umidade
 
 <img src="imagens PI3/dht11.jpg" style="width:381px;height:381px;">
@@ -196,7 +198,7 @@ A linguagem de programação utilizada no firmware foi C++/C. Os componentes do 
 
 ## Display oled SSD1306 128x64
 
-O display utilizado foi o oled SSD1306 de 128x64. As animações para o display foram desenhadas no software Inkscape, com a área de 128x64px, exportadas para PNG, e em seguida convertida para outra extensão bitmap, a extensão XBM, respeitando a função da biblioteca para display SSD1306 utilizada no firmware, ssd1306_load_xbm. É importante observar quais formatos as funções aceitam quando utilizar bibliotecas de terceiros, caso contrário a imagem será exibida no display de forma distorcida, devido a forma como os bits são dispostos em cada tipo de extensão bitmap. 
+O display utilizado foi o oled SSD1306 de 128x64. As animações para o display foram desenhadas no software Inkscape, com a área de 128x64px, exportadas para PNG, e em seguida convertida para outra extensão bitmap, a extensão XBM, respeitando a função da biblioteca para display SSD1306 utilizada no firmware, ssd1306_load_xbm. É importante observar quais formatos as funções aceitam quando utilizar bibliotecas de terceiros, caso contrário a imagem será exibida no display de forma distorcida, devido a forma como os bits são dispostos em cada tipo de extensão bitmap. Uma melhoria interessante para a estética do projeto é utilizar um display maior e com uma melhor resolução. Como um dos integrantes da dupla já possuia o display SSD1306, optou-se por usá-lo no projeto, reduzindo os custos do protótipo.
 
 <img src="imagens PI3/oled.jpg" style="width:400px;height:400px;">
 
