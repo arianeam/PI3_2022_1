@@ -10,7 +10,7 @@ O objetivo deste projeto é implementar um vaso inteligente baseado em Internet 
 # Pesquisa bibliográfica
 
 Os links a seguir referem-se a pesquisa sobre os parâmetros de umidade, temperatura e luminosidade para os cuidados com diferentes espécies de plantas. 
-Esses parâmetros foram utilizados paraentender quais parâmetros medir e como trabalhá-los.
+Esses parâmetros foram utilizados para entender quais parâmetros medir e como trabalhá-los no firmware e app.
 
 1. https://feelingsandflowers.com/cactus-care-guide-watering
 
