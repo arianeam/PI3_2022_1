@@ -186,8 +186,9 @@ O DHT11 foi alimentado com o 3v3 e o GND do ESP32, e o pino de dados foi ligado 
 
 <img src="imagens PI3/ldr.jpg" style="width:300px;height:300px;">
 
-[O Sensor de Luminosidade LDR (Light Dependent Resistor) é um componente cuja resistência varia de acordo com a intensidade da luz. Quanto mais luz incidir sobre o componente, menor a resistência.](https://www.filipeflop.com/produto/sensor-de-luminosidade-ldr-5mm/). Foi utilizado o canal 5 do ADC1 do ESP32 para receber a tensão do LDR.
+[O Sensor de Luminosidade LDR (Light Dependent Resistor) é um componente cuja resistência varia de acordo com a intensidade da luz. Quanto mais luz incidir sobre o componente, menor a resistência.](https://www.filipeflop.com/produto/sensor-de-luminosidade-ldr-5mm/). Foi utilizado o canal 5 do ADC1 do ESP32 para receber a tensão do LDR e o valor passou por uma função de linearização.
 
+<img src="imagens PI3/luximetro_circuito.PNG">
 
 <img src="imagens PI3/luximetro.PNG">
 
