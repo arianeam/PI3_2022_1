@@ -161,7 +161,7 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 * **Molhado**
 
 
---------------------
+
 
 # Sensores
 
@@ -206,7 +206,12 @@ Guia (datasheet não encontrado): https://usermanual.wiki/Pdf/instructions.26130
 [Este Sensor de Umidade do Solo Higrômetro foi feito para detectar as variações de umidade no solo. Ele funciona da seguinte forma: quando o solo está seco, a saída do sensor fica em estado alto e quando úmido, a saída do sensor fica em estado baixo. O limite entre seco e úmido pode ser ajustado através do potenciômetro presente no sensor que regulará a saída digital D0. Contudo, para ter uma resolução melhor, é possível utilizar a saída analógica A0 e conectar a um conversor AD.](https://www.filipeflop.com/produto/sensor-de-umidade-do-solo-higrometro/). Para este projeto foi utilizada a saída analógica A0. O canal 4 do ADC1 do ESP32 é o respinsável por receber o valor analógico do higrômetro. A alimentação do sensor foi feita através do 3v3 e GND do ESP32.
 
 # Bateria
+
+Abaixo imagem do circuito do carregador da bateria e função de leitura no firmware. Para medir a tensão da bateria proveniente do circuito do carregador foi utilizado o canal 6 do ADC1 do ESP32.
+
 <img src="imagens PI3/carregador_bateria.PNG">
+
+<img src="imagens PI3/measure_battery.PNG">
 
 # Desenvolvimento
 
