@@ -167,6 +167,8 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 
 Todos sensores, o display oled, e um dos ESP32 utilizados para o desenvolvimento do PI3, não foram comprados. Ambos integrantes da dupla já possuiam o material em casa. Foi efetuada a compra de mais um ESP32 para um dos integrantes da dupla. E o microprocessador utilizado na placa desenvolvida foi removido de um dos ESP32. Poderiam ter sido utilizados outros sensores de melhor desempenho, porém optou-se por manter o menor custo possível nesta primeira versão do Vaso Inteligente.
 
+A comunicação entre o hardware e o banco de dados utilizado ocorre por meio de Wi-Fi, pois o microprocessador utilizado (ESP32-WROOM-32) possui antena integrada.
+
 **OBS.: Os sensores que utilizam os canais de ADC passam pelo circuito de entradas analógicas antes de chegar aos canais ADC**
 
 <img src="imagens PI3/entradas_analogicas.PNG">
@@ -221,7 +223,9 @@ O display utilizado foi o oled SSD1306 de 128x64. As animações para o display 
 <img src="imagens PI3/oled.jpg" style="width:400px;height:400px;">
 
 
+#### Pinos utilizados do microprocessador ESP32-WROOM-32
 <img src="imagens PI3/uc_sch.PNG">
+
 
 
 ## Firmware
