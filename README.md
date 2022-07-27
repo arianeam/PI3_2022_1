@@ -258,6 +258,10 @@ O esquemático e roteamento da placa foi realizado no software Kicad. A placa fo
 
 * https://portal.vidadesilicio.com.br/confeccionando-de-placas-de-circuito-impresso-com-tinta-fotossensivel/
 
+### Esquemático: https://github.com/arianeam/PI3_2022_1/blob/bc9ce70044babedad0d30e4cae6119c7fe134467/imagens%20PI3/hardware.pdf
+
+<img src="imagens PI3/hardware.svg">
+
 
 
 
