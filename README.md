@@ -266,6 +266,13 @@ O esquemático e roteamento da placa foi realizado no software Kicad. A placa fo
 
 ### Placa:
 
+#### 3D:
+
+<img src="imagens PI3/3d_bottom_layer.PNG">
+
+<img src="imagens PI3/3d_top_layer.PNG">
+
+#### Confecção:
 <img src="imagens PI3/placa_1.jpeg">
 
 
