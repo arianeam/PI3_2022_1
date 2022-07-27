@@ -7,26 +7,27 @@
     },
     "vasos": {
       "vaso1_parametros_ideais": {
-        "especie": "",
-        "luminosidade_ideal": "",
-        "nome_cientifico": "",
+        "especie": "\"planta-fantasma\"",
+        "luminosidade_ideal": "\"sol-pleno\"",
+        "nome_cientifico": "\"Graptopetalum-paraguayense\"",
         "nome_vaso": "",
         "status_planta": "",
-        "temperatura_ideal_max": "",
-        "temperatura_ideal_min": "",
-        "umidade_ideal_ar": "",
-        "umidade_ideal_solo": "",
-        "umidade_regar": ""
+        "temperatura_ideal_max": "30",
+        "temperatura_ideal_min": "15",
+        "umidade_ideal_ar": "\"baixa\"",
+        "umidade_ideal_solo": "\"úmido\"",
+        "umidade_regar": "\"seco\""
       },
       "vaso1_parametros_lidos": {
         "dispositivo": "6011319116123228",
-        "luminosidade_lida": "",
+        "luminosidade_lida": "meia-sombra",
         "nome_vaso": "",
-        "status_bateria": "015",
-        "status_planta": "",
+        "status_bateria": "0",
+        "status_planta": "pálido",
         "temperatura_lida": "",
         "umidade_lida_ar": "",
-        "umidade_lida_solo": ""
+        "umidade_lida_solo": "úmido",
+        "uptime": "10365"
       }
     }
   },
