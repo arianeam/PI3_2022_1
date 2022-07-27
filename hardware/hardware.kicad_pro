@@ -48,13 +48,7 @@
           "min_clearance": 0.508
         }
       },
-      "diff_pair_dimensions": [
-        {
-          "gap": 0.0,
-          "via_gap": 0.0,
-          "width": 0.0
-        }
-      ],
+      "diff_pair_dimensions": [],
       "drc_exclusions": [],
       "meta": {
         "version": 2
@@ -118,18 +112,8 @@
         "solder_mask_min_width": 0.0,
         "use_height_for_length_calcs": true
       },
-      "track_widths": [
-        0.0,
-        0.32,
-        0.35,
-        0.4
-      ],
-      "via_dimensions": [
-        {
-          "diameter": 0.0,
-          "drill": 0.0
-        }
-      ],
+      "track_widths": [],
+      "via_dimensions": [],
       "zones_allow_external_fillets": false,
       "zones_use_no_outline": true
     },
@@ -356,7 +340,7 @@
     "classes": [
       {
         "bus_width": 12.0,
-        "clearance": 0.25,
+        "clearance": 0.2,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -366,8 +350,8 @@
         "name": "Default",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.35,
-        "via_diameter": 1.8,
+        "track_width": 0.25,
+        "via_diameter": 0.8,
         "via_drill": 0.4,
         "wire_width": 6.0
       }
@@ -428,7 +412,7 @@
   },
   "sheets": [
     [
-      "df7fe5d1-8e08-436a-936e-8574b16134ae",
+      "e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
       ""
     ]
   ],
