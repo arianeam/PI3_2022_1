@@ -241,6 +241,8 @@ A linguagem de programação utilizada no firmware foi C++/C. Os componentes do 
 
 * **Biblioteca utilizada para o Google Firebase Realtime Database**: https://github.com/dahmadjid/Firebase-idf 
 
+<img src="imagens PI3/esp_32_uc.jpg">
+
 
 ## Armazenamento de dados e aplicativo de celular
 Para armazenar os dados do aplicativo e dados lidos dos sensores do ESP32, e agilizar a comunicação com o aplicativo foi utilizada a ferramenta do Google Firebase.
