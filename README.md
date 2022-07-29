@@ -3,15 +3,22 @@
 
 # PI3_2022_1: Vaso Inteligente
 <img src="imagens PI3/ze_vasinho.svg" style="width:500px;height:500px;">
+
+## Estrutura das pastas do projeto:
+
+* app: Nesta pasta está disponível para download o aplicativo de celular.
+* banco_de_dados: nesta pasta está disponível o arquivo JSON do Firebase Realtime Database utilizado, que pode ser importado para visualização e uso no Realtime Database.
+* firmware: disponível o firmware para esp32 do projeto.
+* hardware: disponível o projeto desenvolvido no kicad para a placa.
+* imagens PI3: imagens utilizadas nas animações do display, a imagem do mascote do aplicativo, imagens utilizadas nesta documentação, e imagens utilizadas nos testes do display.
+
+
+# Objetivo
 O objetivo deste projeto é implementar um vaso inteligente baseado em Internet das Coisas, que irá monitorar os parâmetros de umidade do solo, luminosidade e temperatura de uma planta, e a partir destes parâmetros avaliar o estado da planta, com base em um banco de dados que contenha informações de espécies de plantas, ou dados personalizados pelo usuário. Detectando o estado da planta, será gerada uma expressão facial em um display contido no vaso, que representará esse estado, como por exemplo, em caso de falta de água para a planta, o vaso exibiria uma expressão de sede. O usuário poderá selecionar configurar os parâmetros da planta através do aplicativo de celular. Essa configuração poderá ser manual ou automática (selecionando a espécie de planta no aplicativo). 
 
 
 
 <img src="imagens PI3/Diagrama PI3 Vaso Inteligente.png" style="width:800px;height:300px;">
-
-## Estrutura das pastas:
-
-* [Aplicativo de celular disponível para download](https://github.com/arianeam/PI3_2022_1/tree/main/app)
 
 
 
