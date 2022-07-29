@@ -81,7 +81,7 @@ Passos seguidos para a linearização:
 * Em uma planilha foi registrada a resistência do LDR medida pelo multímetro e o valor aferido pelo luxímetro comercial;
 * O passo anterior foi repetido para outros níveis de luminosidade, de forma que para cada medida da resistência do LDR houvesse uma medida do luxímetro;
 * A partir dos dados registrados na planilha foi gerado um gráfico que pode ser ajustado com base na equação y = m.b. Foi utilizada a expressão fornecida no link informado anteriormente, linearizando o gráfico;
-<img src="imagens PI3/expressao_lux.png">
+<img src="imagens PI3/expressao_lux.PNG">
 
 Assim é possível construir a função para leitura do LDR e ajustar os coeficientes.
 
