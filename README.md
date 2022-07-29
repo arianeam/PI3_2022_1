@@ -94,7 +94,7 @@ Assim é possível construir a função para leitura do LDR e ajustar os coefici
 
 Guia (datasheet não encontrado): https://usermanual.wiki/Pdf/instructions.261306374.pdf
 
-[Este Sensor de Umidade do Solo Higrômetro foi feito para detectar as variações de umidade no solo. Ele funciona da seguinte forma: quando o solo está seco, a saída do sensor fica em estado alto e quando úmido, a saída do sensor fica em estado baixo. O limite entre seco e úmido pode ser ajustado através do potenciômetro presente no sensor que regulará a saída digital D0. Contudo, para ter uma resolução melhor, é possível utilizar a saída analógica A0 e conectar a um conversor AD.](https://www.filipeflop.com/produto/sensor-de-umidade-do-solo-higrometro/). Para este projeto foi utilizada a saída analógica A0. O canal 4 do ADC1 do ESP32 é o respinsável por receber o valor analógico do higrômetro. A alimentação do sensor foi feita através do 3v3 e GND do ESP32.
+[Este Sensor de Umidade do Solo Higrômetro foi feito para detectar as variações de umidade no solo. Ele funciona da seguinte forma: quando o solo está seco, a saída do sensor fica em estado alto e quando úmido, a saída do sensor fica em estado baixo. O limite entre seco e úmido pode ser ajustado através do potenciômetro presente no sensor que regulará a saída digital D0. Contudo, para ter uma resolução melhor, é possível utilizar a saída analógica A0 e conectar a um conversor AD.](https://www.filipeflop.com/produto/sensor-de-umidade-do-solo-higrometro/). Para este projeto foi utilizada a saída analógica A0. O canal 4 do ADC1 do ESP32 é o responsável por receber o valor analógico do higrômetro. A alimentação do sensor foi feita através do 3v3 e GND do ESP32.
 
 ## Bateria
 
