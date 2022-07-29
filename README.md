@@ -16,6 +16,7 @@ O objetivo deste projeto é implementar um vaso inteligente baseado em Internet 
 
 ## Luminosidade
 
+A luminosidade será monitorada por faixas, que facilitará a logica para definir o estado da planta e a compreensão por parte do usuário.
 Conforme o site "Paisagismo Bauru" em sua postagem ["Dicas de luminosidade para seu jardim", link 4](http://www.paisagismobauru.com.br/curiosidades/curiosidades/), a medição de luminosidade será dividida em três faixas:
 * **Sol**:
 O dia inteiro com iluminação solar direta. Luminosidade acima de 20.000 lux.
@@ -28,6 +29,7 @@ Iluminação indireta. Luminosidade de 2.500 a 5.000 lux.
 
 ## Umidade do solo
 
+A umidade do solo também será definida com base em três faixas.
 * **Seco**
 * **Úmido**
 * **Molhado**
