@@ -307,6 +307,14 @@ https://www.picturethisai.com/pt/care/Graptopetalum_paraguayense.html
 https://cibercactus.com/pt/graptopetalum-paraguayense/
 
 
+# Considerações
+
+* Só foi utilizado o LDR como sensor de luminosidade neste projeto devido baixo custo, porém em larga escala é inviável pois é necessário linearizar um a um os LDRs, já que não serão construtivamente idênticos.
+* Os DHT11 utilizados por vezes tiveram erro maior que +-2°C, e eles não estava medindo a umidade corretamente (por exemplo, deveriam medir 90% e estavam apresentando 40% de umidade relativa do ar). Portanto talvez utilizar um LM35 ou DHT22 seria uma melhor alternativa. O DHT11 foi utilizado pois já estava disponível, reduzindo custos de protótipo.
+* Se possível, utilizar um display maior, para melhor experiência do usuário.
+* Foi utilizado o Firebase Realtime Database, dentro dos limites de gratuidade, pela facilidade de uso para a prototipagem, mas pode-se optar por outros bancos e servidores além do Google, como por exemplo o AWS, ou Azure (ou optar por pagar o plano da Google para utilizar todas ferramentas disponíves).
+
+
 
 
 
