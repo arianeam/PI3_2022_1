@@ -66,9 +66,24 @@ O DHT11 foi alimentado com o 3v3 e o GND do ESP32, e o pino de dados foi ligado 
 
 Datasheet: https://www.filipeflop.com/img/files/download/Datasheet_LDR.pdf
 
-[O Sensor de Luminosidade LDR (Light Dependent Resistor) é um componente cuja resistência varia de acordo com a intensidade da luz. Quanto mais luz incidir sobre o componente, menor a resistência.](https://www.filipeflop.com/produto/sensor-de-luminosidade-ldr-5mm/). Foi utilizado o canal 5 do ADC1 do ESP32 para receber a tensão do LDR, que em seguida, passa por uma função de linearização.
+[O Sensor de Luminosidade LDR (Light Dependent Resistor) é um componente cuja resistência varia de acordo com a intensidade da luz. Quanto mais luz incidir sobre o componente, menor a resistência.](https://www.filipeflop.com/produto/sensor-de-luminosidade-ldr-5mm/). Foi utilizado o canal 5 do ADC1 do ESP32 para receber a tensão do LDR, que em seguida, passa por uma função de leitura do firmware.
 
 <img src="imagens PI3/luximetro_circuito.PNG">
+
+
+
+Foi necessário realizar a linearização dos valores do LDR para que ele atendesse as faixas de luminosidade exigidas pelo projeto. O método utilizado para realizar a linearização está descrito no seguinte link: https://www.digikey.com/en/maker/projects/design-a-luxmeter-with-an-ldr-and-an-arduino/623aeee0f93e427bb57e02c4592567d1
+
+Passos seguidos para a linearização:
+
+* Um multímetro foi conectado no LDR para monitorar a resistência;
+* O luxímetro comercial foi posicionado ao lado do LDR, de forma que a incidência de luz seja a mesma em ambos;
+* Em uma planilha foi registrada a resistência do LDR medida pelo multímetro e o valor aferido pelo luxímetro comercial;
+* O passo anterior foi repetido para outros níveis de luminosidade, de forma que para cada medida da resistência do LDR houvesse uma medida do luxímetro;
+* A partir dos dados registrados na planilha foi gerado um gráfico que pode ser ajustado com base na equação y = m.b. Foi utilizada a expressão fornecida no link informado anteriormente, linearizando o gráfico;
+<img src="imagens PI3/expressao_lux.png">
+
+Assim é possível construir a função para leitura do LDR e ajustar os coeficientes.
 
 <img src="imagens PI3/luximetro.PNG">
 
