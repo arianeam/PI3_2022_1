@@ -57,7 +57,7 @@ Todos sensores, o display oled, e um dos ESP32 utilizados para o desenvolvimento
 
 A comunicação entre o hardware e o banco de dados utilizado ocorre por meio de Wi-Fi, pois o microprocessador utilizado (ESP32-WROOM-32) possui antena integrada.
 
-**OBS.: Os sensores que utilizam os canais de ADC passam pelo circuito de entradas analógicas antes de chegar aos canais ADC**
+**OBS.: Os sensores que utilizam os canais de ADC passam pelo circuito de entradas analógicas antes de chegar aos canais ADC, passando pelos buffers que irão proteger as entradas ADC**
 
 <img src="imagens PI3/entradas_analogicas.PNG">
 
